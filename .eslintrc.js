@@ -74,6 +74,12 @@ module.exports = {
         'jest/prefer-todo': 'error',
         'jest/require-top-level-describe': 'error'
       }
+    },
+    {
+      files: ['*.stories.ts', '*.stories.tsx'],
+      rules: {
+        'import/no-default-export': 'off'
+      }
     }
   ]
 };
