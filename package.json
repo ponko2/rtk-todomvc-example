@@ -26,13 +26,22 @@
     "react-scripts": "3.3.0",
     "typescript": "^3.7.3"
   },
-  "eslintConfig": {
-    "extends": "react-app"
+  "devDependencies": {
+    "eslint": "^6.7.2",
+    "eslint-config-ponko2": "^16.0.0",
+    "eslint-config-prettier": "^6.7.0",
+    "eslint-plugin-jest": "^23.1.1",
+    "eslint-plugin-prettier": "^3.1.1",
+    "husky": "^3.1.0",
+    "lint-staged": "^9.5.0",
+    "prettier": "^1.19.1"
   },
   "private": true,
   "scripts": {
     "build": "react-scripts build",
     "eject": "react-scripts eject",
+    "lint": "eslint --ext .js,.jsx,.ts,.tsx .",
+    "lint:fix": "eslint --ext .js,.jsx,.ts,.tsx --fix .",
     "start": "react-scripts start",
     "test": "react-scripts test"
   }
