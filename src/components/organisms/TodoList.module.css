@@ -1,0 +1,9 @@
+.todoList {
+  border-top: 1px solid #e6e6e6;
+}
+
+.todoList ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}

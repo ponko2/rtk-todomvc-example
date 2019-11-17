@@ -1,0 +1,487 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots Atoms/TodoButton Simple 1`] = `
+<button
+  className="button"
+  onClick={[Function]}
+>
+  Hello, World!!
+</button>
+`;
+
+exports[`Storyshots Atoms/TodoLink Active 1`] = `
+<a
+  className="link selected"
+  onClick={[Function]}
+  style={
+    Object {
+      "cursor": "pointer",
+    }
+  }
+>
+  Hello, World!!
+</a>
+`;
+
+exports[`Storyshots Atoms/TodoLink Simple 1`] = `
+<a
+  className="link"
+  onClick={[Function]}
+  style={
+    Object {
+      "cursor": "pointer",
+    }
+  }
+>
+  Hello, World!!
+</a>
+`;
+
+exports[`Storyshots Molecules/TodoItem Completed 1`] = `
+<ul
+  style={
+    Object {
+      "listStyle": "none",
+      "margin": 0,
+      "padding": 0,
+    }
+  }
+>
+  <li
+    className="todoItem"
+  >
+    <div
+      className="view"
+    >
+      <input
+        checked={true}
+        className="toggle"
+        onChange={[Function]}
+        type="checkbox"
+      />
+      <label
+        onDoubleClick={[Function]}
+      >
+        Hello, World!!
+      </label>
+      <button
+        className="button destroy"
+        onClick={[Function]}
+      />
+    </div>
+  </li>
+</ul>
+`;
+
+exports[`Storyshots Molecules/TodoItem Simple 1`] = `
+<ul
+  style={
+    Object {
+      "listStyle": "none",
+      "margin": 0,
+      "padding": 0,
+    }
+  }
+>
+  <li
+    className="todoItem"
+  >
+    <div
+      className="view"
+    >
+      <input
+        checked={false}
+        className="toggle"
+        onChange={[Function]}
+        type="checkbox"
+      />
+      <label
+        onDoubleClick={[Function]}
+      >
+        Hello, World!!
+      </label>
+      <button
+        className="button destroy"
+        onClick={[Function]}
+      />
+    </div>
+  </li>
+</ul>
+`;
+
+exports[`Storyshots Organisms/TodoFooter Has Active 1`] = `
+<footer
+  className="footer"
+>
+  <span
+    className="todoCount"
+  >
+    <strong>
+      1
+    </strong>
+     
+    item
+     left
+  </span>
+  <ul
+    className="filters"
+  >
+    <li>
+      <a
+        className="link"
+        onClick={[Function]}
+        style={
+          Object {
+            "cursor": "pointer",
+          }
+        }
+      >
+        All
+      </a>
+    </li>
+    <li>
+      <a
+        className="link selected"
+        onClick={[Function]}
+        style={
+          Object {
+            "cursor": "pointer",
+          }
+        }
+      >
+        Active
+      </a>
+    </li>
+    <li>
+      <a
+        className="link"
+        onClick={[Function]}
+        style={
+          Object {
+            "cursor": "pointer",
+          }
+        }
+      >
+        Completed
+      </a>
+    </li>
+  </ul>
+</footer>
+`;
+
+exports[`Storyshots Organisms/TodoFooter Has Completed 1`] = `
+<footer
+  className="footer"
+>
+  <span
+    className="todoCount"
+  >
+    <strong>
+      1
+    </strong>
+     
+    item
+     left
+  </span>
+  <ul
+    className="filters"
+  >
+    <li>
+      <a
+        className="link"
+        onClick={[Function]}
+        style={
+          Object {
+            "cursor": "pointer",
+          }
+        }
+      >
+        All
+      </a>
+    </li>
+    <li>
+      <a
+        className="link"
+        onClick={[Function]}
+        style={
+          Object {
+            "cursor": "pointer",
+          }
+        }
+      >
+        Active
+      </a>
+    </li>
+    <li>
+      <a
+        className="link selected"
+        onClick={[Function]}
+        style={
+          Object {
+            "cursor": "pointer",
+          }
+        }
+      >
+        Completed
+      </a>
+    </li>
+  </ul>
+  <button
+    className="button clearCompleted"
+    onClick={[Function]}
+  >
+    Clear completed
+  </button>
+</footer>
+`;
+
+exports[`Storyshots Organisms/TodoFooter Simple 1`] = `
+<footer
+  className="footer"
+>
+  <span
+    className="todoCount"
+  >
+    <strong>
+      No
+    </strong>
+     
+    items
+     left
+  </span>
+  <ul
+    className="filters"
+  >
+    <li>
+      <a
+        className="link selected"
+        onClick={[Function]}
+        style={
+          Object {
+            "cursor": "pointer",
+          }
+        }
+      >
+        All
+      </a>
+    </li>
+    <li>
+      <a
+        className="link"
+        onClick={[Function]}
+        style={
+          Object {
+            "cursor": "pointer",
+          }
+        }
+      >
+        Active
+      </a>
+    </li>
+    <li>
+      <a
+        className="link"
+        onClick={[Function]}
+        style={
+          Object {
+            "cursor": "pointer",
+          }
+        }
+      >
+        Completed
+      </a>
+    </li>
+  </ul>
+  <button
+    className="button clearCompleted"
+    onClick={[Function]}
+  >
+    Clear completed
+  </button>
+</footer>
+`;
+
+exports[`Storyshots Organisms/TodoHeader Has Active 1`] = `
+<header
+  className="header"
+>
+  <h1>
+    todos
+  </h1>
+  <input
+    autoFocus={true}
+    className="newTodo"
+    onChange={[Function]}
+    onKeyDown={[Function]}
+    placeholder="What needs to be done?"
+    type="text"
+    value=""
+  />
+  <span>
+    <input
+      checked={false}
+      className="toggleAll"
+      readOnly={true}
+      type="checkbox"
+    />
+    <label
+      onClick={[Function]}
+    />
+  </span>
+</header>
+`;
+
+exports[`Storyshots Organisms/TodoHeader Is All Completed 1`] = `
+<header
+  className="header"
+>
+  <h1>
+    todos
+  </h1>
+  <input
+    autoFocus={true}
+    className="newTodo"
+    onChange={[Function]}
+    onKeyDown={[Function]}
+    placeholder="What needs to be done?"
+    type="text"
+    value=""
+  />
+  <span>
+    <input
+      checked={true}
+      className="toggleAll"
+      readOnly={true}
+      type="checkbox"
+    />
+    <label
+      onClick={[Function]}
+    />
+  </span>
+</header>
+`;
+
+exports[`Storyshots Organisms/TodoHeader Simple 1`] = `
+<header
+  className="header"
+>
+  <h1>
+    todos
+  </h1>
+  <input
+    autoFocus={true}
+    className="newTodo"
+    onChange={[Function]}
+    onKeyDown={[Function]}
+    placeholder="What needs to be done?"
+    type="text"
+    value=""
+  />
+</header>
+`;
+
+exports[`Storyshots Organisms/TodoList Simple 1`] = `
+<section
+  className="todoList"
+>
+  <ul>
+    <li
+      className="todoItem"
+    >
+      <div
+        className="view"
+      >
+        <input
+          checked={false}
+          className="toggle"
+          onChange={[Function]}
+          type="checkbox"
+        />
+        <label
+          onDoubleClick={[Function]}
+        >
+          foo
+        </label>
+        <button
+          className="button destroy"
+          onClick={[Function]}
+        />
+      </div>
+    </li>
+    <li
+      className="todoItem"
+    >
+      <div
+        className="view"
+      >
+        <input
+          checked={true}
+          className="toggle"
+          onChange={[Function]}
+          type="checkbox"
+        />
+        <label
+          onDoubleClick={[Function]}
+        >
+          bar
+        </label>
+        <button
+          className="button destroy"
+          onClick={[Function]}
+        />
+      </div>
+    </li>
+    <li
+      className="todoItem"
+    >
+      <div
+        className="view"
+      >
+        <input
+          checked={false}
+          className="toggle"
+          onChange={[Function]}
+          type="checkbox"
+        />
+        <label
+          onDoubleClick={[Function]}
+        >
+          baz
+        </label>
+        <button
+          className="button destroy"
+          onClick={[Function]}
+        />
+      </div>
+    </li>
+  </ul>
+</section>
+`;
+
+exports[`Storyshots Pages/TodoList Simple 1`] = `
+<section
+  className="todoapp"
+>
+  <header
+    className="header"
+  >
+    <h1>
+      todos
+    </h1>
+    <input
+      autoFocus={true}
+      className="newTodo"
+      onChange={[Function]}
+      onKeyDown={[Function]}
+      placeholder="What needs to be done?"
+      type="text"
+      value=""
+    />
+  </header>
+  <section
+    className="todoList"
+  >
+    <ul />
+  </section>
+</section>
+`;
