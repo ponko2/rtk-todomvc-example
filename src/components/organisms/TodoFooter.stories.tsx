@@ -1,7 +1,7 @@
 import React from 'react';
 import { action } from '@storybook/addon-actions';
 import { withKnobs, number, select } from '@storybook/addon-knobs';
-import { VisibilityFilter } from 'constants/VisibilityFilter';
+import { VisibilityFilter } from 'modules/visibilityFilter';
 import { TodoFooter } from './TodoFooter';
 
 export default {
