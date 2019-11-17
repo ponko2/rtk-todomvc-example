@@ -12,6 +12,13 @@ module.exports = {
     'prettier/@typescript-eslint',
     'prettier/react'
   ],
+  settings: {
+    'import/resolver': {
+      node: {
+        paths: ['src']
+      }
+    }
+  },
   rules: {
     // Import
     // https://github.com/benmosher/eslint-plugin-import/blob/master/README.md
