@@ -41,6 +41,7 @@
     "@storybook/addon-storyshots": "^5.2.8",
     "@storybook/addons": "^5.2.8",
     "@storybook/react": "^5.2.8",
+    "@types/redux-mock-store": "^1.0.1",
     "@types/storybook__addon-storyshots": "^5.1.2",
     "eslint": "^6.7.2",
     "eslint-config-ponko2": "^16.0.0",
@@ -53,7 +54,21 @@
     "prettier": "^1.19.1",
     "react-docgen-typescript-loader": "^3.6.0",
     "react-test-renderer": "^16.12.0",
+    "redux-mock-store": "^1.5.3",
     "require-context.macro": "^1.2.2"
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "src/**/*.{js,jsx,ts,tsx}",
+      "!src/**/*.stories.tsx",
+      "!src/**/*.d.ts",
+      "!src/index.tsx",
+      "!src/api/**",
+      "!src/app/**",
+      "!src/containers/**"
+    ],
+    "resetMocks": true,
+    "resetModules": true
   },
   "private": true,
   "scripts": {

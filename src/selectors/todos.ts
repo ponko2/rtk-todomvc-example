@@ -16,6 +16,7 @@ export const getVisibleTodos = createSelector(
       case VisibilityFilter.SHOW_ACTIVE:
         return todos.filter(todo => !todo.completed);
       default:
+        /* istanbul ignore next */
         throw new Error(`Unknown filter: ${visibilityFilter}`);
     }
   }
