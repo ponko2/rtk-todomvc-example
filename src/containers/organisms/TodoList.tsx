@@ -15,7 +15,7 @@ export const TodoList: React.FC = () => {
     <Component
       todos={todos}
       editTodo={(id, text) => {
-        dispatch(editTodo(id, text));
+        dispatch(editTodo({ id, text }));
       }}
       toggleTodo={(id) => {
         dispatch(toggleTodo(id));

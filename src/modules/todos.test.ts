@@ -5,9 +5,6 @@ import * as api from 'api/todos';
 import {
   TodosState,
   todosReducer,
-  updateTodosStart,
-  updateTodosSuccess,
-  updateTodosFailed,
   fetchTodos,
   addTodo,
   deleteTodo,
@@ -32,74 +29,74 @@ describe('todosReducer', () => {
     });
   });
 
-  it('should handle updateTodosStart', () => {
-    expect(
-      todosReducer(
-        {
-          todos: [],
-          isLoading: false,
-          error: null,
-        },
-        {
-          type: updateTodosStart.type,
-        }
-      )
-    ).toStrictEqual({
-      todos: [],
-      isLoading: true,
-      error: null,
+  describe.each([
+    ['todos/fetch', fetchTodos],
+    ['todos/add', addTodo],
+    ['todos/delete', deleteTodo],
+    ['todos/edit', editTodo],
+    ['todos/toggle', toggleTodo],
+    ['todos/toggleAll', toggleAllTodo],
+    ['todos/clearCompleted', clearCompleted],
+  ])('%p', (name, actionCreator) => {
+    it('pending', () => {
+      expect(
+        todosReducer(
+          {
+            todos: [],
+            isLoading: false,
+            error: null,
+          },
+          {
+            type: actionCreator.pending.type,
+          }
+        )
+      ).toStrictEqual({
+        todos: [],
+        isLoading: true,
+        error: null,
+      });
     });
-  });
-
-  it('should handle updateTodosSuccess', () => {
-    expect(
-      todosReducer(
-        {
-          todos: [],
-          isLoading: false,
-          error: null,
-        },
-        {
-          type: updateTodosSuccess.type,
-          payload: [
-            {
-              id: 1,
-              completed: false,
-              text: 'foo',
+    it('fulfilled', () => {
+      expect(
+        todosReducer(
+          {
+            todos: [],
+            isLoading: false,
+            error: null,
+          },
+          {
+            type: actionCreator.fulfilled.type,
+            payload: [{ id: 1, completed: false, text: 'foo' }],
+          }
+        )
+      ).toStrictEqual({
+        todos: [{ id: 1, completed: false, text: 'foo' }],
+        isLoading: false,
+        error: null,
+      });
+    });
+    it('rejected', () => {
+      expect(
+        todosReducer(
+          {
+            todos: [],
+            isLoading: false,
+            error: null,
+          },
+          {
+            type: actionCreator.rejected.type,
+            error: {
+              toString() {
+                return 'failed';
+              },
             },
-          ],
-        }
-      )
-    ).toStrictEqual({
-      todos: [
-        {
-          id: 1,
-          completed: false,
-          text: 'foo',
-        },
-      ],
-      isLoading: false,
-      error: null,
-    });
-  });
-
-  it('should handle updateTodosFailed', () => {
-    expect(
-      todosReducer(
-        {
-          todos: [],
-          isLoading: false,
-          error: null,
-        },
-        {
-          type: updateTodosFailed.type,
-          payload: 'Error: failed',
-        }
-      )
-    ).toStrictEqual({
-      todos: [],
-      isLoading: false,
-      error: 'Error: failed',
+          }
+        )
+      ).toStrictEqual({
+        todos: [],
+        isLoading: false,
+        error: 'failed',
+      });
     });
   });
 });
@@ -112,27 +109,31 @@ describe('fetchTodos', () => {
       error: null,
     });
 
-    const fetchSpy = jest.spyOn(api, 'fetchTodos').mockImplementation(() =>
-      Promise.resolve([
-        {
-          id: 1,
-          completed: false,
-          text: 'foo',
-        },
-      ])
-    );
+    const fetchSpy = jest
+      .spyOn(api, 'fetchTodos')
+      .mockImplementation(() =>
+        Promise.resolve([{ id: 1, completed: false, text: 'foo' }])
+      );
 
     await store.dispatch(fetchTodos());
 
     expect(store.getActions()).toStrictEqual([
-      updateTodosStart(),
-      updateTodosSuccess([
-        {
-          id: 1,
-          completed: false,
-          text: 'foo',
+      {
+        meta: {
+          requestId: expect.anything(),
+          arg: undefined,
         },
-      ]),
+        payload: undefined,
+        type: 'todos/fetch/pending',
+      },
+      {
+        meta: {
+          requestId: expect.anything(),
+          arg: undefined,
+        },
+        payload: [{ id: 1, completed: false, text: 'foo' }],
+        type: 'todos/fetch/fulfilled',
+      },
     ]);
     expect(fetchSpy).toHaveBeenCalledTimes(1);
   });
@@ -151,8 +152,28 @@ describe('fetchTodos', () => {
     await store.dispatch(fetchTodos());
 
     expect(store.getActions()).toStrictEqual([
-      updateTodosStart(),
-      updateTodosFailed('Error: failed'),
+      {
+        meta: {
+          requestId: expect.anything(),
+          arg: undefined,
+        },
+        payload: undefined,
+        type: 'todos/fetch/pending',
+      },
+      {
+        meta: {
+          requestId: expect.anything(),
+          arg: undefined,
+          aborted: false,
+        },
+        error: {
+          message: 'failed',
+          name: 'Error',
+          stack: expect.anything(),
+        },
+        payload: undefined,
+        type: 'todos/fetch/rejected',
+      },
     ]);
     expect(fetchSpy).toHaveBeenCalledTimes(1);
   });
@@ -170,27 +191,31 @@ describe('addTodo', () => {
       .spyOn(api, 'addTodo')
       .mockImplementation(() => Promise.resolve(1));
 
-    const fetchSpy = jest.spyOn(api, 'fetchTodos').mockImplementation(() =>
-      Promise.resolve([
-        {
-          id: 1,
-          completed: false,
-          text: 'foo',
-        },
-      ])
-    );
+    const fetchSpy = jest
+      .spyOn(api, 'fetchTodos')
+      .mockImplementation(() =>
+        Promise.resolve([{ id: 1, completed: false, text: 'foo' }])
+      );
 
     await store.dispatch(addTodo('foo'));
 
     expect(store.getActions()).toStrictEqual([
-      updateTodosStart(),
-      updateTodosSuccess([
-        {
-          id: 1,
-          completed: false,
-          text: 'foo',
+      {
+        meta: {
+          requestId: expect.anything(),
+          arg: 'foo',
         },
-      ]),
+        payload: undefined,
+        type: 'todos/add/pending',
+      },
+      {
+        meta: {
+          requestId: expect.anything(),
+          arg: 'foo',
+        },
+        payload: [{ id: 1, completed: false, text: 'foo' }],
+        type: 'todos/add/fulfilled',
+      },
     ]);
     expect(addSpy).toHaveBeenCalledTimes(1);
     expect(fetchSpy).toHaveBeenCalledTimes(1);
@@ -212,8 +237,28 @@ describe('addTodo', () => {
     await store.dispatch(addTodo('foo'));
 
     expect(store.getActions()).toStrictEqual([
-      updateTodosStart(),
-      updateTodosFailed('Error: failed'),
+      {
+        meta: {
+          requestId: expect.anything(),
+          arg: 'foo',
+        },
+        payload: undefined,
+        type: 'todos/add/pending',
+      },
+      {
+        error: {
+          message: 'failed',
+          name: 'Error',
+          stack: expect.anything(),
+        },
+        meta: {
+          requestId: expect.anything(),
+          arg: 'foo',
+          aborted: false,
+        },
+        payload: undefined,
+        type: 'todos/add/rejected',
+      },
     ]);
     expect(addSpy).toHaveBeenCalledTimes(1);
     expect(fetchSpy).toHaveBeenCalledTimes(0);
@@ -223,13 +268,7 @@ describe('addTodo', () => {
 describe('deleteTodo', () => {
   it('success', async () => {
     const store = mockStore({
-      todos: [
-        {
-          id: 1,
-          completed: false,
-          text: 'foo',
-        },
-      ],
+      todos: [{ id: 1, completed: false, text: 'foo' }],
       isLoading: false,
       error: null,
     });
@@ -245,8 +284,22 @@ describe('deleteTodo', () => {
     await store.dispatch(deleteTodo(1));
 
     expect(store.getActions()).toStrictEqual([
-      updateTodosStart(),
-      updateTodosSuccess([]),
+      {
+        meta: {
+          requestId: expect.anything(),
+          arg: 1,
+        },
+        payload: undefined,
+        type: 'todos/delete/pending',
+      },
+      {
+        meta: {
+          requestId: expect.anything(),
+          arg: 1,
+        },
+        payload: [],
+        type: 'todos/delete/fulfilled',
+      },
     ]);
     expect(deleteSpy).toHaveBeenCalledTimes(1);
     expect(fetchSpy).toHaveBeenCalledTimes(1);
@@ -254,13 +307,7 @@ describe('deleteTodo', () => {
 
   it('failed', async () => {
     const store = mockStore({
-      todos: [
-        {
-          id: 1,
-          completed: false,
-          text: 'foo',
-        },
-      ],
+      todos: [{ id: 1, completed: false, text: 'foo' }],
       isLoading: false,
       error: null,
     });
@@ -274,8 +321,28 @@ describe('deleteTodo', () => {
     await store.dispatch(deleteTodo(1));
 
     expect(store.getActions()).toStrictEqual([
-      updateTodosStart(),
-      updateTodosFailed('Error: failed'),
+      {
+        meta: {
+          requestId: expect.anything(),
+          arg: 1,
+        },
+        payload: undefined,
+        type: 'todos/delete/pending',
+      },
+      {
+        error: {
+          message: 'failed',
+          name: 'Error',
+          stack: expect.anything(),
+        },
+        meta: {
+          requestId: expect.anything(),
+          arg: 1,
+          aborted: false,
+        },
+        payload: undefined,
+        type: 'todos/delete/rejected',
+      },
     ]);
     expect(deleteSpy).toHaveBeenCalledTimes(1);
     expect(fetchSpy).toHaveBeenCalledTimes(0);
@@ -285,13 +352,7 @@ describe('deleteTodo', () => {
 describe('editTodo', () => {
   it('success', async () => {
     const store = mockStore({
-      todos: [
-        {
-          id: 1,
-          completed: false,
-          text: 'foo',
-        },
-      ],
+      todos: [{ id: 1, completed: false, text: 'foo' }],
       isLoading: false,
       error: null,
     });
@@ -300,27 +361,31 @@ describe('editTodo', () => {
       .spyOn(api, 'editTodo')
       .mockImplementation(() => Promise.resolve(1));
 
-    const fetchSpy = jest.spyOn(api, 'fetchTodos').mockImplementation(() =>
-      Promise.resolve([
-        {
-          id: 1,
-          completed: false,
-          text: 'bar',
-        },
-      ])
-    );
+    const fetchSpy = jest
+      .spyOn(api, 'fetchTodos')
+      .mockImplementation(() =>
+        Promise.resolve([{ id: 1, completed: false, text: 'bar' }])
+      );
 
-    await store.dispatch(editTodo(1, 'bar'));
+    await store.dispatch(editTodo({ id: 1, text: 'bar' }));
 
     expect(store.getActions()).toStrictEqual([
-      updateTodosStart(),
-      updateTodosSuccess([
-        {
-          id: 1,
-          completed: false,
-          text: 'bar',
+      {
+        meta: {
+          requestId: expect.anything(),
+          arg: { id: 1, text: 'bar' },
         },
-      ]),
+        payload: undefined,
+        type: 'todos/edit/pending',
+      },
+      {
+        meta: {
+          requestId: expect.anything(),
+          arg: { id: 1, text: 'bar' },
+        },
+        payload: [{ id: 1, completed: false, text: 'bar' }],
+        type: 'todos/edit/fulfilled',
+      },
     ]);
     expect(editSpy).toHaveBeenCalledTimes(1);
     expect(fetchSpy).toHaveBeenCalledTimes(1);
@@ -328,13 +393,7 @@ describe('editTodo', () => {
 
   it('failed', async () => {
     const store = mockStore({
-      todos: [
-        {
-          id: 1,
-          completed: false,
-          text: 'foo',
-        },
-      ],
+      todos: [{ id: 1, completed: false, text: 'foo' }],
       isLoading: false,
       error: null,
     });
@@ -345,11 +404,31 @@ describe('editTodo', () => {
 
     const fetchSpy = jest.spyOn(api, 'fetchTodos');
 
-    await store.dispatch(editTodo(1, 'bar'));
+    await store.dispatch(editTodo({ id: 1, text: 'bar' }));
 
     expect(store.getActions()).toStrictEqual([
-      updateTodosStart(),
-      updateTodosFailed('Error: failed'),
+      {
+        meta: {
+          requestId: expect.anything(),
+          arg: { id: 1, text: 'bar' },
+        },
+        payload: undefined,
+        type: 'todos/edit/pending',
+      },
+      {
+        error: {
+          message: 'failed',
+          name: 'Error',
+          stack: expect.anything(),
+        },
+        meta: {
+          requestId: expect.anything(),
+          arg: { id: 1, text: 'bar' },
+          aborted: false,
+        },
+        payload: undefined,
+        type: 'todos/edit/rejected',
+      },
     ]);
     expect(editSpy).toHaveBeenCalledTimes(1);
     expect(fetchSpy).toHaveBeenCalledTimes(0);
@@ -359,13 +438,7 @@ describe('editTodo', () => {
 describe('toggleTodo', () => {
   it('success', async () => {
     const store = mockStore({
-      todos: [
-        {
-          id: 1,
-          completed: false,
-          text: 'foo',
-        },
-      ],
+      todos: [{ id: 1, completed: false, text: 'foo' }],
       isLoading: false,
       error: null,
     });
@@ -374,27 +447,31 @@ describe('toggleTodo', () => {
       .spyOn(api, 'toggleTodo')
       .mockImplementation(() => Promise.resolve(1));
 
-    const fetchSpy = jest.spyOn(api, 'fetchTodos').mockImplementation(() =>
-      Promise.resolve([
-        {
-          id: 1,
-          completed: true,
-          text: 'foo',
-        },
-      ])
-    );
+    const fetchSpy = jest
+      .spyOn(api, 'fetchTodos')
+      .mockImplementation(() =>
+        Promise.resolve([{ id: 1, completed: true, text: 'foo' }])
+      );
 
     await store.dispatch(toggleTodo(1));
 
     expect(store.getActions()).toStrictEqual([
-      updateTodosStart(),
-      updateTodosSuccess([
-        {
-          id: 1,
-          completed: true,
-          text: 'foo',
+      {
+        meta: {
+          requestId: expect.anything(),
+          arg: 1,
         },
-      ]),
+        payload: undefined,
+        type: 'todos/toggle/pending',
+      },
+      {
+        meta: {
+          requestId: expect.anything(),
+          arg: 1,
+        },
+        payload: [{ id: 1, completed: true, text: 'foo' }],
+        type: 'todos/toggle/fulfilled',
+      },
     ]);
     expect(toggleSpy).toHaveBeenCalledTimes(1);
     expect(fetchSpy).toHaveBeenCalledTimes(1);
@@ -402,13 +479,7 @@ describe('toggleTodo', () => {
 
   it('failed', async () => {
     const store = mockStore({
-      todos: [
-        {
-          id: 1,
-          completed: false,
-          text: 'foo',
-        },
-      ],
+      todos: [{ id: 1, completed: false, text: 'foo' }],
       isLoading: false,
       error: null,
     });
@@ -422,8 +493,28 @@ describe('toggleTodo', () => {
     await store.dispatch(toggleTodo(1));
 
     expect(store.getActions()).toStrictEqual([
-      updateTodosStart(),
-      updateTodosFailed('Error: failed'),
+      {
+        meta: {
+          requestId: expect.anything(),
+          arg: 1,
+        },
+        payload: undefined,
+        type: 'todos/toggle/pending',
+      },
+      {
+        error: {
+          message: 'failed',
+          name: 'Error',
+          stack: expect.anything(),
+        },
+        meta: {
+          requestId: expect.anything(),
+          arg: 1,
+          aborted: false,
+        },
+        payload: undefined,
+        type: 'todos/toggle/rejected',
+      },
     ]);
     expect(toggleSpy).toHaveBeenCalledTimes(1);
     expect(fetchSpy).toHaveBeenCalledTimes(0);
@@ -434,16 +525,8 @@ describe('toggleAllTodo', () => {
   it('success', async () => {
     const store = mockStore({
       todos: [
-        {
-          id: 1,
-          completed: false,
-          text: 'foo',
-        },
-        {
-          id: 2,
-          completed: false,
-          text: 'bar',
-        },
+        { id: 1, completed: false, text: 'foo' },
+        { id: 2, completed: false, text: 'bar' },
       ],
       isLoading: false,
       error: null,
@@ -455,35 +538,33 @@ describe('toggleAllTodo', () => {
 
     const fetchSpy = jest.spyOn(api, 'fetchTodos').mockImplementation(() =>
       Promise.resolve([
-        {
-          id: 1,
-          completed: true,
-          text: 'foo',
-        },
-        {
-          id: 2,
-          completed: true,
-          text: 'bar',
-        },
+        { id: 1, completed: true, text: 'foo' },
+        { id: 2, completed: true, text: 'bar' },
       ])
     );
 
     await store.dispatch(toggleAllTodo());
 
     expect(store.getActions()).toStrictEqual([
-      updateTodosStart(),
-      updateTodosSuccess([
-        {
-          id: 1,
-          completed: true,
-          text: 'foo',
+      {
+        meta: {
+          requestId: expect.anything(),
+          arg: undefined,
         },
-        {
-          id: 2,
-          completed: true,
-          text: 'bar',
+        payload: undefined,
+        type: 'todos/toggleAll/pending',
+      },
+      {
+        meta: {
+          requestId: expect.anything(),
+          arg: undefined,
         },
-      ]),
+        payload: [
+          { id: 1, completed: true, text: 'foo' },
+          { id: 2, completed: true, text: 'bar' },
+        ],
+        type: 'todos/toggleAll/fulfilled',
+      },
     ]);
     expect(toggleAllSpy).toHaveBeenCalledTimes(1);
     expect(fetchSpy).toHaveBeenCalledTimes(1);
@@ -492,16 +573,8 @@ describe('toggleAllTodo', () => {
   it('failed', async () => {
     const store = mockStore({
       todos: [
-        {
-          id: 1,
-          completed: false,
-          text: 'foo',
-        },
-        {
-          id: 2,
-          completed: false,
-          text: 'bar',
-        },
+        { id: 1, completed: false, text: 'foo' },
+        { id: 2, completed: false, text: 'bar' },
       ],
       isLoading: false,
       error: null,
@@ -516,8 +589,28 @@ describe('toggleAllTodo', () => {
     await store.dispatch(toggleAllTodo());
 
     expect(store.getActions()).toStrictEqual([
-      updateTodosStart(),
-      updateTodosFailed('Error: failed'),
+      {
+        meta: {
+          requestId: expect.anything(),
+          arg: undefined,
+        },
+        payload: undefined,
+        type: 'todos/toggleAll/pending',
+      },
+      {
+        error: {
+          message: 'failed',
+          name: 'Error',
+          stack: expect.anything(),
+        },
+        meta: {
+          requestId: expect.anything(),
+          arg: undefined,
+          aborted: false,
+        },
+        payload: undefined,
+        type: 'todos/toggleAll/rejected',
+      },
     ]);
     expect(toggleAllSpy).toHaveBeenCalledTimes(1);
     expect(fetchSpy).toHaveBeenCalledTimes(0);
@@ -528,16 +621,8 @@ describe('clearCompleted', () => {
   it('success', async () => {
     const store = mockStore({
       todos: [
-        {
-          id: 1,
-          completed: false,
-          text: 'foo',
-        },
-        {
-          id: 2,
-          completed: true,
-          text: 'bar',
-        },
+        { id: 1, completed: false, text: 'foo' },
+        { id: 2, completed: true, text: 'bar' },
       ],
       isLoading: false,
       error: null,
@@ -547,27 +632,31 @@ describe('clearCompleted', () => {
       .spyOn(api, 'clearCompleted')
       .mockImplementation(() => Promise.resolve(1));
 
-    const fetchSpy = jest.spyOn(api, 'fetchTodos').mockImplementation(() =>
-      Promise.resolve([
-        {
-          id: 1,
-          completed: false,
-          text: 'foo',
-        },
-      ])
-    );
+    const fetchSpy = jest
+      .spyOn(api, 'fetchTodos')
+      .mockImplementation(() =>
+        Promise.resolve([{ id: 1, completed: false, text: 'foo' }])
+      );
 
     await store.dispatch(clearCompleted());
 
     expect(store.getActions()).toStrictEqual([
-      updateTodosStart(),
-      updateTodosSuccess([
-        {
-          id: 1,
-          completed: false,
-          text: 'foo',
+      {
+        meta: {
+          requestId: expect.anything(),
+          arg: undefined,
         },
-      ]),
+        payload: undefined,
+        type: 'todos/clearCompleted/pending',
+      },
+      {
+        meta: {
+          requestId: expect.anything(),
+          arg: undefined,
+        },
+        payload: [{ id: 1, completed: false, text: 'foo' }],
+        type: 'todos/clearCompleted/fulfilled',
+      },
     ]);
     expect(clearCompletedSpy).toHaveBeenCalledTimes(1);
     expect(fetchSpy).toHaveBeenCalledTimes(1);
@@ -576,16 +665,8 @@ describe('clearCompleted', () => {
   it('failed', async () => {
     const store = mockStore({
       todos: [
-        {
-          id: 1,
-          completed: false,
-          text: 'foo',
-        },
-        {
-          id: 2,
-          completed: true,
-          text: 'bar',
-        },
+        { id: 1, completed: false, text: 'foo' },
+        { id: 2, completed: true, text: 'bar' },
       ],
       isLoading: false,
       error: null,
@@ -600,8 +681,28 @@ describe('clearCompleted', () => {
     await store.dispatch(clearCompleted());
 
     expect(store.getActions()).toStrictEqual([
-      updateTodosStart(),
-      updateTodosFailed('Error: failed'),
+      {
+        meta: {
+          requestId: expect.anything(),
+          arg: undefined,
+        },
+        payload: undefined,
+        type: 'todos/clearCompleted/pending',
+      },
+      {
+        error: {
+          message: 'failed',
+          name: 'Error',
+          stack: expect.anything(),
+        },
+        meta: {
+          requestId: expect.anything(),
+          arg: undefined,
+          aborted: false,
+        },
+        payload: undefined,
+        type: 'todos/clearCompleted/rejected',
+      },
     ]);
     expect(clearCompletedSpy).toHaveBeenCalledTimes(1);
     expect(fetchSpy).toHaveBeenCalledTimes(0);
