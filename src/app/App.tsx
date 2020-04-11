@@ -1,6 +1,6 @@
-import React, { FunctionComponent } from 'react';
+import React from 'react';
 import { TodoPage } from 'containers/pages/TodoPage';
 
-export const App: FunctionComponent = () => {
+export function App() {
   return <TodoPage />;
-};
+}
