@@ -11,7 +11,7 @@ const withProvider = (storyFn: StoryFn<ReactNode>) => (
 export default {
   title: 'Pages/TodoList',
   component: TodoPage,
-  decorators: [withProvider]
+  decorators: [withProvider],
 };
 
 export const simple = () => <TodoPage />;

@@ -14,12 +14,12 @@ export const TodoList: FunctionComponent<Props> = ({
   todos,
   deleteTodo,
   editTodo,
-  toggleTodo
+  toggleTodo,
 }) => {
   return (
     <section className={styles.todoList}>
       <ul>
-        {todos.map(todo => (
+        {todos.map((todo) => (
           <TodoItem
             key={todo.id}
             todo={todo}

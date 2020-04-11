@@ -2,7 +2,7 @@ import React, {
   ChangeEvent,
   FunctionComponent,
   KeyboardEvent,
-  useState
+  useState,
 } from 'react';
 import styles from './TodoHeader.module.css';
 
@@ -17,7 +17,7 @@ export const TodoHeader: FunctionComponent<Props> = ({
   todosCount,
   completedCount,
   addTodo,
-  toggleAllTodo
+  toggleAllTodo,
 }) => {
   const [value, setValue] = useState('');
 

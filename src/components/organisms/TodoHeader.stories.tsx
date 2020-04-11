@@ -6,7 +6,7 @@ import { TodoHeader } from './TodoHeader';
 export default {
   title: 'Organisms/TodoHeader',
   component: TodoHeader,
-  decorators: [withKnobs]
+  decorators: [withKnobs],
 };
 
 export const simple = () => (

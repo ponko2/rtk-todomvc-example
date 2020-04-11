@@ -19,7 +19,7 @@ class TodoAppDatabase extends Dexie {
     super('TodoAppDatabase');
 
     this.version(1).stores({
-      todos: '++id, completed, text'
+      todos: '++id, completed, text',
     });
 
     this.todos = this.table('todos');
@@ -59,7 +59,7 @@ export async function toggleTodo(id: number) {
 
 export async function toggleAllTodo() {
   const todos = await db.todos.toArray();
-  const areAllMarked = todos.every(todo => todo.completed);
+  const areAllMarked = todos.every((todo) => todo.completed);
   return db.todos
     .where('completed')
     .equals(Number(areAllMarked))
@@ -67,8 +67,5 @@ export async function toggleAllTodo() {
 }
 
 export async function clearCompleted() {
-  return db.todos
-    .where('completed')
-    .equals(1)
-    .delete();
+  return db.todos.where('completed').equals(1).delete();
 }

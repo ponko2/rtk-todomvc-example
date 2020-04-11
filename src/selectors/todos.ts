@@ -12,9 +12,9 @@ export const getVisibleTodos = createSelector(
       case VisibilityFilter.SHOW_ALL:
         return todos;
       case VisibilityFilter.SHOW_COMPLETED:
-        return todos.filter(todo => todo.completed);
+        return todos.filter((todo) => todo.completed);
       case VisibilityFilter.SHOW_ACTIVE:
-        return todos.filter(todo => !todo.completed);
+        return todos.filter((todo) => !todo.completed);
       default:
         /* istanbul ignore next */
         throw new Error(`Unknown filter: ${visibilityFilter}`);
@@ -22,8 +22,11 @@ export const getVisibleTodos = createSelector(
   }
 );
 
-export const getTodosCount = createSelector([getTodos], todos => todos.length);
+export const getTodosCount = createSelector(
+  [getTodos],
+  (todos) => todos.length
+);
 
-export const getCompletedTodoCount = createSelector([getTodos], todos =>
+export const getCompletedTodoCount = createSelector([getTodos], (todos) =>
   todos.reduce((count, todo) => (todo.completed ? count + 1 : count), 0)
 );

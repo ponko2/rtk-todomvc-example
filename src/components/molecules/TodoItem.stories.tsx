@@ -11,7 +11,7 @@ const withContainer = (storyFn: StoryFn<ReactNode>) => (
 export default {
   title: 'Molecules/TodoItem',
   component: TodoItem,
-  decorators: [withKnobs, withContainer]
+  decorators: [withKnobs, withContainer],
 };
 
 export const simple = () => (
@@ -19,7 +19,7 @@ export const simple = () => (
     todo={{
       id: 1,
       completed: boolean('Completed', false),
-      text: text('Text', 'Hello, World!!')
+      text: text('Text', 'Hello, World!!'),
     }}
     editTodo={action('editTodo')}
     deleteTodo={action('deleteTodo')}
@@ -32,7 +32,7 @@ export const completed = () => (
     todo={{
       id: 1,
       completed: true,
-      text: text('Text', 'Hello, World!!')
+      text: text('Text', 'Hello, World!!'),
     }}
     editTodo={action('editTodo')}
     deleteTodo={action('deleteTodo')}

@@ -5,34 +5,34 @@ describe('todos', () => {
   const todos = {
     todos: [
       { id: 1, completed: false, text: 'foo' },
-      { id: 2, completed: true, text: 'bar' }
+      { id: 2, completed: true, text: 'bar' },
     ],
     isLoading: false,
-    error: null
+    error: null,
   };
 
   it('getVisibleTodos', () => {
     expect(
       getVisibleTodos({
         todos,
-        visibilityFilter: VisibilityFilter.SHOW_ALL
+        visibilityFilter: VisibilityFilter.SHOW_ALL,
       })
     ).toStrictEqual([
       { id: 1, completed: false, text: 'foo' },
-      { id: 2, completed: true, text: 'bar' }
+      { id: 2, completed: true, text: 'bar' },
     ]);
 
     expect(
       getVisibleTodos({
         todos,
-        visibilityFilter: VisibilityFilter.SHOW_ACTIVE
+        visibilityFilter: VisibilityFilter.SHOW_ACTIVE,
       })
     ).toStrictEqual([{ id: 1, completed: false, text: 'foo' }]);
 
     expect(
       getVisibleTodos({
         todos,
-        visibilityFilter: VisibilityFilter.SHOW_COMPLETED
+        visibilityFilter: VisibilityFilter.SHOW_COMPLETED,
       })
     ).toStrictEqual([{ id: 2, completed: true, text: 'bar' }]);
   });
@@ -41,7 +41,7 @@ describe('todos', () => {
     expect(
       getTodosCount({
         todos,
-        visibilityFilter: VisibilityFilter.SHOW_ALL
+        visibilityFilter: VisibilityFilter.SHOW_ALL,
       })
     ).toBe(2);
   });
@@ -50,7 +50,7 @@ describe('todos', () => {
     expect(
       getCompletedTodoCount({
         todos,
-        visibilityFilter: VisibilityFilter.SHOW_ALL
+        visibilityFilter: VisibilityFilter.SHOW_ALL,
       })
     ).toBe(1);
   });

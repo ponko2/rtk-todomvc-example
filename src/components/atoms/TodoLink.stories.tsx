@@ -6,7 +6,7 @@ import { TodoLink } from './TodoLink';
 export default {
   title: 'Atoms/TodoLink',
   component: TodoLink,
-  decorators: [withKnobs]
+  decorators: [withKnobs],
 };
 
 export const simple = () => (

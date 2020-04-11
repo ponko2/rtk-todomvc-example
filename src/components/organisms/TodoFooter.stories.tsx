@@ -7,7 +7,7 @@ import { TodoFooter } from './TodoFooter';
 export default {
   title: 'Organisms/TodoFooter',
   component: TodoFooter,
-  decorators: [withKnobs]
+  decorators: [withKnobs],
 };
 
 export const simple = () => (
@@ -17,7 +17,7 @@ export const simple = () => (
       {
         All: VisibilityFilter.SHOW_ALL,
         Active: VisibilityFilter.SHOW_ACTIVE,
-        Completed: VisibilityFilter.SHOW_COMPLETED
+        Completed: VisibilityFilter.SHOW_COMPLETED,
       },
       VisibilityFilter.SHOW_ALL
     )}

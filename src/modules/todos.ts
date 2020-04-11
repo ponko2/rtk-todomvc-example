@@ -11,7 +11,7 @@ export interface TodosState {
 const initialState: TodosState = {
   todos: [],
   isLoading: false,
-  error: null
+  error: null,
 };
 
 const slice = createSlice({
@@ -29,18 +29,18 @@ const slice = createSlice({
     updateTodosFailed(state: TodosState, action: PayloadAction<string>) {
       state.isLoading = false;
       state.error = action.payload;
-    }
-  }
+    },
+  },
 });
 
 export const todosReducer = slice.reducer;
 export const {
   updateTodosStart,
   updateTodosSuccess,
-  updateTodosFailed
+  updateTodosFailed,
 } = slice.actions;
 
-export const fetchTodos = (): AppThunk => async dispatch => {
+export const fetchTodos = (): AppThunk => async (dispatch) => {
   try {
     dispatch(updateTodosStart());
     const todos = await api.fetchTodos();
@@ -50,7 +50,7 @@ export const fetchTodos = (): AppThunk => async dispatch => {
   }
 };
 
-export const addTodo = (text: string): AppThunk => async dispatch => {
+export const addTodo = (text: string): AppThunk => async (dispatch) => {
   try {
     dispatch(updateTodosStart());
     await api.addTodo(text);
@@ -61,7 +61,7 @@ export const addTodo = (text: string): AppThunk => async dispatch => {
   }
 };
 
-export const deleteTodo = (id: number): AppThunk => async dispatch => {
+export const deleteTodo = (id: number): AppThunk => async (dispatch) => {
   try {
     dispatch(updateTodosStart());
     await api.deleteTodo(id);
@@ -72,10 +72,9 @@ export const deleteTodo = (id: number): AppThunk => async dispatch => {
   }
 };
 
-export const editTodo = (
-  id: number,
-  text: string
-): AppThunk => async dispatch => {
+export const editTodo = (id: number, text: string): AppThunk => async (
+  dispatch
+) => {
   try {
     dispatch(updateTodosStart());
     await api.editTodo(id, text);
@@ -86,7 +85,7 @@ export const editTodo = (
   }
 };
 
-export const toggleTodo = (id: number): AppThunk => async dispatch => {
+export const toggleTodo = (id: number): AppThunk => async (dispatch) => {
   try {
     dispatch(updateTodosStart());
     await api.toggleTodo(id);
@@ -97,7 +96,7 @@ export const toggleTodo = (id: number): AppThunk => async dispatch => {
   }
 };
 
-export const toggleAllTodo = (): AppThunk => async dispatch => {
+export const toggleAllTodo = (): AppThunk => async (dispatch) => {
   try {
     dispatch(updateTodosStart());
     await api.toggleAllTodo();
@@ -108,7 +107,7 @@ export const toggleAllTodo = (): AppThunk => async dispatch => {
   }
 };
 
-export const clearCompleted = (): AppThunk => async dispatch => {
+export const clearCompleted = (): AppThunk => async (dispatch) => {
   try {
     dispatch(updateTodosStart());
     await api.clearCompleted();

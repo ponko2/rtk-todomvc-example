@@ -5,25 +5,25 @@ import { TodoList } from './TodoList';
 
 export default {
   title: 'Organisms/TodoList',
-  component: TodoList
+  component: TodoList,
 };
 
 const todos: Todo[] = [
   {
     id: 1,
     completed: false,
-    text: 'foo'
+    text: 'foo',
   },
   {
     id: 2,
     completed: true,
-    text: 'bar'
+    text: 'bar',
   },
   {
     id: 3,
     completed: false,
-    text: 'baz'
-  }
+    text: 'baz',
+  },
 ];
 
 export const simple = () => (

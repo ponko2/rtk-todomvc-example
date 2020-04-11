@@ -4,7 +4,7 @@ import { visibilityFilterReducer } from 'modules/visibilityFilter';
 
 export const rootReducer = combineReducers({
   todos: todosReducer,
-  visibilityFilter: visibilityFilterReducer
+  visibilityFilter: visibilityFilterReducer,
 });
 
 export type RootState = ReturnType<typeof rootReducer>;

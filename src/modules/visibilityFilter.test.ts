@@ -1,14 +1,14 @@
 import {
   visibilityFilterReducer,
   VisibilityFilter,
-  setVisibilityFilter
+  setVisibilityFilter,
 } from './visibilityFilter';
 
 describe('visibilityFilterReducer', () => {
   it('should handle initial state', () => {
     expect(
       visibilityFilterReducer(undefined, {
-        type: undefined
+        type: undefined,
       })
     ).toBe(VisibilityFilter.SHOW_ALL);
   });
@@ -17,7 +17,7 @@ describe('visibilityFilterReducer', () => {
     expect(
       visibilityFilterReducer(VisibilityFilter.SHOW_ACTIVE, {
         type: setVisibilityFilter.type,
-        payload: VisibilityFilter.SHOW_COMPLETED
+        payload: VisibilityFilter.SHOW_COMPLETED,
       })
     ).toBe(VisibilityFilter.SHOW_COMPLETED);
   });

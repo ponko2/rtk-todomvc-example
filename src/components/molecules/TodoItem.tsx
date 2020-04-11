@@ -3,7 +3,7 @@ import React, {
   FocusEvent,
   FunctionComponent,
   KeyboardEvent,
-  useState
+  useState,
 } from 'react';
 import { Todo } from 'api/todos';
 import { TodoButton } from 'components/atoms/TodoButton';
@@ -20,7 +20,7 @@ export const TodoItem: FunctionComponent<Props> = ({
   todo,
   editTodo,
   deleteTodo,
-  toggleTodo
+  toggleTodo,
 }) => {
   const [editing, setEditing] = useState(false);
   const [value, setValue] = useState(todo.text);

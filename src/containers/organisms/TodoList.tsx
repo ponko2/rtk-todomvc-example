@@ -8,17 +8,19 @@ import { TodoList as Component } from 'components/organisms/TodoList';
 
 export const TodoList: React.FC = () => {
   const dispatch = useDispatch();
-  const todos = useSelector<RootState, Todo[]>(state => getVisibleTodos(state));
+  const todos = useSelector<RootState, Todo[]>((state) =>
+    getVisibleTodos(state)
+  );
   return (
     <Component
       todos={todos}
       editTodo={(id, text) => {
         dispatch(editTodo(id, text));
       }}
-      toggleTodo={id => {
+      toggleTodo={(id) => {
         dispatch(toggleTodo(id));
       }}
-      deleteTodo={id => {
+      deleteTodo={(id) => {
         dispatch(deleteTodo(id));
       }}
     />

@@ -17,7 +17,7 @@ export const TodoFooter: FunctionComponent<Props> = ({
   setFilter,
   todosCount,
   completedCount,
-  clearCompleted
+  clearCompleted,
 }) => {
   if (todosCount <= 0) {
     return null;
@@ -29,7 +29,7 @@ export const TodoFooter: FunctionComponent<Props> = ({
   const filters = {
     [VisibilityFilter.SHOW_ALL]: 'All',
     [VisibilityFilter.SHOW_ACTIVE]: 'Active',
-    [VisibilityFilter.SHOW_COMPLETED]: 'Completed'
+    [VisibilityFilter.SHOW_COMPLETED]: 'Completed',
   };
 
   return (
@@ -38,7 +38,7 @@ export const TodoFooter: FunctionComponent<Props> = ({
         <strong>{activeCount || 'No'}</strong> {itemWord} left
       </span>
       <ul className={styles.filters}>
-        {(Object.keys(filters) as VisibilityFilter[]).map(filter => (
+        {(Object.keys(filters) as VisibilityFilter[]).map((filter) => (
           <li key={filter}>
             <TodoLink
               active={filter === nowFilter}

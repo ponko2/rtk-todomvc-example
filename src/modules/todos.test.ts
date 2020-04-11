@@ -14,7 +14,7 @@ import {
   editTodo,
   toggleTodo,
   toggleAllTodo,
-  clearCompleted
+  clearCompleted,
 } from './todos';
 
 const mockStore = createMockStore<TodosState, AppDispatch>([thunk]);
@@ -23,12 +23,12 @@ describe('todosReducer', () => {
   it('should handle initial state', () => {
     expect(
       todosReducer(undefined, {
-        type: undefined
+        type: undefined,
       })
     ).toStrictEqual({
       todos: [],
       isLoading: false,
-      error: null
+      error: null,
     });
   });
 
@@ -38,16 +38,16 @@ describe('todosReducer', () => {
         {
           todos: [],
           isLoading: false,
-          error: null
+          error: null,
         },
         {
-          type: updateTodosStart.type
+          type: updateTodosStart.type,
         }
       )
     ).toStrictEqual({
       todos: [],
       isLoading: true,
-      error: null
+      error: null,
     });
   });
 
@@ -57,7 +57,7 @@ describe('todosReducer', () => {
         {
           todos: [],
           isLoading: false,
-          error: null
+          error: null,
         },
         {
           type: updateTodosSuccess.type,
@@ -65,9 +65,9 @@ describe('todosReducer', () => {
             {
               id: 1,
               completed: false,
-              text: 'foo'
-            }
-          ]
+              text: 'foo',
+            },
+          ],
         }
       )
     ).toStrictEqual({
@@ -75,11 +75,11 @@ describe('todosReducer', () => {
         {
           id: 1,
           completed: false,
-          text: 'foo'
-        }
+          text: 'foo',
+        },
       ],
       isLoading: false,
-      error: null
+      error: null,
     });
   });
 
@@ -89,17 +89,17 @@ describe('todosReducer', () => {
         {
           todos: [],
           isLoading: false,
-          error: null
+          error: null,
         },
         {
           type: updateTodosFailed.type,
-          payload: 'Error: failed'
+          payload: 'Error: failed',
         }
       )
     ).toStrictEqual({
       todos: [],
       isLoading: false,
-      error: 'Error: failed'
+      error: 'Error: failed',
     });
   });
 });
@@ -109,7 +109,7 @@ describe('fetchTodos', () => {
     const store = mockStore({
       todos: [],
       isLoading: false,
-      error: null
+      error: null,
     });
 
     const fetchSpy = jest.spyOn(api, 'fetchTodos').mockImplementation(() =>
@@ -117,8 +117,8 @@ describe('fetchTodos', () => {
         {
           id: 1,
           completed: false,
-          text: 'foo'
-        }
+          text: 'foo',
+        },
       ])
     );
 
@@ -130,9 +130,9 @@ describe('fetchTodos', () => {
         {
           id: 1,
           completed: false,
-          text: 'foo'
-        }
-      ])
+          text: 'foo',
+        },
+      ]),
     ]);
     expect(fetchSpy).toHaveBeenCalledTimes(1);
   });
@@ -141,7 +141,7 @@ describe('fetchTodos', () => {
     const store = mockStore({
       todos: [],
       isLoading: false,
-      error: null
+      error: null,
     });
 
     const fetchSpy = jest
@@ -152,7 +152,7 @@ describe('fetchTodos', () => {
 
     expect(store.getActions()).toStrictEqual([
       updateTodosStart(),
-      updateTodosFailed('Error: failed')
+      updateTodosFailed('Error: failed'),
     ]);
     expect(fetchSpy).toHaveBeenCalledTimes(1);
   });
@@ -163,7 +163,7 @@ describe('addTodo', () => {
     const store = mockStore({
       todos: [],
       isLoading: false,
-      error: null
+      error: null,
     });
 
     const addSpy = jest
@@ -175,8 +175,8 @@ describe('addTodo', () => {
         {
           id: 1,
           completed: false,
-          text: 'foo'
-        }
+          text: 'foo',
+        },
       ])
     );
 
@@ -188,9 +188,9 @@ describe('addTodo', () => {
         {
           id: 1,
           completed: false,
-          text: 'foo'
-        }
-      ])
+          text: 'foo',
+        },
+      ]),
     ]);
     expect(addSpy).toHaveBeenCalledTimes(1);
     expect(fetchSpy).toHaveBeenCalledTimes(1);
@@ -200,7 +200,7 @@ describe('addTodo', () => {
     const store = mockStore({
       todos: [],
       isLoading: false,
-      error: null
+      error: null,
     });
 
     const addSpy = jest
@@ -213,7 +213,7 @@ describe('addTodo', () => {
 
     expect(store.getActions()).toStrictEqual([
       updateTodosStart(),
-      updateTodosFailed('Error: failed')
+      updateTodosFailed('Error: failed'),
     ]);
     expect(addSpy).toHaveBeenCalledTimes(1);
     expect(fetchSpy).toHaveBeenCalledTimes(0);
@@ -227,11 +227,11 @@ describe('deleteTodo', () => {
         {
           id: 1,
           completed: false,
-          text: 'foo'
-        }
+          text: 'foo',
+        },
       ],
       isLoading: false,
-      error: null
+      error: null,
     });
 
     const deleteSpy = jest
@@ -246,7 +246,7 @@ describe('deleteTodo', () => {
 
     expect(store.getActions()).toStrictEqual([
       updateTodosStart(),
-      updateTodosSuccess([])
+      updateTodosSuccess([]),
     ]);
     expect(deleteSpy).toHaveBeenCalledTimes(1);
     expect(fetchSpy).toHaveBeenCalledTimes(1);
@@ -258,11 +258,11 @@ describe('deleteTodo', () => {
         {
           id: 1,
           completed: false,
-          text: 'foo'
-        }
+          text: 'foo',
+        },
       ],
       isLoading: false,
-      error: null
+      error: null,
     });
 
     const deleteSpy = jest
@@ -275,7 +275,7 @@ describe('deleteTodo', () => {
 
     expect(store.getActions()).toStrictEqual([
       updateTodosStart(),
-      updateTodosFailed('Error: failed')
+      updateTodosFailed('Error: failed'),
     ]);
     expect(deleteSpy).toHaveBeenCalledTimes(1);
     expect(fetchSpy).toHaveBeenCalledTimes(0);
@@ -289,11 +289,11 @@ describe('editTodo', () => {
         {
           id: 1,
           completed: false,
-          text: 'foo'
-        }
+          text: 'foo',
+        },
       ],
       isLoading: false,
-      error: null
+      error: null,
     });
 
     const editSpy = jest
@@ -305,8 +305,8 @@ describe('editTodo', () => {
         {
           id: 1,
           completed: false,
-          text: 'bar'
-        }
+          text: 'bar',
+        },
       ])
     );
 
@@ -318,9 +318,9 @@ describe('editTodo', () => {
         {
           id: 1,
           completed: false,
-          text: 'bar'
-        }
-      ])
+          text: 'bar',
+        },
+      ]),
     ]);
     expect(editSpy).toHaveBeenCalledTimes(1);
     expect(fetchSpy).toHaveBeenCalledTimes(1);
@@ -332,11 +332,11 @@ describe('editTodo', () => {
         {
           id: 1,
           completed: false,
-          text: 'foo'
-        }
+          text: 'foo',
+        },
       ],
       isLoading: false,
-      error: null
+      error: null,
     });
 
     const editSpy = jest
@@ -349,7 +349,7 @@ describe('editTodo', () => {
 
     expect(store.getActions()).toStrictEqual([
       updateTodosStart(),
-      updateTodosFailed('Error: failed')
+      updateTodosFailed('Error: failed'),
     ]);
     expect(editSpy).toHaveBeenCalledTimes(1);
     expect(fetchSpy).toHaveBeenCalledTimes(0);
@@ -363,11 +363,11 @@ describe('toggleTodo', () => {
         {
           id: 1,
           completed: false,
-          text: 'foo'
-        }
+          text: 'foo',
+        },
       ],
       isLoading: false,
-      error: null
+      error: null,
     });
 
     const toggleSpy = jest
@@ -379,8 +379,8 @@ describe('toggleTodo', () => {
         {
           id: 1,
           completed: true,
-          text: 'foo'
-        }
+          text: 'foo',
+        },
       ])
     );
 
@@ -392,9 +392,9 @@ describe('toggleTodo', () => {
         {
           id: 1,
           completed: true,
-          text: 'foo'
-        }
-      ])
+          text: 'foo',
+        },
+      ]),
     ]);
     expect(toggleSpy).toHaveBeenCalledTimes(1);
     expect(fetchSpy).toHaveBeenCalledTimes(1);
@@ -406,11 +406,11 @@ describe('toggleTodo', () => {
         {
           id: 1,
           completed: false,
-          text: 'foo'
-        }
+          text: 'foo',
+        },
       ],
       isLoading: false,
-      error: null
+      error: null,
     });
 
     const toggleSpy = jest
@@ -423,7 +423,7 @@ describe('toggleTodo', () => {
 
     expect(store.getActions()).toStrictEqual([
       updateTodosStart(),
-      updateTodosFailed('Error: failed')
+      updateTodosFailed('Error: failed'),
     ]);
     expect(toggleSpy).toHaveBeenCalledTimes(1);
     expect(fetchSpy).toHaveBeenCalledTimes(0);
@@ -437,16 +437,16 @@ describe('toggleAllTodo', () => {
         {
           id: 1,
           completed: false,
-          text: 'foo'
+          text: 'foo',
         },
         {
           id: 2,
           completed: false,
-          text: 'bar'
-        }
+          text: 'bar',
+        },
       ],
       isLoading: false,
-      error: null
+      error: null,
     });
 
     const toggleAllSpy = jest
@@ -458,13 +458,13 @@ describe('toggleAllTodo', () => {
         {
           id: 1,
           completed: true,
-          text: 'foo'
+          text: 'foo',
         },
         {
           id: 2,
           completed: true,
-          text: 'bar'
-        }
+          text: 'bar',
+        },
       ])
     );
 
@@ -476,14 +476,14 @@ describe('toggleAllTodo', () => {
         {
           id: 1,
           completed: true,
-          text: 'foo'
+          text: 'foo',
         },
         {
           id: 2,
           completed: true,
-          text: 'bar'
-        }
-      ])
+          text: 'bar',
+        },
+      ]),
     ]);
     expect(toggleAllSpy).toHaveBeenCalledTimes(1);
     expect(fetchSpy).toHaveBeenCalledTimes(1);
@@ -495,16 +495,16 @@ describe('toggleAllTodo', () => {
         {
           id: 1,
           completed: false,
-          text: 'foo'
+          text: 'foo',
         },
         {
           id: 2,
           completed: false,
-          text: 'bar'
-        }
+          text: 'bar',
+        },
       ],
       isLoading: false,
-      error: null
+      error: null,
     });
 
     const toggleAllSpy = jest
@@ -517,7 +517,7 @@ describe('toggleAllTodo', () => {
 
     expect(store.getActions()).toStrictEqual([
       updateTodosStart(),
-      updateTodosFailed('Error: failed')
+      updateTodosFailed('Error: failed'),
     ]);
     expect(toggleAllSpy).toHaveBeenCalledTimes(1);
     expect(fetchSpy).toHaveBeenCalledTimes(0);
@@ -531,16 +531,16 @@ describe('clearCompleted', () => {
         {
           id: 1,
           completed: false,
-          text: 'foo'
+          text: 'foo',
         },
         {
           id: 2,
           completed: true,
-          text: 'bar'
-        }
+          text: 'bar',
+        },
       ],
       isLoading: false,
-      error: null
+      error: null,
     });
 
     const clearCompletedSpy = jest
@@ -552,8 +552,8 @@ describe('clearCompleted', () => {
         {
           id: 1,
           completed: false,
-          text: 'foo'
-        }
+          text: 'foo',
+        },
       ])
     );
 
@@ -565,9 +565,9 @@ describe('clearCompleted', () => {
         {
           id: 1,
           completed: false,
-          text: 'foo'
-        }
-      ])
+          text: 'foo',
+        },
+      ]),
     ]);
     expect(clearCompletedSpy).toHaveBeenCalledTimes(1);
     expect(fetchSpy).toHaveBeenCalledTimes(1);
@@ -579,16 +579,16 @@ describe('clearCompleted', () => {
         {
           id: 1,
           completed: false,
-          text: 'foo'
+          text: 'foo',
         },
         {
           id: 2,
           completed: true,
-          text: 'bar'
-        }
+          text: 'bar',
+        },
       ],
       isLoading: false,
-      error: null
+      error: null,
     });
 
     const clearCompletedSpy = jest
@@ -601,7 +601,7 @@ describe('clearCompleted', () => {
 
     expect(store.getActions()).toStrictEqual([
       updateTodosStart(),
-      updateTodosFailed('Error: failed')
+      updateTodosFailed('Error: failed'),
     ]);
     expect(clearCompletedSpy).toHaveBeenCalledTimes(1);
     expect(fetchSpy).toHaveBeenCalledTimes(0);

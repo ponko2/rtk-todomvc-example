@@ -7,17 +7,17 @@ import { TodoHeader as Component } from 'components/organisms/TodoHeader';
 
 export const TodoHeader: React.FC = () => {
   const dispatch = useDispatch();
-  const todosCount = useSelector<RootState, number>(state =>
+  const todosCount = useSelector<RootState, number>((state) =>
     getTodosCount(state)
   );
-  const completedCount = useSelector<RootState, number>(state =>
+  const completedCount = useSelector<RootState, number>((state) =>
     getCompletedTodoCount(state)
   );
   return (
     <Component
       todosCount={todosCount}
       completedCount={completedCount}
-      addTodo={text => {
+      addTodo={(text) => {
         dispatch(addTodo(text));
       }}
       toggleAllTodo={() => {

@@ -4,7 +4,7 @@ import { RootState } from 'app/rootReducer';
 import { clearCompleted } from 'modules/todos';
 import {
   VisibilityFilter,
-  setVisibilityFilter
+  setVisibilityFilter,
 } from 'modules/visibilityFilter';
 import { getTodosCount, getCompletedTodoCount } from 'selectors/todos';
 
@@ -13,18 +13,18 @@ import { TodoFooter as Component } from 'components/organisms/TodoFooter';
 export const TodoFooter: React.FC = () => {
   const dispatch = useDispatch();
   const visibilityFilter = useSelector<RootState, VisibilityFilter>(
-    state => state.visibilityFilter
+    (state) => state.visibilityFilter
   );
-  const todosCount = useSelector<RootState, number>(state =>
+  const todosCount = useSelector<RootState, number>((state) =>
     getTodosCount(state)
   );
-  const completedCount = useSelector<RootState, number>(state =>
+  const completedCount = useSelector<RootState, number>((state) =>
     getCompletedTodoCount(state)
   );
   return (
     <Component
       filter={visibilityFilter}
-      setFilter={filter => {
+      setFilter={(filter) => {
         dispatch(setVisibilityFilter(filter));
       }}
       todosCount={todosCount}

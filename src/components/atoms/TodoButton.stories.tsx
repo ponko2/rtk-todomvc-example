@@ -4,7 +4,7 @@ import { TodoButton } from './TodoButton';
 
 export default {
   title: 'Atoms/TodoButton',
-  component: TodoButton
+  component: TodoButton,
 };
 
 export const simple = () => (
