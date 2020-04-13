@@ -3,7 +3,7 @@ import thunk from 'redux-thunk';
 import { AppDispatch } from 'app/store';
 import * as api from 'api/todos';
 import {
-  TodosState,
+  TodoState,
   todosReducer,
   fetchTodos,
   addTodo,
@@ -14,7 +14,7 @@ import {
   clearCompleted,
 } from './todos';
 
-const mockStore = createMockStore<TodosState, AppDispatch>([thunk]);
+const mockStore = createMockStore<TodoState, AppDispatch>([thunk]);
 
 describe('todosReducer', () => {
   it('should handle initial state', () => {
@@ -23,7 +23,8 @@ describe('todosReducer', () => {
         type: undefined,
       })
     ).toStrictEqual({
-      todos: [],
+      ids: [],
+      entities: {},
       isLoading: false,
       error: null,
     });
@@ -42,7 +43,8 @@ describe('todosReducer', () => {
       expect(
         todosReducer(
           {
-            todos: [],
+            ids: [],
+            entities: {},
             isLoading: false,
             error: null,
           },
@@ -51,7 +53,8 @@ describe('todosReducer', () => {
           }
         )
       ).toStrictEqual({
-        todos: [],
+        ids: [],
+        entities: {},
         isLoading: true,
         error: null,
       });
@@ -60,7 +63,8 @@ describe('todosReducer', () => {
       expect(
         todosReducer(
           {
-            todos: [],
+            ids: [],
+            entities: {},
             isLoading: false,
             error: null,
           },
@@ -70,7 +74,10 @@ describe('todosReducer', () => {
           }
         )
       ).toStrictEqual({
-        todos: [{ id: 1, completed: false, text: 'foo' }],
+        ids: [1],
+        entities: {
+          1: { id: 1, completed: false, text: 'foo' },
+        },
         isLoading: false,
         error: null,
       });
@@ -79,7 +86,8 @@ describe('todosReducer', () => {
       expect(
         todosReducer(
           {
-            todos: [],
+            ids: [],
+            entities: {},
             isLoading: false,
             error: null,
           },
@@ -93,7 +101,8 @@ describe('todosReducer', () => {
           }
         )
       ).toStrictEqual({
-        todos: [],
+        ids: [],
+        entities: {},
         isLoading: false,
         error: 'failed',
       });
@@ -104,7 +113,8 @@ describe('todosReducer', () => {
 describe('fetchTodos', () => {
   it('success', async () => {
     const store = mockStore({
-      todos: [],
+      ids: [],
+      entities: {},
       isLoading: false,
       error: null,
     });
@@ -140,7 +150,8 @@ describe('fetchTodos', () => {
 
   it('failed', async () => {
     const store = mockStore({
-      todos: [],
+      ids: [],
+      entities: {},
       isLoading: false,
       error: null,
     });
@@ -183,7 +194,8 @@ describe('fetchTodos', () => {
 describe('addTodo', () => {
   it('success', async () => {
     const store = mockStore({
-      todos: [],
+      ids: [],
+      entities: {},
       isLoading: false,
       error: null,
     });
@@ -224,7 +236,8 @@ describe('addTodo', () => {
 
   it('failed', async () => {
     const store = mockStore({
-      todos: [],
+      ids: [],
+      entities: {},
       isLoading: false,
       error: null,
     });
@@ -270,7 +283,10 @@ describe('addTodo', () => {
 describe('deleteTodo', () => {
   it('success', async () => {
     const store = mockStore({
-      todos: [{ id: 1, completed: false, text: 'foo' }],
+      ids: [1],
+      entities: {
+        1: { id: 1, completed: false, text: 'foo' },
+      },
       isLoading: false,
       error: null,
     });
@@ -309,7 +325,10 @@ describe('deleteTodo', () => {
 
   it('failed', async () => {
     const store = mockStore({
-      todos: [{ id: 1, completed: false, text: 'foo' }],
+      ids: [1],
+      entities: {
+        1: { id: 1, completed: false, text: 'foo' },
+      },
       isLoading: false,
       error: null,
     });
@@ -355,7 +374,10 @@ describe('deleteTodo', () => {
 describe('editTodo', () => {
   it('success', async () => {
     const store = mockStore({
-      todos: [{ id: 1, completed: false, text: 'foo' }],
+      ids: [1],
+      entities: {
+        1: { id: 1, completed: false, text: 'foo' },
+      },
       isLoading: false,
       error: null,
     });
@@ -396,7 +418,10 @@ describe('editTodo', () => {
 
   it('failed', async () => {
     const store = mockStore({
-      todos: [{ id: 1, completed: false, text: 'foo' }],
+      ids: [1],
+      entities: {
+        1: { id: 1, completed: false, text: 'foo' },
+      },
       isLoading: false,
       error: null,
     });
@@ -442,7 +467,10 @@ describe('editTodo', () => {
 describe('toggleTodo', () => {
   it('success', async () => {
     const store = mockStore({
-      todos: [{ id: 1, completed: false, text: 'foo' }],
+      ids: [1],
+      entities: {
+        1: { id: 1, completed: false, text: 'foo' },
+      },
       isLoading: false,
       error: null,
     });
@@ -483,7 +511,10 @@ describe('toggleTodo', () => {
 
   it('failed', async () => {
     const store = mockStore({
-      todos: [{ id: 1, completed: false, text: 'foo' }],
+      ids: [1],
+      entities: {
+        1: { id: 1, completed: false, text: 'foo' },
+      },
       isLoading: false,
       error: null,
     });
@@ -529,10 +560,11 @@ describe('toggleTodo', () => {
 describe('toggleAllTodo', () => {
   it('success', async () => {
     const store = mockStore({
-      todos: [
-        { id: 1, completed: false, text: 'foo' },
-        { id: 2, completed: false, text: 'bar' },
-      ],
+      ids: [1, 2],
+      entities: {
+        1: { id: 1, completed: false, text: 'foo' },
+        2: { id: 2, completed: true, text: 'bar' },
+      },
       isLoading: false,
       error: null,
     });
@@ -577,10 +609,11 @@ describe('toggleAllTodo', () => {
 
   it('failed', async () => {
     const store = mockStore({
-      todos: [
-        { id: 1, completed: false, text: 'foo' },
-        { id: 2, completed: false, text: 'bar' },
-      ],
+      ids: [1, 2],
+      entities: {
+        1: { id: 1, completed: false, text: 'foo' },
+        2: { id: 2, completed: false, text: 'bar' },
+      },
       isLoading: false,
       error: null,
     });
@@ -626,10 +659,11 @@ describe('toggleAllTodo', () => {
 describe('clearCompleted', () => {
   it('success', async () => {
     const store = mockStore({
-      todos: [
-        { id: 1, completed: false, text: 'foo' },
-        { id: 2, completed: true, text: 'bar' },
-      ],
+      ids: [1, 2],
+      entities: {
+        1: { id: 1, completed: false, text: 'foo' },
+        2: { id: 2, completed: true, text: 'bar' },
+      },
       isLoading: false,
       error: null,
     });
@@ -670,10 +704,11 @@ describe('clearCompleted', () => {
 
   it('failed', async () => {
     const store = mockStore({
-      todos: [
-        { id: 1, completed: false, text: 'foo' },
-        { id: 2, completed: true, text: 'bar' },
-      ],
+      ids: [1, 2],
+      entities: {
+        1: { id: 1, completed: false, text: 'foo' },
+        2: { id: 2, completed: true, text: 'bar' },
+      },
       isLoading: false,
       error: null,
     });

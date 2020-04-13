@@ -1,22 +1,24 @@
 import {
   createAsyncThunk,
   createSlice,
+  createEntityAdapter,
+  EntityState,
   PayloadAction,
   SerializedError,
 } from '@reduxjs/toolkit';
 import * as api from 'api/todos';
 
-export interface TodosState {
-  todos: api.Todo[];
+export interface TodoState extends EntityState<api.Todo> {
   isLoading: boolean;
   error: string | null;
 }
 
-const initialState: TodosState = {
-  todos: [],
+export const todoAdapter = createEntityAdapter<api.Todo>();
+
+const initialState: TodoState = todoAdapter.getInitialState({
   isLoading: false,
   error: null,
-};
+});
 
 export const fetchTodos = createAsyncThunk('todos/fetch', () => {
   return api.fetchTodos();
@@ -69,21 +71,21 @@ const slice = createSlice({
   initialState,
   reducers: {},
   extraReducers(builder) {
-    function pending(state: TodosState) {
+    function pending(state: TodoState) {
       state.isLoading = true;
     }
 
     function fulfilled(
-      state: TodosState,
+      state: TodoState,
       { payload }: PayloadAction<api.Todo[], string, any, never>
     ) {
-      state.todos = payload;
+      todoAdapter.setAll(state, payload);
       state.isLoading = false;
       state.error = null;
     }
 
     function rejected(
-      state: TodosState,
+      state: TodoState,
       { error }: PayloadAction<unknown, string, any, SerializedError>
     ) {
       state.isLoading = false;

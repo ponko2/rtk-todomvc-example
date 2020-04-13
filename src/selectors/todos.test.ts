@@ -3,10 +3,11 @@ import { VisibilityFilter } from 'modules/visibilityFilter';
 
 describe('todos', () => {
   const todos = {
-    todos: [
-      { id: 1, completed: false, text: 'foo' },
-      { id: 2, completed: true, text: 'bar' },
-    ],
+    ids: [1, 2],
+    entities: {
+      1: { id: 1, completed: false, text: 'foo' },
+      2: { id: 2, completed: true, text: 'bar' },
+    },
     isLoading: false,
     error: null,
   };
