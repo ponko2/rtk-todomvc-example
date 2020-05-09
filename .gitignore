@@ -7,8 +7,6 @@
 
 # testing
 /coverage
-__sysdb__.*
-D_^Todo^App^Database.sqlite
 
 # production
 /build
