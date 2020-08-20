@@ -31,7 +31,7 @@
     "react-dom": "^16.13.1",
     "react-redux": "^7.2.1",
     "react-scripts": "3.4.3",
-    "typescript": "~3.8.3"
+    "typescript": "~4.0.2"
   },
   "devDependencies": {
     "@storybook/addon-actions": "^5.3.19",
