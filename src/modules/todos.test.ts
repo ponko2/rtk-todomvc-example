@@ -131,6 +131,7 @@ describe('fetchTodos', () => {
       {
         meta: {
           requestId: expect.anything(),
+          requestStatus: 'pending',
           arg: undefined,
         },
         payload: undefined,
@@ -139,6 +140,7 @@ describe('fetchTodos', () => {
       {
         meta: {
           requestId: expect.anything(),
+          requestStatus: 'fulfilled',
           arg: undefined,
         },
         payload: [{ id: 1, completed: false, text: 'foo' }],
@@ -166,6 +168,7 @@ describe('fetchTodos', () => {
       {
         meta: {
           requestId: expect.anything(),
+          requestStatus: 'pending',
           arg: undefined,
         },
         payload: undefined,
@@ -174,6 +177,8 @@ describe('fetchTodos', () => {
       {
         meta: {
           requestId: expect.anything(),
+          rejectedWithValue: false,
+          requestStatus: 'rejected',
           arg: undefined,
           aborted: false,
           condition: false,
@@ -216,6 +221,7 @@ describe('addTodo', () => {
       {
         meta: {
           requestId: expect.anything(),
+          requestStatus: 'pending',
           arg: 'foo',
         },
         payload: undefined,
@@ -224,6 +230,7 @@ describe('addTodo', () => {
       {
         meta: {
           requestId: expect.anything(),
+          requestStatus: 'fulfilled',
           arg: 'foo',
         },
         payload: [{ id: 1, completed: false, text: 'foo' }],
@@ -254,6 +261,7 @@ describe('addTodo', () => {
       {
         meta: {
           requestId: expect.anything(),
+          requestStatus: 'pending',
           arg: 'foo',
         },
         payload: undefined,
@@ -267,6 +275,8 @@ describe('addTodo', () => {
         },
         meta: {
           requestId: expect.anything(),
+          rejectedWithValue: false,
+          requestStatus: 'rejected',
           arg: 'foo',
           aborted: false,
           condition: false,
@@ -305,6 +315,7 @@ describe('deleteTodo', () => {
       {
         meta: {
           requestId: expect.anything(),
+          requestStatus: 'pending',
           arg: 1,
         },
         payload: undefined,
@@ -313,6 +324,7 @@ describe('deleteTodo', () => {
       {
         meta: {
           requestId: expect.anything(),
+          requestStatus: 'fulfilled',
           arg: 1,
         },
         payload: [],
@@ -345,6 +357,7 @@ describe('deleteTodo', () => {
       {
         meta: {
           requestId: expect.anything(),
+          requestStatus: 'pending',
           arg: 1,
         },
         payload: undefined,
@@ -358,6 +371,8 @@ describe('deleteTodo', () => {
         },
         meta: {
           requestId: expect.anything(),
+          rejectedWithValue: false,
+          requestStatus: 'rejected',
           arg: 1,
           aborted: false,
           condition: false,
@@ -398,6 +413,7 @@ describe('editTodo', () => {
       {
         meta: {
           requestId: expect.anything(),
+          requestStatus: 'pending',
           arg: { id: 1, text: 'bar' },
         },
         payload: undefined,
@@ -406,6 +422,7 @@ describe('editTodo', () => {
       {
         meta: {
           requestId: expect.anything(),
+          requestStatus: 'fulfilled',
           arg: { id: 1, text: 'bar' },
         },
         payload: [{ id: 1, completed: false, text: 'bar' }],
@@ -438,6 +455,7 @@ describe('editTodo', () => {
       {
         meta: {
           requestId: expect.anything(),
+          requestStatus: 'pending',
           arg: { id: 1, text: 'bar' },
         },
         payload: undefined,
@@ -451,6 +469,8 @@ describe('editTodo', () => {
         },
         meta: {
           requestId: expect.anything(),
+          rejectedWithValue: false,
+          requestStatus: 'rejected',
           arg: { id: 1, text: 'bar' },
           aborted: false,
           condition: false,
@@ -491,6 +511,7 @@ describe('toggleTodo', () => {
       {
         meta: {
           requestId: expect.anything(),
+          requestStatus: 'pending',
           arg: 1,
         },
         payload: undefined,
@@ -499,6 +520,7 @@ describe('toggleTodo', () => {
       {
         meta: {
           requestId: expect.anything(),
+          requestStatus: 'fulfilled',
           arg: 1,
         },
         payload: [{ id: 1, completed: true, text: 'foo' }],
@@ -531,6 +553,7 @@ describe('toggleTodo', () => {
       {
         meta: {
           requestId: expect.anything(),
+          requestStatus: 'pending',
           arg: 1,
         },
         payload: undefined,
@@ -544,6 +567,8 @@ describe('toggleTodo', () => {
         },
         meta: {
           requestId: expect.anything(),
+          rejectedWithValue: false,
+          requestStatus: 'rejected',
           arg: 1,
           aborted: false,
           condition: false,
@@ -586,6 +611,7 @@ describe('toggleAllTodo', () => {
       {
         meta: {
           requestId: expect.anything(),
+          requestStatus: 'pending',
           arg: undefined,
         },
         payload: undefined,
@@ -594,6 +620,7 @@ describe('toggleAllTodo', () => {
       {
         meta: {
           requestId: expect.anything(),
+          requestStatus: 'fulfilled',
           arg: undefined,
         },
         payload: [
@@ -630,6 +657,7 @@ describe('toggleAllTodo', () => {
       {
         meta: {
           requestId: expect.anything(),
+          requestStatus: 'pending',
           arg: undefined,
         },
         payload: undefined,
@@ -643,6 +671,8 @@ describe('toggleAllTodo', () => {
         },
         meta: {
           requestId: expect.anything(),
+          rejectedWithValue: false,
+          requestStatus: 'rejected',
           arg: undefined,
           aborted: false,
           condition: false,
@@ -684,6 +714,7 @@ describe('clearCompleted', () => {
       {
         meta: {
           requestId: expect.anything(),
+          requestStatus: 'pending',
           arg: undefined,
         },
         payload: undefined,
@@ -692,6 +723,7 @@ describe('clearCompleted', () => {
       {
         meta: {
           requestId: expect.anything(),
+          requestStatus: 'fulfilled',
           arg: undefined,
         },
         payload: [{ id: 1, completed: false, text: 'foo' }],
@@ -725,6 +757,7 @@ describe('clearCompleted', () => {
       {
         meta: {
           requestId: expect.anything(),
+          requestStatus: 'pending',
           arg: undefined,
         },
         payload: undefined,
@@ -738,6 +771,8 @@ describe('clearCompleted', () => {
         },
         meta: {
           requestId: expect.anything(),
+          rejectedWithValue: false,
+          requestStatus: 'rejected',
           arg: undefined,
           aborted: false,
           condition: false,
