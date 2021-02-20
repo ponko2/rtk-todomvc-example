@@ -34,7 +34,7 @@
     "typescript": "~4.1.5"
   },
   "devDependencies": {
-    "@storybook/addon-actions": "^5.3.21",
+    "@storybook/addon-actions": "^6.1.18",
     "@storybook/addon-docs": "^5.3.21",
     "@storybook/addon-knobs": "^5.3.21",
     "@storybook/addon-links": "^5.3.21",
