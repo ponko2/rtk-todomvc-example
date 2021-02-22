@@ -9,8 +9,6 @@ module.exports = {
     'plugin:@typescript-eslint/recommended',
     'react-app',
     'prettier',
-    'prettier/@typescript-eslint',
-    'prettier/react',
   ],
   settings: {
     'import/resolver': {
@@ -65,6 +63,7 @@ module.exports = {
         'plugin:jest/recommended',
         'plugin:jest/style',
         'react-app/jest',
+        'prettier',
       ],
       rules: {
         'jest/consistent-test-it': 'error',
