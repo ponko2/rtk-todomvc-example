@@ -7,6 +7,6 @@ export default {
   component: TodoButton,
 };
 
-export const simple = () => (
+export const Basic = () => (
   <TodoButton onClick={action('clicked')}>Hello, World!!</TodoButton>
 );

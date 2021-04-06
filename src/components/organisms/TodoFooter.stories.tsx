@@ -1,49 +1,57 @@
 import React from 'react';
 import { action } from '@storybook/addon-actions';
-import { withKnobs, number, select } from '@storybook/addon-knobs';
 import { VisibilityFilter } from 'modules/visibilityFilter';
 import { TodoFooter } from './TodoFooter';
 
 export default {
   title: 'Organisms/TodoFooter',
   component: TodoFooter,
-  decorators: [withKnobs],
 };
 
-export const simple = () => (
+export const Basic = ({
+  filter,
+  todosCount,
+  completedCount,
+}: {
+  filter: VisibilityFilter;
+  todosCount: number;
+  completedCount: number;
+}) => (
   <TodoFooter
-    filter={select(
-      'Filter',
-      {
-        All: VisibilityFilter.SHOW_ALL,
-        Active: VisibilityFilter.SHOW_ACTIVE,
-        Completed: VisibilityFilter.SHOW_COMPLETED,
-      },
-      VisibilityFilter.SHOW_ALL
-    )}
+    filter={filter}
     setFilter={action('setFilter')}
-    todosCount={number('Todos Count', 1)}
-    completedCount={number('Completed Count', 1)}
+    todosCount={todosCount}
+    completedCount={completedCount}
     clearCompleted={action('clearCompleted')}
   />
 );
 
-export const hasActive = () => (
+Basic.args = {
+  filter: VisibilityFilter.SHOW_ALL,
+  todosCount: 1,
+  completedCount: 1,
+};
+
+export const HasCompleted = ({
+  filter,
+  todosCount,
+  completedCount,
+}: {
+  filter: VisibilityFilter;
+  todosCount: number;
+  completedCount: number;
+}) => (
   <TodoFooter
-    filter={VisibilityFilter.SHOW_ACTIVE}
+    filter={filter}
     setFilter={action('setFilter')}
-    todosCount={1}
-    completedCount={0}
+    todosCount={todosCount}
+    completedCount={completedCount}
     clearCompleted={action('clearCompleted')}
   />
 );
 
-export const hasCompleted = () => (
-  <TodoFooter
-    filter={VisibilityFilter.SHOW_COMPLETED}
-    setFilter={action('setFilter')}
-    todosCount={2}
-    completedCount={1}
-    clearCompleted={action('clearCompleted')}
-  />
-);
+HasCompleted.args = {
+  filter: VisibilityFilter.SHOW_COMPLETED,
+  todosCount: 2,
+  completedCount: 1,
+};

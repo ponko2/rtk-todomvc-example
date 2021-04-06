@@ -1,22 +1,28 @@
 import React from 'react';
 import { action } from '@storybook/addon-actions';
-import { withKnobs, boolean } from '@storybook/addon-knobs';
 import { TodoLink } from './TodoLink';
 
 export default {
   title: 'Atoms/TodoLink',
   component: TodoLink,
-  decorators: [withKnobs],
 };
 
-export const simple = () => (
-  <TodoLink active={boolean('Active', false)} onClick={action('clicked')}>
+export const Basic = ({ active }: { active: boolean }) => (
+  <TodoLink active={active} onClick={action('clicked')}>
     Hello, World!!
   </TodoLink>
 );
 
-export const active = () => (
-  <TodoLink active onClick={action('clicked')}>
+Basic.args = {
+  active: false,
+};
+
+export const Active = ({ active }: { active: boolean }) => (
+  <TodoLink active={active} onClick={action('clicked')}>
     Hello, World!!
   </TodoLink>
 );
+
+Active.args = {
+  active: true,
+};

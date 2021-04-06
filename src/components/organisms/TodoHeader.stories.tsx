@@ -1,37 +1,68 @@
 import React from 'react';
-import { withKnobs, number } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 import { TodoHeader } from './TodoHeader';
 
 export default {
   title: 'Organisms/TodoHeader',
   component: TodoHeader,
-  decorators: [withKnobs],
 };
 
-export const simple = () => (
+export const Basic = ({
+  todosCount,
+  completedCount,
+}: {
+  todosCount: number;
+  completedCount: number;
+}) => (
   <TodoHeader
-    todosCount={number('Todos Count', 0)}
-    completedCount={number('Completed Count', 0)}
+    todosCount={todosCount}
+    completedCount={completedCount}
     addTodo={action('addTodo')}
     toggleAllTodo={action('toggleAllTodo')}
   />
 );
 
-export const hasActive = () => (
+Basic.args = {
+  todosCount: 0,
+  completedCount: 0,
+};
+
+export const HasActive = ({
+  todosCount,
+  completedCount,
+}: {
+  todosCount: number;
+  completedCount: number;
+}) => (
   <TodoHeader
-    todosCount={1}
-    completedCount={0}
+    todosCount={todosCount}
+    completedCount={completedCount}
     addTodo={action('addTodo')}
     toggleAllTodo={action('toggleAllTodo')}
   />
 );
 
-export const isAllCompleted = () => (
+HasActive.args = {
+  todosCount: 1,
+  completedCount: 0,
+};
+
+export const IsAllCompleted = ({
+  todosCount,
+  completedCount,
+}: {
+  todosCount: number;
+  completedCount: number;
+}) => (
   <TodoHeader
-    todosCount={1}
-    completedCount={1}
+    todosCount={todosCount}
+    completedCount={completedCount}
     addTodo={action('addTodo')}
     toggleAllTodo={action('toggleAllTodo')}
   />
 );
+
+IsAllCompleted.args = {
+  todosCount: 1,
+  completedCount: 1,
+};

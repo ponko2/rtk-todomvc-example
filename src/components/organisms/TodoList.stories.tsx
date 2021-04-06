@@ -8,25 +8,7 @@ export default {
   component: TodoList,
 };
 
-const todos: Todo[] = [
-  {
-    id: 1,
-    completed: false,
-    text: 'foo',
-  },
-  {
-    id: 2,
-    completed: true,
-    text: 'bar',
-  },
-  {
-    id: 3,
-    completed: false,
-    text: 'baz',
-  },
-];
-
-export const simple = () => (
+export const Basic = ({ todos }: { todos: Todo[] }) => (
   <TodoList
     todos={todos}
     deleteTodo={action('deleteTodo')}
@@ -34,3 +16,23 @@ export const simple = () => (
     toggleTodo={action('toggleTodo')}
   />
 );
+
+Basic.args = {
+  todos: [
+    {
+      id: 1,
+      completed: false,
+      text: 'foo',
+    },
+    {
+      id: 2,
+      completed: true,
+      text: 'bar',
+    },
+    {
+      id: 3,
+      completed: false,
+      text: 'baz',
+    },
+  ],
+};

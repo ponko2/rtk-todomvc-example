@@ -14,4 +14,4 @@ export default {
   decorators: [withProvider],
 };
 
-export const simple = () => <TodoPage />;
+export const Basic = () => <TodoPage />;

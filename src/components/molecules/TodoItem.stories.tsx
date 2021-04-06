@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react';
 import { StoryFn } from '@storybook/addons';
 import { action } from '@storybook/addon-actions';
-import { withKnobs, boolean, text } from '@storybook/addon-knobs';
+import { Todo } from 'api/todos';
 import { TodoItem } from './TodoItem';
 
 const withContainer = (storyFn: StoryFn<ReactNode>) => (
@@ -11,31 +11,39 @@ const withContainer = (storyFn: StoryFn<ReactNode>) => (
 export default {
   title: 'Molecules/TodoItem',
   component: TodoItem,
-  decorators: [withKnobs, withContainer],
+  decorators: [withContainer],
 };
 
-export const simple = () => (
+export const Basic = ({ todo }: { todo: Todo }) => (
   <TodoItem
-    todo={{
-      id: 1,
-      completed: boolean('Completed', false),
-      text: text('Text', 'Hello, World!!'),
-    }}
+    todo={todo}
     editTodo={action('editTodo')}
     deleteTodo={action('deleteTodo')}
     toggleTodo={action('toggleTodo')}
   />
 );
 
-export const completed = () => (
+Basic.args = {
+  todo: {
+    id: 1,
+    completed: false,
+    text: 'Hello, World!!',
+  },
+};
+
+export const Completed = ({ todo }: { todo: Todo }) => (
   <TodoItem
-    todo={{
-      id: 1,
-      completed: true,
-      text: text('Text', 'Hello, World!!'),
-    }}
+    todo={todo}
     editTodo={action('editTodo')}
     deleteTodo={action('deleteTodo')}
     toggleTodo={action('toggleTodo')}
   />
 );
+
+Completed.args = {
+  todo: {
+    id: 1,
+    completed: true,
+    text: 'Hello, World!!',
+  },
+};
