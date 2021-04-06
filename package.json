@@ -38,7 +38,7 @@
     "@storybook/addon-essentials": "^6.2.3",
     "@storybook/addon-knobs": "^6.2.3",
     "@storybook/addon-links": "^6.2.3",
-    "@storybook/addon-storyshots": "^6.1.21",
+    "@storybook/addon-storyshots": "^6.2.3",
     "@storybook/node-logger": "^6.2.3",
     "@storybook/preset-create-react-app": "^3.1.7",
     "@storybook/react": "^6.2.3",
@@ -80,7 +80,7 @@
     "lint": "run-p --aggregate-output -c -l lint:*",
     "lint:eslint": "eslint .",
     "lint:prettier": "prettier . --check",
-    "postinstall": "is-ci || husky install",
+    "prepare": "is-ci || husky install",
     "start": "react-scripts start",
     "storybook": "start-storybook -p 6006 -s public",
     "test": "react-scripts test"
