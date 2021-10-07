@@ -35,7 +35,7 @@
     "web-vitals": "^2.1.1"
   },
   "devDependencies": {
-    "@storybook/addon-essentials": "^6.3.9",
+    "@storybook/addon-essentials": "^6.3.10",
     "@storybook/addon-links": "^6.3.9",
     "@storybook/addon-storyshots": "^6.3.9",
     "@storybook/node-logger": "^6.3.9",
