@@ -1,17 +1,20 @@
-import React, { ReactNode } from 'react';
-import { StoryFn } from '@storybook/addons';
+import React from 'react';
+import type { ComponentMeta, ComponentStory } from '@storybook/react';
 import { Provider } from 'react-redux';
 import { store } from 'app/store';
 import { TodoPage } from './TodoPage';
 
-const withProvider = (storyFn: StoryFn<ReactNode>) => (
-  <Provider store={store}>{storyFn()}</Provider>
-);
-
 export default {
-  title: 'Pages/TodoList',
   component: TodoPage,
-  decorators: [withProvider],
-};
+  decorators: [
+    (Story) => (
+      <Provider store={store}>
+        <Story />
+      </Provider>
+    ),
+  ],
+} as ComponentMeta<typeof TodoPage>;
 
-export const Basic = () => <TodoPage />;
+const Template: ComponentStory<typeof TodoPage> = () => <TodoPage />;
+
+export const Basic = Template.bind({});

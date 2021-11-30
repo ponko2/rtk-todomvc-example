@@ -1,30 +1,22 @@
 import React from 'react';
+import type { ComponentMeta, ComponentStory } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import { VisibilityFilter } from 'modules/visibilityFilter';
 import { TodoFooter } from './TodoFooter';
 
 export default {
-  title: 'Organisms/TodoFooter',
   component: TodoFooter,
-};
+} as ComponentMeta<typeof TodoFooter>;
 
-export const Basic = ({
-  filter,
-  todosCount,
-  completedCount,
-}: {
-  filter: VisibilityFilter;
-  todosCount: number;
-  completedCount: number;
-}) => (
+const Template: ComponentStory<typeof TodoFooter> = (args) => (
   <TodoFooter
-    filter={filter}
+    {...args}
     setFilter={action('setFilter')}
-    todosCount={todosCount}
-    completedCount={completedCount}
     clearCompleted={action('clearCompleted')}
   />
 );
+
+export const Basic = Template.bind({});
 
 Basic.args = {
   filter: VisibilityFilter.SHOW_ALL,
@@ -32,23 +24,7 @@ Basic.args = {
   completedCount: 1,
 };
 
-export const HasCompleted = ({
-  filter,
-  todosCount,
-  completedCount,
-}: {
-  filter: VisibilityFilter;
-  todosCount: number;
-  completedCount: number;
-}) => (
-  <TodoFooter
-    filter={filter}
-    setFilter={action('setFilter')}
-    todosCount={todosCount}
-    completedCount={completedCount}
-    clearCompleted={action('clearCompleted')}
-  />
-);
+export const HasCompleted = Template.bind({});
 
 HasCompleted.args = {
   filter: VisibilityFilter.SHOW_COMPLETED,

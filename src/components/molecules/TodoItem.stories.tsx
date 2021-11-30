@@ -1,27 +1,29 @@
-import React, { ReactNode } from 'react';
-import { StoryFn } from '@storybook/addons';
+import React from 'react';
+import type { ComponentMeta, ComponentStory } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
-import { Todo } from 'api/todos';
 import { TodoItem } from './TodoItem';
 
-const withContainer = (storyFn: StoryFn<ReactNode>) => (
-  <ul style={{ margin: 0, padding: 0, listStyle: 'none' }}>{storyFn()}</ul>
-);
-
 export default {
-  title: 'Molecules/TodoItem',
   component: TodoItem,
-  decorators: [withContainer],
-};
+  decorators: [
+    (Story) => (
+      <ul style={{ margin: 0, padding: 0, listStyle: 'none' }}>
+        <Story />
+      </ul>
+    ),
+  ],
+} as ComponentMeta<typeof TodoItem>;
 
-export const Basic = ({ todo }: { todo: Todo }) => (
+const Template: ComponentStory<typeof TodoItem> = (args) => (
   <TodoItem
-    todo={todo}
+    {...args}
     editTodo={action('editTodo')}
     deleteTodo={action('deleteTodo')}
     toggleTodo={action('toggleTodo')}
   />
 );
+
+export const Basic = Template.bind({});
 
 Basic.args = {
   todo: {
@@ -31,14 +33,7 @@ Basic.args = {
   },
 };
 
-export const Completed = ({ todo }: { todo: Todo }) => (
-  <TodoItem
-    todo={todo}
-    editTodo={action('editTodo')}
-    deleteTodo={action('deleteTodo')}
-    toggleTodo={action('toggleTodo')}
-  />
-);
+export const Completed = Template.bind({});
 
 Completed.args = {
   todo: {

@@ -1,21 +1,22 @@
 import React from 'react';
+import type { ComponentMeta, ComponentStory } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
-import { Todo } from 'api/todos';
 import { TodoList } from './TodoList';
 
 export default {
-  title: 'Organisms/TodoList',
   component: TodoList,
-};
+} as ComponentMeta<typeof TodoList>;
 
-export const Basic = ({ todos }: { todos: Todo[] }) => (
+const Template: ComponentStory<typeof TodoList> = (args) => (
   <TodoList
-    todos={todos}
+    {...args}
     deleteTodo={action('deleteTodo')}
     editTodo={action('editTodo')}
     toggleTodo={action('toggleTodo')}
   />
 );
+
+export const Basic = Template.bind({});
 
 Basic.args = {
   todos: [

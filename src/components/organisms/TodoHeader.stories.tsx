@@ -1,66 +1,35 @@
 import React from 'react';
+import type { ComponentMeta, ComponentStory } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import { TodoHeader } from './TodoHeader';
 
 export default {
-  title: 'Organisms/TodoHeader',
   component: TodoHeader,
-};
+} as ComponentMeta<typeof TodoHeader>;
 
-export const Basic = ({
-  todosCount,
-  completedCount,
-}: {
-  todosCount: number;
-  completedCount: number;
-}) => (
+const Template: ComponentStory<typeof TodoHeader> = (args) => (
   <TodoHeader
-    todosCount={todosCount}
-    completedCount={completedCount}
+    {...args}
     addTodo={action('addTodo')}
     toggleAllTodo={action('toggleAllTodo')}
   />
 );
+
+export const Basic = Template.bind({});
 
 Basic.args = {
   todosCount: 0,
   completedCount: 0,
 };
 
-export const HasActive = ({
-  todosCount,
-  completedCount,
-}: {
-  todosCount: number;
-  completedCount: number;
-}) => (
-  <TodoHeader
-    todosCount={todosCount}
-    completedCount={completedCount}
-    addTodo={action('addTodo')}
-    toggleAllTodo={action('toggleAllTodo')}
-  />
-);
+export const HasActive = Template.bind({});
 
 HasActive.args = {
   todosCount: 1,
   completedCount: 0,
 };
 
-export const IsAllCompleted = ({
-  todosCount,
-  completedCount,
-}: {
-  todosCount: number;
-  completedCount: number;
-}) => (
-  <TodoHeader
-    todosCount={todosCount}
-    completedCount={completedCount}
-    addTodo={action('addTodo')}
-    toggleAllTodo={action('toggleAllTodo')}
-  />
-);
+export const IsAllCompleted = Template.bind({});
 
 IsAllCompleted.args = {
   todosCount: 1,

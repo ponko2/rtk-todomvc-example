@@ -1,27 +1,25 @@
 import React from 'react';
+import type { ComponentMeta, ComponentStory } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import { TodoLink } from './TodoLink';
 
 export default {
-  title: 'Atoms/TodoLink',
   component: TodoLink,
-};
+} as ComponentMeta<typeof TodoLink>;
 
-export const Basic = ({ active }: { active: boolean }) => (
-  <TodoLink active={active} onClick={action('clicked')}>
+const Template: ComponentStory<typeof TodoLink> = (args) => (
+  <TodoLink {...args} onClick={action('clicked')}>
     Hello, World!!
   </TodoLink>
 );
+
+export const Basic = Template.bind({});
 
 Basic.args = {
   active: false,
 };
 
-export const Active = ({ active }: { active: boolean }) => (
-  <TodoLink active={active} onClick={action('clicked')}>
-    Hello, World!!
-  </TodoLink>
-);
+export const Active = Template.bind({});
 
 Active.args = {
   active: true,

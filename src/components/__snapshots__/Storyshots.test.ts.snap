@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Storyshots Atoms/TodoButton Basic 1`] = `
+exports[`Storyshots Components/Atoms/Todo Button Basic 1`] = `
 <button
   className="button"
   onClick={[Function]}
@@ -9,7 +9,7 @@ exports[`Storyshots Atoms/TodoButton Basic 1`] = `
 </button>
 `;
 
-exports[`Storyshots Atoms/TodoLink Active 1`] = `
+exports[`Storyshots Components/Atoms/Todo Link Active 1`] = `
 <a
   className="link selected"
   onClick={[Function]}
@@ -23,7 +23,7 @@ exports[`Storyshots Atoms/TodoLink Active 1`] = `
 </a>
 `;
 
-exports[`Storyshots Atoms/TodoLink Basic 1`] = `
+exports[`Storyshots Components/Atoms/Todo Link Basic 1`] = `
 <a
   className="link"
   onClick={[Function]}
@@ -37,7 +37,7 @@ exports[`Storyshots Atoms/TodoLink Basic 1`] = `
 </a>
 `;
 
-exports[`Storyshots Molecules/TodoItem Basic 1`] = `
+exports[`Storyshots Components/Molecules/Todo Item Basic 1`] = `
 <ul
   style={
     Object {
@@ -73,7 +73,7 @@ exports[`Storyshots Molecules/TodoItem Basic 1`] = `
 </ul>
 `;
 
-exports[`Storyshots Molecules/TodoItem Completed 1`] = `
+exports[`Storyshots Components/Molecules/Todo Item Completed 1`] = `
 <ul
   style={
     Object {
@@ -109,7 +109,7 @@ exports[`Storyshots Molecules/TodoItem Completed 1`] = `
 </ul>
 `;
 
-exports[`Storyshots Organisms/TodoFooter Basic 1`] = `
+exports[`Storyshots Components/Organisms/Todo Footer Basic 1`] = `
 <footer
   className="footer"
 >
@@ -175,7 +175,7 @@ exports[`Storyshots Organisms/TodoFooter Basic 1`] = `
 </footer>
 `;
 
-exports[`Storyshots Organisms/TodoFooter Has Completed 1`] = `
+exports[`Storyshots Components/Organisms/Todo Footer Has Completed 1`] = `
 <footer
   className="footer"
 >
@@ -241,7 +241,7 @@ exports[`Storyshots Organisms/TodoFooter Has Completed 1`] = `
 </footer>
 `;
 
-exports[`Storyshots Organisms/TodoHeader Basic 1`] = `
+exports[`Storyshots Components/Organisms/Todo Header Basic 1`] = `
 <header
   className="header"
 >
@@ -260,7 +260,7 @@ exports[`Storyshots Organisms/TodoHeader Basic 1`] = `
 </header>
 `;
 
-exports[`Storyshots Organisms/TodoHeader Has Active 1`] = `
+exports[`Storyshots Components/Organisms/Todo Header Has Active 1`] = `
 <header
   className="header"
 >
@@ -290,7 +290,7 @@ exports[`Storyshots Organisms/TodoHeader Has Active 1`] = `
 </header>
 `;
 
-exports[`Storyshots Organisms/TodoHeader Is All Completed 1`] = `
+exports[`Storyshots Components/Organisms/Todo Header Is All Completed 1`] = `
 <header
   className="header"
 >
@@ -320,7 +320,7 @@ exports[`Storyshots Organisms/TodoHeader Is All Completed 1`] = `
 </header>
 `;
 
-exports[`Storyshots Organisms/TodoList Basic 1`] = `
+exports[`Storyshots Components/Organisms/Todo List Basic 1`] = `
 <section
   className="todoList"
 >
@@ -398,7 +398,7 @@ exports[`Storyshots Organisms/TodoList Basic 1`] = `
 </section>
 `;
 
-exports[`Storyshots Pages/TodoList Basic 1`] = `
+exports[`Storyshots Components/Pages/Todo Page Basic 1`] = `
 <section
   className="todoapp"
 >

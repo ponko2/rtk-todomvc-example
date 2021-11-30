@@ -80,6 +80,7 @@ module.exports = {
     },
     {
       files: ['*.stories.ts', '*.stories.tsx'],
+      extends: ['plugin:storybook/recommended'],
       rules: {
         'import/no-anonymous-default-export': 'off',
         'import/no-default-export': 'off',
