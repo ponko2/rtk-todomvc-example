@@ -1,12 +1,13 @@
 import React from 'react';
-import { render, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import { TodoHeader } from './TodoHeader';
 
 describe('<TodoHeader/>', () => {
   it('Todoを追加', () => {
     const addSpy = jest.fn();
     const toggleAllSpy = jest.fn();
-    const { getByRole } = render(
+
+    render(
       <TodoHeader
         todosCount={0}
         completedCount={0}
@@ -15,7 +16,7 @@ describe('<TodoHeader/>', () => {
       />
     );
 
-    const textbox = getByRole('textbox');
+    const textbox = screen.getByRole('textbox');
     fireEvent.change(textbox, { target: { value: 'foo' } });
 
     expect(textbox).toHaveValue('foo');
@@ -39,6 +40,7 @@ describe('<TodoHeader/>', () => {
       />
     );
 
+    // eslint-disable-next-line testing-library/no-container, testing-library/no-node-access
     const label = container.querySelector('label');
 
     // eslint-disable-next-line jest/no-if

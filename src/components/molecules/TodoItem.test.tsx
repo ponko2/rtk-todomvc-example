@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import { TodoItem } from './TodoItem';
 import { Todo } from 'api/todos';
 
@@ -9,7 +9,7 @@ describe('<TodoItem/>', () => {
     const editTodo = jest.fn();
     const deleteTodo = jest.fn();
     const toggleTodo = jest.fn();
-    const { getByText, getByRole, asFragment } = render(
+    const { asFragment } = render(
       <TodoItem
         todo={todo}
         editTodo={editTodo}
@@ -41,7 +41,7 @@ describe('<TodoItem/>', () => {
       </DocumentFragment>
     `);
 
-    fireEvent.doubleClick(getByText('foo'));
+    fireEvent.doubleClick(screen.getByText('foo'));
 
     expect(asFragment()).toMatchInlineSnapshot(`
       <DocumentFragment>
@@ -57,8 +57,8 @@ describe('<TodoItem/>', () => {
       </DocumentFragment>
     `);
 
-    fireEvent.change(getByRole('textbox'), { target: { value: 'bar' } });
-    fireEvent.blur(getByRole('textbox'));
+    fireEvent.change(screen.getByRole('textbox'), { target: { value: 'bar' } });
+    fireEvent.blur(screen.getByRole('textbox'));
 
     expect(asFragment()).toMatchInlineSnapshot(`
       <DocumentFragment>
@@ -93,7 +93,8 @@ describe('<TodoItem/>', () => {
     const editTodo = jest.fn();
     const deleteTodo = jest.fn();
     const toggleTodo = jest.fn();
-    const { getByText, getByRole } = render(
+
+    render(
       <TodoItem
         todo={todo}
         editTodo={editTodo}
@@ -102,9 +103,9 @@ describe('<TodoItem/>', () => {
       />
     );
 
-    fireEvent.doubleClick(getByText('foo'));
-    fireEvent.change(getByRole('textbox'), { target: { value: 'bar' } });
-    fireEvent.keyDown(getByRole('textbox'), { key: 'Enter', code: 13 });
+    fireEvent.doubleClick(screen.getByText('foo'));
+    fireEvent.change(screen.getByRole('textbox'), { target: { value: 'bar' } });
+    fireEvent.keyDown(screen.getByRole('textbox'), { key: 'Enter', code: 13 });
 
     expect(editTodo).toHaveBeenCalledWith(1, 'bar');
     expect(deleteTodo).not.toHaveBeenCalled();
@@ -116,7 +117,8 @@ describe('<TodoItem/>', () => {
     const editTodo = jest.fn();
     const deleteTodo = jest.fn();
     const toggleTodo = jest.fn();
-    const { getByText, getByRole } = render(
+
+    render(
       <TodoItem
         todo={todo}
         editTodo={editTodo}
@@ -125,9 +127,9 @@ describe('<TodoItem/>', () => {
       />
     );
 
-    fireEvent.doubleClick(getByText('foo'));
-    fireEvent.change(getByRole('textbox'), { target: { value: '' } });
-    fireEvent.keyDown(getByRole('textbox'), { key: 'Enter', code: 13 });
+    fireEvent.doubleClick(screen.getByText('foo'));
+    fireEvent.change(screen.getByRole('textbox'), { target: { value: '' } });
+    fireEvent.keyDown(screen.getByRole('textbox'), { key: 'Enter', code: 13 });
 
     expect(editTodo).not.toHaveBeenCalled();
     expect(deleteTodo).toHaveBeenCalledWith(1);
@@ -139,7 +141,8 @@ describe('<TodoItem/>', () => {
     const editTodo = jest.fn();
     const deleteTodo = jest.fn();
     const toggleTodo = jest.fn();
-    const { getByRole } = render(
+
+    render(
       <TodoItem
         todo={todo}
         editTodo={editTodo}
@@ -148,7 +151,7 @@ describe('<TodoItem/>', () => {
       />
     );
 
-    fireEvent.click(getByRole('button'));
+    fireEvent.click(screen.getByRole('button'));
 
     expect(editTodo).not.toHaveBeenCalled();
     expect(deleteTodo).toHaveBeenCalledWith(2);
@@ -160,7 +163,8 @@ describe('<TodoItem/>', () => {
     const editTodo = jest.fn();
     const deleteTodo = jest.fn();
     const toggleTodo = jest.fn();
-    const { getByRole } = render(
+
+    render(
       <TodoItem
         todo={todo}
         editTodo={editTodo}
@@ -169,7 +173,7 @@ describe('<TodoItem/>', () => {
       />
     );
 
-    fireEvent.click(getByRole('checkbox'));
+    fireEvent.click(screen.getByRole('checkbox'));
 
     expect(editTodo).not.toHaveBeenCalled();
     expect(deleteTodo).not.toHaveBeenCalled();
