@@ -10,8 +10,13 @@ interface Props
   active?: boolean;
 }
 
-export const TodoLink: React.VFC<Props> = (props) => {
-  const { active, children, className, style, ...restProps } = props;
+export const TodoLink: React.VFC<Props> = ({
+  active,
+  children,
+  className,
+  style,
+  ...restProps
+}) => {
   const classNames = [styles.link, className];
   if (active) {
     classNames.push(styles.selected);

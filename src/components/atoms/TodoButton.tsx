@@ -4,8 +4,7 @@ import styles from './TodoButton.module.css';
 
 export const TodoButton: React.VFC<
   DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>
-> = (props) => {
-  const { className, children, ...restProps } = props;
+> = ({ className, children, ...restProps }) => {
   return (
     <button className={classnames([styles.button, className])} {...restProps}>
       {children}
