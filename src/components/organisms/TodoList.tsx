@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react';
+import React from 'react';
 import { Todo } from 'api/todos';
 import { TodoItem } from 'components/molecules/TodoItem';
 import styles from './TodoList.module.css';
@@ -10,7 +10,7 @@ interface Props {
   toggleTodo: (id: number) => void;
 }
 
-export const TodoList: FunctionComponent<Props> = ({
+export const TodoList: React.VFC<Props> = ({
   todos,
   deleteTodo,
   editTodo,

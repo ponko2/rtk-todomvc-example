@@ -1,9 +1,4 @@
-import React, {
-  ChangeEvent,
-  FunctionComponent,
-  KeyboardEvent,
-  useState,
-} from 'react';
+import React, { ChangeEvent, KeyboardEvent, useState } from 'react';
 import styles from './TodoHeader.module.css';
 
 interface Props {
@@ -13,7 +8,7 @@ interface Props {
   toggleAllTodo: () => void;
 }
 
-export const TodoHeader: FunctionComponent<Props> = ({
+export const TodoHeader: React.VFC<Props> = ({
   todosCount,
   completedCount,
   addTodo,

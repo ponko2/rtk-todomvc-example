@@ -1,8 +1,4 @@
-import React, {
-  AnchorHTMLAttributes,
-  DetailedHTMLProps,
-  FunctionComponent,
-} from 'react';
+import React, { AnchorHTMLAttributes, DetailedHTMLProps } from 'react';
 import classnames from 'classnames';
 import styles from './TodoLink.module.css';
 
@@ -14,7 +10,7 @@ interface Props
   active?: boolean;
 }
 
-export const TodoLink: FunctionComponent<Props> = (props) => {
+export const TodoLink: React.VFC<Props> = (props) => {
   const { active, children, className, style, ...restProps } = props;
   const classNames = [styles.link, className];
   if (active) {

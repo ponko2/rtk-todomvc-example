@@ -6,7 +6,7 @@ import { getVisibleTodos } from 'selectors/todos';
 import { editTodo, toggleTodo, deleteTodo } from 'modules/todos';
 import { TodoList as Component } from 'components/organisms/TodoList';
 
-export const TodoList: React.FC = () => {
+export const TodoList: React.VFC = () => {
   const dispatch = useDispatch();
   const todos = useSelector<RootState, Todo[]>((state) =>
     getVisibleTodos(state)

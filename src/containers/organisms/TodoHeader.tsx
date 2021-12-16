@@ -5,7 +5,7 @@ import { getTodosCount, getCompletedTodoCount } from 'selectors/todos';
 import { addTodo, toggleAllTodo } from 'modules/todos';
 import { TodoHeader as Component } from 'components/organisms/TodoHeader';
 
-export const TodoHeader: React.FC = () => {
+export const TodoHeader: React.VFC = () => {
   const dispatch = useDispatch();
   const todosCount = useSelector<RootState, number>((state) =>
     getTodosCount(state)

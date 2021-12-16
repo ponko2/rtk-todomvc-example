@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react';
+import React from 'react';
 import { VisibilityFilter } from 'modules/visibilityFilter';
 import { TodoButton } from 'components/atoms/TodoButton';
 import { TodoLink } from 'components/atoms/TodoLink';
@@ -12,7 +12,7 @@ interface Props {
   clearCompleted: () => void;
 }
 
-export const TodoFooter: FunctionComponent<Props> = ({
+export const TodoFooter: React.VFC<Props> = ({
   filter: nowFilter,
   setFilter,
   todosCount,

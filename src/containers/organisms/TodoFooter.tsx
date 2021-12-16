@@ -10,7 +10,7 @@ import { getTodosCount, getCompletedTodoCount } from 'selectors/todos';
 
 import { TodoFooter as Component } from 'components/organisms/TodoFooter';
 
-export const TodoFooter: React.FC = () => {
+export const TodoFooter: React.VFC = () => {
   const dispatch = useDispatch();
   const visibilityFilter = useSelector<RootState, VisibilityFilter>(
     (state) => state.visibilityFilter

@@ -1,10 +1,4 @@
-import React, {
-  ChangeEvent,
-  FocusEvent,
-  FunctionComponent,
-  KeyboardEvent,
-  useState,
-} from 'react';
+import React, { ChangeEvent, FocusEvent, KeyboardEvent, useState } from 'react';
 import { Todo } from 'api/todos';
 import { TodoButton } from 'components/atoms/TodoButton';
 import styles from './TodoItem.module.css';
@@ -16,7 +10,7 @@ interface Props {
   toggleTodo: (id: number) => void;
 }
 
-export const TodoItem: FunctionComponent<Props> = ({
+export const TodoItem: React.VFC<Props> = ({
   todo,
   editTodo,
   deleteTodo,

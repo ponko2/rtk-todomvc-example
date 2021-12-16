@@ -1,12 +1,8 @@
-import React, {
-  ButtonHTMLAttributes,
-  DetailedHTMLProps,
-  FunctionComponent,
-} from 'react';
+import React, { ButtonHTMLAttributes, DetailedHTMLProps } from 'react';
 import classnames from 'classnames';
 import styles from './TodoButton.module.css';
 
-export const TodoButton: FunctionComponent<
+export const TodoButton: React.VFC<
   DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>
 > = (props) => {
   const { className, children, ...restProps } = props;
