@@ -4,12 +4,10 @@ import { TodoList } from 'containers/organisms/TodoList';
 import { TodoFooter } from 'containers/organisms/TodoFooter';
 import styles from './TodoPage.module.css';
 
-export const TodoPage: React.VFC = () => {
-  return (
-    <section className={styles.todoapp}>
-      <TodoHeader />
-      <TodoList />
-      <TodoFooter />
-    </section>
-  );
-};
+export const TodoPage: React.VFC = () => (
+  <section className={styles.todoapp}>
+    <TodoHeader />
+    <TodoList />
+    <TodoFooter />
+  </section>
+);

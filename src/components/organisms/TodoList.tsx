@@ -15,20 +15,18 @@ export const TodoList: React.VFC<Props> = ({
   deleteTodo,
   editTodo,
   toggleTodo,
-}) => {
-  return (
-    <section className={styles.todoList}>
-      <ul>
-        {todos.map((todo) => (
-          <TodoItem
-            key={todo.id}
-            todo={todo}
-            editTodo={editTodo}
-            toggleTodo={toggleTodo}
-            deleteTodo={deleteTodo}
-          />
-        ))}
-      </ul>
-    </section>
-  );
-};
+}) => (
+  <section className={styles.todoList}>
+    <ul>
+      {todos.map((todo) => (
+        <TodoItem
+          key={todo.id}
+          todo={todo}
+          editTodo={editTodo}
+          toggleTodo={toggleTodo}
+          deleteTodo={deleteTodo}
+        />
+      ))}
+    </ul>
+  </section>
+);
