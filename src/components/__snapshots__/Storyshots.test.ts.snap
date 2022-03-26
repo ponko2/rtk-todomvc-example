@@ -251,11 +251,9 @@ exports[`Storyshots Components/Organisms/Todo Header Basic 1`] = `
   <input
     autoFocus={true}
     className="newTodo"
-    onChange={[Function]}
     onKeyDown={[Function]}
     placeholder="What needs to be done?"
     type="text"
-    value=""
   />
 </header>
 `;
@@ -270,11 +268,9 @@ exports[`Storyshots Components/Organisms/Todo Header Has Active 1`] = `
   <input
     autoFocus={true}
     className="newTodo"
-    onChange={[Function]}
     onKeyDown={[Function]}
     placeholder="What needs to be done?"
     type="text"
-    value=""
   />
   <span>
     <input
@@ -300,11 +296,9 @@ exports[`Storyshots Components/Organisms/Todo Header Is All Completed 1`] = `
   <input
     autoFocus={true}
     className="newTodo"
-    onChange={[Function]}
     onKeyDown={[Function]}
     placeholder="What needs to be done?"
     type="text"
-    value=""
   />
   <span>
     <input
@@ -411,11 +405,9 @@ exports[`Storyshots Components/Pages/Todo Page Basic 1`] = `
     <input
       autoFocus={true}
       className="newTodo"
-      onChange={[Function]}
       onKeyDown={[Function]}
       placeholder="What needs to be done?"
       type="text"
-      value=""
     />
   </header>
   <section

@@ -1,8 +1,8 @@
-import React from 'react';
-import { VisibilityFilter } from 'modules/visibilityFilter';
-import { TodoButton } from 'components/atoms/TodoButton';
-import { TodoLink } from 'components/atoms/TodoLink';
-import styles from './TodoFooter.module.css';
+import React from "react";
+import { TodoButton } from "../../components/atoms/TodoButton";
+import { TodoLink } from "../../components/atoms/TodoLink";
+import { VisibilityFilter } from "../../modules/visibilityFilter";
+import styles from "./TodoFooter.module.css";
 
 interface Props {
   filter: VisibilityFilter;
@@ -24,18 +24,18 @@ export const TodoFooter: React.VFC<Props> = ({
   }
 
   const activeCount = todosCount - completedCount;
-  const itemWord = activeCount === 1 ? 'item' : 'items';
+  const itemWord = activeCount === 1 ? "item" : "items";
 
   const filters = {
-    [VisibilityFilter.SHOW_ALL]: 'All',
-    [VisibilityFilter.SHOW_ACTIVE]: 'Active',
-    [VisibilityFilter.SHOW_COMPLETED]: 'Completed',
+    [VisibilityFilter.SHOW_ALL]: "All",
+    [VisibilityFilter.SHOW_ACTIVE]: "Active",
+    [VisibilityFilter.SHOW_COMPLETED]: "Completed",
   };
 
   return (
     <footer className={styles.footer}>
       <span className={styles.todoCount}>
-        <strong>{activeCount || 'No'}</strong> {itemWord} left
+        <strong>{activeCount || "No"}</strong> {itemWord} left
       </span>
       <ul className={styles.filters}>
         {(Object.keys(filters) as VisibilityFilter[]).map((filter) => (

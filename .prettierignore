@@ -1,5 +1,2 @@
-# testing
-/coverage
-
-# production
-/build
+dist
+dist-ssr

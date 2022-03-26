@@ -1,23 +1,23 @@
-import createMockStore from 'redux-mock-store';
-import thunk from 'redux-thunk';
-import { AppDispatch } from 'app/store';
-import * as api from 'api/todos';
+import createMockStore from "redux-mock-store";
+import thunk from "redux-thunk";
+import * as api from "../api/todos";
+import { AppDispatch } from "../app/store";
 import {
-  TodoState,
-  todosReducer,
-  fetchTodos,
   addTodo,
+  clearCompleted,
   deleteTodo,
   editTodo,
-  toggleTodo,
+  fetchTodos,
+  todosReducer,
+  TodoState,
   toggleAllTodo,
-  clearCompleted,
-} from './todos';
+  toggleTodo,
+} from "./todos";
 
 const mockStore = createMockStore<TodoState, AppDispatch>([thunk]);
 
-describe('todosReducer', () => {
-  it('should handle initial state', () => {
+describe("todosReducer", () => {
+  it("should handle initial state", () => {
     expect(
       todosReducer(undefined, {
         type: undefined,
@@ -31,15 +31,15 @@ describe('todosReducer', () => {
   });
 
   describe.each([
-    ['todos/fetch', fetchTodos],
-    ['todos/add', addTodo],
-    ['todos/delete', deleteTodo],
-    ['todos/edit', editTodo],
-    ['todos/toggle', toggleTodo],
-    ['todos/toggleAll', toggleAllTodo],
-    ['todos/clearCompleted', clearCompleted],
-  ])('%p', (name, actionCreator) => {
-    it('pending', () => {
+    ["todos/fetch", fetchTodos],
+    ["todos/add", addTodo],
+    ["todos/delete", deleteTodo],
+    ["todos/edit", editTodo],
+    ["todos/toggle", toggleTodo],
+    ["todos/toggleAll", toggleAllTodo],
+    ["todos/clearCompleted", clearCompleted],
+  ])("%p", (name, actionCreator) => {
+    it("pending", () => {
       expect(
         todosReducer(
           {
@@ -59,7 +59,7 @@ describe('todosReducer', () => {
         error: null,
       });
     });
-    it('fulfilled', () => {
+    it("fulfilled", () => {
       expect(
         todosReducer(
           {
@@ -70,19 +70,19 @@ describe('todosReducer', () => {
           },
           {
             type: actionCreator.fulfilled.type,
-            payload: [{ id: 1, completed: false, text: 'foo' }],
+            payload: [{ id: 1, completed: false, text: "foo" }],
           }
         )
       ).toStrictEqual({
         ids: [1],
         entities: {
-          1: { id: 1, completed: false, text: 'foo' },
+          1: { id: 1, completed: false, text: "foo" },
         },
         isLoading: false,
         error: null,
       });
     });
-    it('rejected', () => {
+    it("rejected", () => {
       expect(
         todosReducer(
           {
@@ -95,7 +95,7 @@ describe('todosReducer', () => {
             type: actionCreator.rejected.type,
             error: {
               toString() {
-                return 'failed';
+                return "failed";
               },
             },
           }
@@ -104,14 +104,14 @@ describe('todosReducer', () => {
         ids: [],
         entities: {},
         isLoading: false,
-        error: 'failed',
+        error: "failed",
       });
     });
   });
 });
 
-describe('fetchTodos', () => {
-  it('success', async () => {
+describe("fetchTodos", () => {
+  it("success", async () => {
     const store = mockStore({
       ids: [],
       entities: {},
@@ -120,9 +120,9 @@ describe('fetchTodos', () => {
     });
 
     const fetchSpy = jest
-      .spyOn(api, 'fetchTodos')
+      .spyOn(api, "fetchTodos")
       .mockImplementation(() =>
-        Promise.resolve([{ id: 1, completed: false, text: 'foo' }])
+        Promise.resolve([{ id: 1, completed: false, text: "foo" }])
       );
 
     await store.dispatch(fetchTodos());
@@ -131,26 +131,26 @@ describe('fetchTodos', () => {
       {
         meta: {
           requestId: expect.anything(),
-          requestStatus: 'pending',
+          requestStatus: "pending",
           arg: undefined,
         },
         payload: undefined,
-        type: 'todos/fetch/pending',
+        type: "todos/fetch/pending",
       },
       {
         meta: {
           requestId: expect.anything(),
-          requestStatus: 'fulfilled',
+          requestStatus: "fulfilled",
           arg: undefined,
         },
-        payload: [{ id: 1, completed: false, text: 'foo' }],
-        type: 'todos/fetch/fulfilled',
+        payload: [{ id: 1, completed: false, text: "foo" }],
+        type: "todos/fetch/fulfilled",
       },
     ]);
     expect(fetchSpy).toHaveBeenCalledTimes(1);
   });
 
-  it('failed', async () => {
+  it("failed", async () => {
     const store = mockStore({
       ids: [],
       entities: {},
@@ -159,8 +159,8 @@ describe('fetchTodos', () => {
     });
 
     const fetchSpy = jest
-      .spyOn(api, 'fetchTodos')
-      .mockImplementation(() => Promise.reject(new Error('failed')));
+      .spyOn(api, "fetchTodos")
+      .mockImplementation(() => Promise.reject(new Error("failed")));
 
     await store.dispatch(fetchTodos());
 
@@ -168,36 +168,36 @@ describe('fetchTodos', () => {
       {
         meta: {
           requestId: expect.anything(),
-          requestStatus: 'pending',
+          requestStatus: "pending",
           arg: undefined,
         },
         payload: undefined,
-        type: 'todos/fetch/pending',
+        type: "todos/fetch/pending",
       },
       {
         meta: {
           requestId: expect.anything(),
           rejectedWithValue: false,
-          requestStatus: 'rejected',
+          requestStatus: "rejected",
           arg: undefined,
           aborted: false,
           condition: false,
         },
         error: {
-          message: 'failed',
-          name: 'Error',
+          message: "failed",
+          name: "Error",
           stack: expect.anything(),
         },
         payload: undefined,
-        type: 'todos/fetch/rejected',
+        type: "todos/fetch/rejected",
       },
     ]);
     expect(fetchSpy).toHaveBeenCalledTimes(1);
   });
 });
 
-describe('addTodo', () => {
-  it('success', async () => {
+describe("addTodo", () => {
+  it("success", async () => {
     const store = mockStore({
       ids: [],
       entities: {},
@@ -206,42 +206,42 @@ describe('addTodo', () => {
     });
 
     const addSpy = jest
-      .spyOn(api, 'addTodo')
+      .spyOn(api, "addTodo")
       .mockImplementation(() => Promise.resolve(1));
 
     const fetchSpy = jest
-      .spyOn(api, 'fetchTodos')
+      .spyOn(api, "fetchTodos")
       .mockImplementation(() =>
-        Promise.resolve([{ id: 1, completed: false, text: 'foo' }])
+        Promise.resolve([{ id: 1, completed: false, text: "foo" }])
       );
 
-    await store.dispatch(addTodo('foo'));
+    await store.dispatch(addTodo("foo"));
 
     expect(store.getActions()).toStrictEqual([
       {
         meta: {
           requestId: expect.anything(),
-          requestStatus: 'pending',
-          arg: 'foo',
+          requestStatus: "pending",
+          arg: "foo",
         },
         payload: undefined,
-        type: 'todos/add/pending',
+        type: "todos/add/pending",
       },
       {
         meta: {
           requestId: expect.anything(),
-          requestStatus: 'fulfilled',
-          arg: 'foo',
+          requestStatus: "fulfilled",
+          arg: "foo",
         },
-        payload: [{ id: 1, completed: false, text: 'foo' }],
-        type: 'todos/add/fulfilled',
+        payload: [{ id: 1, completed: false, text: "foo" }],
+        type: "todos/add/fulfilled",
       },
     ]);
     expect(addSpy).toHaveBeenCalledTimes(1);
     expect(fetchSpy).toHaveBeenCalledTimes(1);
   });
 
-  it('failed', async () => {
+  it("failed", async () => {
     const store = mockStore({
       ids: [],
       entities: {},
@@ -250,39 +250,39 @@ describe('addTodo', () => {
     });
 
     const addSpy = jest
-      .spyOn(api, 'addTodo')
-      .mockImplementation(() => Promise.reject(new Error('failed')));
+      .spyOn(api, "addTodo")
+      .mockImplementation(() => Promise.reject(new Error("failed")));
 
-    const fetchSpy = jest.spyOn(api, 'fetchTodos');
+    const fetchSpy = jest.spyOn(api, "fetchTodos");
 
-    await store.dispatch(addTodo('foo'));
+    await store.dispatch(addTodo("foo"));
 
     expect(store.getActions()).toStrictEqual([
       {
         meta: {
           requestId: expect.anything(),
-          requestStatus: 'pending',
-          arg: 'foo',
+          requestStatus: "pending",
+          arg: "foo",
         },
         payload: undefined,
-        type: 'todos/add/pending',
+        type: "todos/add/pending",
       },
       {
         error: {
-          message: 'failed',
-          name: 'Error',
+          message: "failed",
+          name: "Error",
           stack: expect.anything(),
         },
         meta: {
           requestId: expect.anything(),
           rejectedWithValue: false,
-          requestStatus: 'rejected',
-          arg: 'foo',
+          requestStatus: "rejected",
+          arg: "foo",
           aborted: false,
           condition: false,
         },
         payload: undefined,
-        type: 'todos/add/rejected',
+        type: "todos/add/rejected",
       },
     ]);
     expect(addSpy).toHaveBeenCalledTimes(1);
@@ -290,23 +290,23 @@ describe('addTodo', () => {
   });
 });
 
-describe('deleteTodo', () => {
-  it('success', async () => {
+describe("deleteTodo", () => {
+  it("success", async () => {
     const store = mockStore({
       ids: [1],
       entities: {
-        1: { id: 1, completed: false, text: 'foo' },
+        1: { id: 1, completed: false, text: "foo" },
       },
       isLoading: false,
       error: null,
     });
 
     const deleteSpy = jest
-      .spyOn(api, 'deleteTodo')
+      .spyOn(api, "deleteTodo")
       .mockImplementation(() => Promise.resolve());
 
     const fetchSpy = jest
-      .spyOn(api, 'fetchTodos')
+      .spyOn(api, "fetchTodos")
       .mockImplementation(() => Promise.resolve([]));
 
     await store.dispatch(deleteTodo(1));
@@ -315,41 +315,41 @@ describe('deleteTodo', () => {
       {
         meta: {
           requestId: expect.anything(),
-          requestStatus: 'pending',
+          requestStatus: "pending",
           arg: 1,
         },
         payload: undefined,
-        type: 'todos/delete/pending',
+        type: "todos/delete/pending",
       },
       {
         meta: {
           requestId: expect.anything(),
-          requestStatus: 'fulfilled',
+          requestStatus: "fulfilled",
           arg: 1,
         },
         payload: [],
-        type: 'todos/delete/fulfilled',
+        type: "todos/delete/fulfilled",
       },
     ]);
     expect(deleteSpy).toHaveBeenCalledTimes(1);
     expect(fetchSpy).toHaveBeenCalledTimes(1);
   });
 
-  it('failed', async () => {
+  it("failed", async () => {
     const store = mockStore({
       ids: [1],
       entities: {
-        1: { id: 1, completed: false, text: 'foo' },
+        1: { id: 1, completed: false, text: "foo" },
       },
       isLoading: false,
       error: null,
     });
 
     const deleteSpy = jest
-      .spyOn(api, 'deleteTodo')
-      .mockImplementation(() => Promise.reject(new Error('failed')));
+      .spyOn(api, "deleteTodo")
+      .mockImplementation(() => Promise.reject(new Error("failed")));
 
-    const fetchSpy = jest.spyOn(api, 'fetchTodos');
+    const fetchSpy = jest.spyOn(api, "fetchTodos");
 
     await store.dispatch(deleteTodo(1));
 
@@ -357,28 +357,28 @@ describe('deleteTodo', () => {
       {
         meta: {
           requestId: expect.anything(),
-          requestStatus: 'pending',
+          requestStatus: "pending",
           arg: 1,
         },
         payload: undefined,
-        type: 'todos/delete/pending',
+        type: "todos/delete/pending",
       },
       {
         error: {
-          message: 'failed',
-          name: 'Error',
+          message: "failed",
+          name: "Error",
           stack: expect.anything(),
         },
         meta: {
           requestId: expect.anything(),
           rejectedWithValue: false,
-          requestStatus: 'rejected',
+          requestStatus: "rejected",
           arg: 1,
           aborted: false,
           condition: false,
         },
         payload: undefined,
-        type: 'todos/delete/rejected',
+        type: "todos/delete/rejected",
       },
     ]);
     expect(deleteSpy).toHaveBeenCalledTimes(1);
@@ -386,97 +386,97 @@ describe('deleteTodo', () => {
   });
 });
 
-describe('editTodo', () => {
-  it('success', async () => {
+describe("editTodo", () => {
+  it("success", async () => {
     const store = mockStore({
       ids: [1],
       entities: {
-        1: { id: 1, completed: false, text: 'foo' },
+        1: { id: 1, completed: false, text: "foo" },
       },
       isLoading: false,
       error: null,
     });
 
     const editSpy = jest
-      .spyOn(api, 'editTodo')
+      .spyOn(api, "editTodo")
       .mockImplementation(() => Promise.resolve(1));
 
     const fetchSpy = jest
-      .spyOn(api, 'fetchTodos')
+      .spyOn(api, "fetchTodos")
       .mockImplementation(() =>
-        Promise.resolve([{ id: 1, completed: false, text: 'bar' }])
+        Promise.resolve([{ id: 1, completed: false, text: "bar" }])
       );
 
-    await store.dispatch(editTodo({ id: 1, text: 'bar' }));
+    await store.dispatch(editTodo({ id: 1, text: "bar" }));
 
     expect(store.getActions()).toStrictEqual([
       {
         meta: {
           requestId: expect.anything(),
-          requestStatus: 'pending',
-          arg: { id: 1, text: 'bar' },
+          requestStatus: "pending",
+          arg: { id: 1, text: "bar" },
         },
         payload: undefined,
-        type: 'todos/edit/pending',
+        type: "todos/edit/pending",
       },
       {
         meta: {
           requestId: expect.anything(),
-          requestStatus: 'fulfilled',
-          arg: { id: 1, text: 'bar' },
+          requestStatus: "fulfilled",
+          arg: { id: 1, text: "bar" },
         },
-        payload: [{ id: 1, completed: false, text: 'bar' }],
-        type: 'todos/edit/fulfilled',
+        payload: [{ id: 1, completed: false, text: "bar" }],
+        type: "todos/edit/fulfilled",
       },
     ]);
     expect(editSpy).toHaveBeenCalledTimes(1);
     expect(fetchSpy).toHaveBeenCalledTimes(1);
   });
 
-  it('failed', async () => {
+  it("failed", async () => {
     const store = mockStore({
       ids: [1],
       entities: {
-        1: { id: 1, completed: false, text: 'foo' },
+        1: { id: 1, completed: false, text: "foo" },
       },
       isLoading: false,
       error: null,
     });
 
     const editSpy = jest
-      .spyOn(api, 'editTodo')
-      .mockImplementation(() => Promise.reject(new Error('failed')));
+      .spyOn(api, "editTodo")
+      .mockImplementation(() => Promise.reject(new Error("failed")));
 
-    const fetchSpy = jest.spyOn(api, 'fetchTodos');
+    const fetchSpy = jest.spyOn(api, "fetchTodos");
 
-    await store.dispatch(editTodo({ id: 1, text: 'bar' }));
+    await store.dispatch(editTodo({ id: 1, text: "bar" }));
 
     expect(store.getActions()).toStrictEqual([
       {
         meta: {
           requestId: expect.anything(),
-          requestStatus: 'pending',
-          arg: { id: 1, text: 'bar' },
+          requestStatus: "pending",
+          arg: { id: 1, text: "bar" },
         },
         payload: undefined,
-        type: 'todos/edit/pending',
+        type: "todos/edit/pending",
       },
       {
         error: {
-          message: 'failed',
-          name: 'Error',
+          message: "failed",
+          name: "Error",
           stack: expect.anything(),
         },
         meta: {
           requestId: expect.anything(),
           rejectedWithValue: false,
-          requestStatus: 'rejected',
-          arg: { id: 1, text: 'bar' },
+          requestStatus: "rejected",
+          arg: { id: 1, text: "bar" },
           aborted: false,
           condition: false,
         },
         payload: undefined,
-        type: 'todos/edit/rejected',
+        type: "todos/edit/rejected",
       },
     ]);
     expect(editSpy).toHaveBeenCalledTimes(1);
@@ -484,25 +484,25 @@ describe('editTodo', () => {
   });
 });
 
-describe('toggleTodo', () => {
-  it('success', async () => {
+describe("toggleTodo", () => {
+  it("success", async () => {
     const store = mockStore({
       ids: [1],
       entities: {
-        1: { id: 1, completed: false, text: 'foo' },
+        1: { id: 1, completed: false, text: "foo" },
       },
       isLoading: false,
       error: null,
     });
 
     const toggleSpy = jest
-      .spyOn(api, 'toggleTodo')
+      .spyOn(api, "toggleTodo")
       .mockImplementation(() => Promise.resolve(1));
 
     const fetchSpy = jest
-      .spyOn(api, 'fetchTodos')
+      .spyOn(api, "fetchTodos")
       .mockImplementation(() =>
-        Promise.resolve([{ id: 1, completed: true, text: 'foo' }])
+        Promise.resolve([{ id: 1, completed: true, text: "foo" }])
       );
 
     await store.dispatch(toggleTodo(1));
@@ -511,41 +511,41 @@ describe('toggleTodo', () => {
       {
         meta: {
           requestId: expect.anything(),
-          requestStatus: 'pending',
+          requestStatus: "pending",
           arg: 1,
         },
         payload: undefined,
-        type: 'todos/toggle/pending',
+        type: "todos/toggle/pending",
       },
       {
         meta: {
           requestId: expect.anything(),
-          requestStatus: 'fulfilled',
+          requestStatus: "fulfilled",
           arg: 1,
         },
-        payload: [{ id: 1, completed: true, text: 'foo' }],
-        type: 'todos/toggle/fulfilled',
+        payload: [{ id: 1, completed: true, text: "foo" }],
+        type: "todos/toggle/fulfilled",
       },
     ]);
     expect(toggleSpy).toHaveBeenCalledTimes(1);
     expect(fetchSpy).toHaveBeenCalledTimes(1);
   });
 
-  it('failed', async () => {
+  it("failed", async () => {
     const store = mockStore({
       ids: [1],
       entities: {
-        1: { id: 1, completed: false, text: 'foo' },
+        1: { id: 1, completed: false, text: "foo" },
       },
       isLoading: false,
       error: null,
     });
 
     const toggleSpy = jest
-      .spyOn(api, 'toggleTodo')
-      .mockImplementation(() => Promise.reject(new Error('failed')));
+      .spyOn(api, "toggleTodo")
+      .mockImplementation(() => Promise.reject(new Error("failed")));
 
-    const fetchSpy = jest.spyOn(api, 'fetchTodos');
+    const fetchSpy = jest.spyOn(api, "fetchTodos");
 
     await store.dispatch(toggleTodo(1));
 
@@ -553,28 +553,28 @@ describe('toggleTodo', () => {
       {
         meta: {
           requestId: expect.anything(),
-          requestStatus: 'pending',
+          requestStatus: "pending",
           arg: 1,
         },
         payload: undefined,
-        type: 'todos/toggle/pending',
+        type: "todos/toggle/pending",
       },
       {
         error: {
-          message: 'failed',
-          name: 'Error',
+          message: "failed",
+          name: "Error",
           stack: expect.anything(),
         },
         meta: {
           requestId: expect.anything(),
           rejectedWithValue: false,
-          requestStatus: 'rejected',
+          requestStatus: "rejected",
           arg: 1,
           aborted: false,
           condition: false,
         },
         payload: undefined,
-        type: 'todos/toggle/rejected',
+        type: "todos/toggle/rejected",
       },
     ]);
     expect(toggleSpy).toHaveBeenCalledTimes(1);
@@ -582,26 +582,26 @@ describe('toggleTodo', () => {
   });
 });
 
-describe('toggleAllTodo', () => {
-  it('success', async () => {
+describe("toggleAllTodo", () => {
+  it("success", async () => {
     const store = mockStore({
       ids: [1, 2],
       entities: {
-        1: { id: 1, completed: false, text: 'foo' },
-        2: { id: 2, completed: true, text: 'bar' },
+        1: { id: 1, completed: false, text: "foo" },
+        2: { id: 2, completed: true, text: "bar" },
       },
       isLoading: false,
       error: null,
     });
 
     const toggleAllSpy = jest
-      .spyOn(api, 'toggleAllTodo')
+      .spyOn(api, "toggleAllTodo")
       .mockImplementation(() => Promise.resolve(1));
 
-    const fetchSpy = jest.spyOn(api, 'fetchTodos').mockImplementation(() =>
+    const fetchSpy = jest.spyOn(api, "fetchTodos").mockImplementation(() =>
       Promise.resolve([
-        { id: 1, completed: true, text: 'foo' },
-        { id: 2, completed: true, text: 'bar' },
+        { id: 1, completed: true, text: "foo" },
+        { id: 2, completed: true, text: "bar" },
       ])
     );
 
@@ -611,45 +611,45 @@ describe('toggleAllTodo', () => {
       {
         meta: {
           requestId: expect.anything(),
-          requestStatus: 'pending',
+          requestStatus: "pending",
           arg: undefined,
         },
         payload: undefined,
-        type: 'todos/toggleAll/pending',
+        type: "todos/toggleAll/pending",
       },
       {
         meta: {
           requestId: expect.anything(),
-          requestStatus: 'fulfilled',
+          requestStatus: "fulfilled",
           arg: undefined,
         },
         payload: [
-          { id: 1, completed: true, text: 'foo' },
-          { id: 2, completed: true, text: 'bar' },
+          { id: 1, completed: true, text: "foo" },
+          { id: 2, completed: true, text: "bar" },
         ],
-        type: 'todos/toggleAll/fulfilled',
+        type: "todos/toggleAll/fulfilled",
       },
     ]);
     expect(toggleAllSpy).toHaveBeenCalledTimes(1);
     expect(fetchSpy).toHaveBeenCalledTimes(1);
   });
 
-  it('failed', async () => {
+  it("failed", async () => {
     const store = mockStore({
       ids: [1, 2],
       entities: {
-        1: { id: 1, completed: false, text: 'foo' },
-        2: { id: 2, completed: false, text: 'bar' },
+        1: { id: 1, completed: false, text: "foo" },
+        2: { id: 2, completed: false, text: "bar" },
       },
       isLoading: false,
       error: null,
     });
 
     const toggleAllSpy = jest
-      .spyOn(api, 'toggleAllTodo')
-      .mockImplementation(() => Promise.reject(new Error('failed')));
+      .spyOn(api, "toggleAllTodo")
+      .mockImplementation(() => Promise.reject(new Error("failed")));
 
-    const fetchSpy = jest.spyOn(api, 'fetchTodos');
+    const fetchSpy = jest.spyOn(api, "fetchTodos");
 
     await store.dispatch(toggleAllTodo());
 
@@ -657,28 +657,28 @@ describe('toggleAllTodo', () => {
       {
         meta: {
           requestId: expect.anything(),
-          requestStatus: 'pending',
+          requestStatus: "pending",
           arg: undefined,
         },
         payload: undefined,
-        type: 'todos/toggleAll/pending',
+        type: "todos/toggleAll/pending",
       },
       {
         error: {
-          message: 'failed',
-          name: 'Error',
+          message: "failed",
+          name: "Error",
           stack: expect.anything(),
         },
         meta: {
           requestId: expect.anything(),
           rejectedWithValue: false,
-          requestStatus: 'rejected',
+          requestStatus: "rejected",
           arg: undefined,
           aborted: false,
           condition: false,
         },
         payload: undefined,
-        type: 'todos/toggleAll/rejected',
+        type: "todos/toggleAll/rejected",
       },
     ]);
     expect(toggleAllSpy).toHaveBeenCalledTimes(1);
@@ -686,26 +686,26 @@ describe('toggleAllTodo', () => {
   });
 });
 
-describe('clearCompleted', () => {
-  it('success', async () => {
+describe("clearCompleted", () => {
+  it("success", async () => {
     const store = mockStore({
       ids: [1, 2],
       entities: {
-        1: { id: 1, completed: false, text: 'foo' },
-        2: { id: 2, completed: true, text: 'bar' },
+        1: { id: 1, completed: false, text: "foo" },
+        2: { id: 2, completed: true, text: "bar" },
       },
       isLoading: false,
       error: null,
     });
 
     const clearCompletedSpy = jest
-      .spyOn(api, 'clearCompleted')
+      .spyOn(api, "clearCompleted")
       .mockImplementation(() => Promise.resolve(1));
 
     const fetchSpy = jest
-      .spyOn(api, 'fetchTodos')
+      .spyOn(api, "fetchTodos")
       .mockImplementation(() =>
-        Promise.resolve([{ id: 1, completed: false, text: 'foo' }])
+        Promise.resolve([{ id: 1, completed: false, text: "foo" }])
       );
 
     await store.dispatch(clearCompleted());
@@ -714,42 +714,42 @@ describe('clearCompleted', () => {
       {
         meta: {
           requestId: expect.anything(),
-          requestStatus: 'pending',
+          requestStatus: "pending",
           arg: undefined,
         },
         payload: undefined,
-        type: 'todos/clearCompleted/pending',
+        type: "todos/clearCompleted/pending",
       },
       {
         meta: {
           requestId: expect.anything(),
-          requestStatus: 'fulfilled',
+          requestStatus: "fulfilled",
           arg: undefined,
         },
-        payload: [{ id: 1, completed: false, text: 'foo' }],
-        type: 'todos/clearCompleted/fulfilled',
+        payload: [{ id: 1, completed: false, text: "foo" }],
+        type: "todos/clearCompleted/fulfilled",
       },
     ]);
     expect(clearCompletedSpy).toHaveBeenCalledTimes(1);
     expect(fetchSpy).toHaveBeenCalledTimes(1);
   });
 
-  it('failed', async () => {
+  it("failed", async () => {
     const store = mockStore({
       ids: [1, 2],
       entities: {
-        1: { id: 1, completed: false, text: 'foo' },
-        2: { id: 2, completed: true, text: 'bar' },
+        1: { id: 1, completed: false, text: "foo" },
+        2: { id: 2, completed: true, text: "bar" },
       },
       isLoading: false,
       error: null,
     });
 
     const clearCompletedSpy = jest
-      .spyOn(api, 'clearCompleted')
-      .mockImplementation(() => Promise.reject(new Error('failed')));
+      .spyOn(api, "clearCompleted")
+      .mockImplementation(() => Promise.reject(new Error("failed")));
 
-    const fetchSpy = jest.spyOn(api, 'fetchTodos');
+    const fetchSpy = jest.spyOn(api, "fetchTodos");
 
     await store.dispatch(clearCompleted());
 
@@ -757,28 +757,28 @@ describe('clearCompleted', () => {
       {
         meta: {
           requestId: expect.anything(),
-          requestStatus: 'pending',
+          requestStatus: "pending",
           arg: undefined,
         },
         payload: undefined,
-        type: 'todos/clearCompleted/pending',
+        type: "todos/clearCompleted/pending",
       },
       {
         error: {
-          message: 'failed',
-          name: 'Error',
+          message: "failed",
+          name: "Error",
           stack: expect.anything(),
         },
         meta: {
           requestId: expect.anything(),
           rejectedWithValue: false,
-          requestStatus: 'rejected',
+          requestStatus: "rejected",
           arg: undefined,
           aborted: false,
           condition: false,
         },
         payload: undefined,
-        type: 'todos/clearCompleted/rejected',
+        type: "todos/clearCompleted/rejected",
       },
     ]);
     expect(clearCompletedSpy).toHaveBeenCalledTimes(1);

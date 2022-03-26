@@ -1,7 +1,6 @@
-import React from 'react';
-import type { ComponentMeta, ComponentStory } from '@storybook/react';
-import { action } from '@storybook/addon-actions';
-import { TodoList } from './TodoList';
+import { action } from "@storybook/addon-actions";
+import type { ComponentMeta, ComponentStory } from "@storybook/react";
+import { TodoList } from "./TodoList";
 
 export default {
   component: TodoList,
@@ -10,9 +9,9 @@ export default {
 const Template: ComponentStory<typeof TodoList> = (args) => (
   <TodoList
     {...args}
-    deleteTodo={action('deleteTodo')}
-    editTodo={action('editTodo')}
-    toggleTodo={action('toggleTodo')}
+    deleteTodo={action("deleteTodo")}
+    editTodo={action("editTodo")}
+    toggleTodo={action("toggleTodo")}
   />
 );
 
@@ -23,17 +22,17 @@ Basic.args = {
     {
       id: 1,
       completed: false,
-      text: 'foo',
+      text: "foo",
     },
     {
       id: 2,
       completed: true,
-      text: 'bar',
+      text: "bar",
     },
     {
       id: 3,
       completed: false,
-      text: 'baz',
+      text: "baz",
     },
   ],
 };

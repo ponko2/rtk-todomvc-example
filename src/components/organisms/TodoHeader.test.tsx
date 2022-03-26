@@ -1,9 +1,8 @@
-import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
-import { TodoHeader } from './TodoHeader';
+import { fireEvent, render, screen } from "@testing-library/react";
+import { TodoHeader } from "./TodoHeader";
 
-describe('<TodoHeader/>', () => {
-  it('Todoを追加', () => {
+describe("<TodoHeader/>", () => {
+  it("Todoを追加", () => {
     const addSpy = jest.fn();
     const toggleAllSpy = jest.fn();
 
@@ -16,19 +15,19 @@ describe('<TodoHeader/>', () => {
       />
     );
 
-    const textbox = screen.getByRole('textbox');
-    fireEvent.change(textbox, { target: { value: 'foo' } });
+    const textbox = screen.getByRole("textbox");
+    fireEvent.change(textbox, { target: { value: "foo" } });
 
-    expect(textbox).toHaveValue('foo');
+    expect(textbox).toHaveValue("foo");
 
-    fireEvent.keyDown(textbox, { key: 'Enter', code: 13 });
+    fireEvent.keyDown(textbox, { key: "Enter", code: 13 });
 
-    expect(textbox).toHaveValue('');
-    expect(addSpy).toHaveBeenCalledWith('foo');
+    expect(textbox).toHaveValue("");
+    expect(addSpy).toHaveBeenCalledWith("foo");
     expect(toggleAllSpy).not.toHaveBeenCalled();
   });
 
-  it('全てのTodoを切り替え', () => {
+  it("全てのTodoを切り替え", () => {
     const addSpy = jest.fn();
     const toggleAllSpy = jest.fn();
     const { container } = render(
@@ -41,9 +40,9 @@ describe('<TodoHeader/>', () => {
     );
 
     // eslint-disable-next-line testing-library/no-container, testing-library/no-node-access
-    const label = container.querySelector('label');
+    const label = container.querySelector("label");
 
-    // eslint-disable-next-line jest/no-if
+    // eslint-disable-next-line jest/no-conditional-in-test
     if (label) {
       fireEvent.click(label);
     }

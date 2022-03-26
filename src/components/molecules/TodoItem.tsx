@@ -1,7 +1,7 @@
-import React, { ChangeEvent, FocusEvent, KeyboardEvent, useState } from 'react';
-import { Todo } from 'api/todos';
-import { TodoButton } from 'components/atoms/TodoButton';
-import styles from './TodoItem.module.css';
+import React, { useState } from "react";
+import { Todo } from "../../api/todos";
+import { TodoButton } from "../../components/atoms/TodoButton";
+import styles from "./TodoItem.module.css";
 
 interface Props {
   todo: Todo;
@@ -28,17 +28,17 @@ export const TodoItem: React.VFC<Props> = ({
     setEditing(false);
   }
 
-  function handleBlur(event: FocusEvent<HTMLInputElement>) {
+  function handleBlur(event: React.FocusEvent<HTMLInputElement>) {
     saveTodo(todo.id, event.target.value);
   }
 
-  function handleChange(event: ChangeEvent<HTMLInputElement>) {
+  function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
     setValue(event.target.value);
   }
 
-  function handleKeyDown(event: KeyboardEvent<HTMLInputElement>) {
+  function handleKeyDown(event: React.KeyboardEvent<HTMLInputElement>) {
     const newValue = event.currentTarget.value.trim();
-    if (event.key === 'Enter') {
+    if (event.key === "Enter") {
       saveTodo(todo.id, newValue);
     }
   }
@@ -57,6 +57,7 @@ export const TodoItem: React.VFC<Props> = ({
           onBlur={handleBlur}
           onChange={handleChange}
           onKeyDown={handleKeyDown}
+          // eslint-disable-next-line jsx-a11y/no-autofocus
           autoFocus={true}
         />
       );

@@ -1,7 +1,6 @@
-import React from 'react';
-import type { ComponentMeta, ComponentStory } from '@storybook/react';
-import { action } from '@storybook/addon-actions';
-import { TodoHeader } from './TodoHeader';
+import { action } from "@storybook/addon-actions";
+import type { ComponentMeta, ComponentStory } from "@storybook/react";
+import { TodoHeader } from "./TodoHeader";
 
 export default {
   component: TodoHeader,
@@ -10,8 +9,8 @@ export default {
 const Template: ComponentStory<typeof TodoHeader> = (args) => (
   <TodoHeader
     {...args}
-    addTodo={action('addTodo')}
-    toggleAllTodo={action('toggleAllTodo')}
+    addTodo={action("addTodo")}
+    toggleAllTodo={action("toggleAllTodo")}
   />
 );
 

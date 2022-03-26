@@ -1,9 +1,9 @@
-import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { RootState } from 'app/rootReducer';
-import { getTodosCount, getCompletedTodoCount } from 'selectors/todos';
-import { addTodo, toggleAllTodo } from 'modules/todos';
-import { TodoHeader as Component } from 'components/organisms/TodoHeader';
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../../app/rootReducer";
+import { TodoHeader as Component } from "../../components/organisms/TodoHeader";
+import { addTodo, toggleAllTodo } from "../../modules/todos";
+import { getCompletedTodoCount, getTodosCount } from "../../selectors/todos";
 
 export const TodoHeader: React.VFC = () => {
   const dispatch = useDispatch();

@@ -1,11 +1,11 @@
 import {
-  visibilityFilterReducer,
-  VisibilityFilter,
   setVisibilityFilter,
-} from './visibilityFilter';
+  VisibilityFilter,
+  visibilityFilterReducer,
+} from "./visibilityFilter";
 
-describe('visibilityFilterReducer', () => {
-  it('should handle initial state', () => {
+describe("visibilityFilterReducer", () => {
+  it("should handle initial state", () => {
     expect(
       visibilityFilterReducer(undefined, {
         type: undefined,
@@ -13,7 +13,7 @@ describe('visibilityFilterReducer', () => {
     ).toBe(VisibilityFilter.SHOW_ALL);
   });
 
-  it('should handle setVisibilityFilter', () => {
+  it("should handle setVisibilityFilter", () => {
     expect(
       visibilityFilterReducer(VisibilityFilter.SHOW_ACTIVE, {
         type: setVisibilityFilter.type,

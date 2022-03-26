@@ -1,26 +1,26 @@
-import { getVisibleTodos, getTodosCount, getCompletedTodoCount } from './todos';
-import { VisibilityFilter } from 'modules/visibilityFilter';
+import { VisibilityFilter } from "../modules/visibilityFilter";
+import { getCompletedTodoCount, getTodosCount, getVisibleTodos } from "./todos";
 
-describe('todos', () => {
+describe("todos", () => {
   const todos = {
     ids: [1, 2],
     entities: {
-      1: { id: 1, completed: false, text: 'foo' },
-      2: { id: 2, completed: true, text: 'bar' },
+      1: { id: 1, completed: false, text: "foo" },
+      2: { id: 2, completed: true, text: "bar" },
     },
     isLoading: false,
     error: null,
   };
 
-  it('getVisibleTodos', () => {
+  it("getVisibleTodos", () => {
     expect(
       getVisibleTodos({
         todos,
         visibilityFilter: VisibilityFilter.SHOW_ALL,
       })
     ).toStrictEqual([
-      { id: 1, completed: false, text: 'foo' },
-      { id: 2, completed: true, text: 'bar' },
+      { id: 1, completed: false, text: "foo" },
+      { id: 2, completed: true, text: "bar" },
     ]);
 
     expect(
@@ -28,17 +28,17 @@ describe('todos', () => {
         todos,
         visibilityFilter: VisibilityFilter.SHOW_ACTIVE,
       })
-    ).toStrictEqual([{ id: 1, completed: false, text: 'foo' }]);
+    ).toStrictEqual([{ id: 1, completed: false, text: "foo" }]);
 
     expect(
       getVisibleTodos({
         todos,
         visibilityFilter: VisibilityFilter.SHOW_COMPLETED,
       })
-    ).toStrictEqual([{ id: 2, completed: true, text: 'bar' }]);
+    ).toStrictEqual([{ id: 2, completed: true, text: "bar" }]);
   });
 
-  it('getTodosCount', () => {
+  it("getTodosCount", () => {
     expect(
       getTodosCount({
         todos,
@@ -47,7 +47,7 @@ describe('todos', () => {
     ).toBe(2);
   });
 
-  it('getCompletedTodoCount', () => {
+  it("getCompletedTodoCount", () => {
     expect(
       getCompletedTodoCount({
         todos,

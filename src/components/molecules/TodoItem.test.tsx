@@ -1,11 +1,10 @@
-import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
-import { TodoItem } from './TodoItem';
-import { Todo } from 'api/todos';
+import { fireEvent, render, screen } from "@testing-library/react";
+import { Todo } from "../../api/todos";
+import { TodoItem } from "./TodoItem";
 
-describe('<TodoItem/>', () => {
-  it('Todoを修正後フォーカスアウト', () => {
-    const todo: Todo = { id: 1, completed: false, text: 'foo' };
+describe("<TodoItem/>", () => {
+  it("Todoを修正後フォーカスアウト", () => {
+    const todo: Todo = { id: 1, completed: false, text: "foo" };
     const editTodo = jest.fn();
     const deleteTodo = jest.fn();
     const toggleTodo = jest.fn();
@@ -41,7 +40,7 @@ describe('<TodoItem/>', () => {
       </DocumentFragment>
     `);
 
-    fireEvent.doubleClick(screen.getByText('foo'));
+    fireEvent.doubleClick(screen.getByText("foo"));
 
     expect(asFragment()).toMatchInlineSnapshot(`
       <DocumentFragment>
@@ -57,8 +56,8 @@ describe('<TodoItem/>', () => {
       </DocumentFragment>
     `);
 
-    fireEvent.change(screen.getByRole('textbox'), { target: { value: 'bar' } });
-    fireEvent.blur(screen.getByRole('textbox'));
+    fireEvent.change(screen.getByRole("textbox"), { target: { value: "bar" } });
+    fireEvent.blur(screen.getByRole("textbox"));
 
     expect(asFragment()).toMatchInlineSnapshot(`
       <DocumentFragment>
@@ -83,13 +82,13 @@ describe('<TodoItem/>', () => {
       </DocumentFragment>
     `);
 
-    expect(editTodo).toHaveBeenCalledWith(1, 'bar');
+    expect(editTodo).toHaveBeenCalledWith(1, "bar");
     expect(deleteTodo).not.toHaveBeenCalled();
     expect(toggleTodo).not.toHaveBeenCalled();
   });
 
-  it('Todoを修正後エンター', () => {
-    const todo: Todo = { id: 1, completed: false, text: 'foo' };
+  it("Todoを修正後エンター", () => {
+    const todo: Todo = { id: 1, completed: false, text: "foo" };
     const editTodo = jest.fn();
     const deleteTodo = jest.fn();
     const toggleTodo = jest.fn();
@@ -103,17 +102,17 @@ describe('<TodoItem/>', () => {
       />
     );
 
-    fireEvent.doubleClick(screen.getByText('foo'));
-    fireEvent.change(screen.getByRole('textbox'), { target: { value: 'bar' } });
-    fireEvent.keyDown(screen.getByRole('textbox'), { key: 'Enter', code: 13 });
+    fireEvent.doubleClick(screen.getByText("foo"));
+    fireEvent.change(screen.getByRole("textbox"), { target: { value: "bar" } });
+    fireEvent.keyDown(screen.getByRole("textbox"), { key: "Enter", code: 13 });
 
-    expect(editTodo).toHaveBeenCalledWith(1, 'bar');
+    expect(editTodo).toHaveBeenCalledWith(1, "bar");
     expect(deleteTodo).not.toHaveBeenCalled();
     expect(toggleTodo).not.toHaveBeenCalled();
   });
 
-  it('Todoを空文字に修正して削除', () => {
-    const todo: Todo = { id: 1, completed: false, text: 'foo' };
+  it("Todoを空文字に修正して削除", () => {
+    const todo: Todo = { id: 1, completed: false, text: "foo" };
     const editTodo = jest.fn();
     const deleteTodo = jest.fn();
     const toggleTodo = jest.fn();
@@ -127,17 +126,17 @@ describe('<TodoItem/>', () => {
       />
     );
 
-    fireEvent.doubleClick(screen.getByText('foo'));
-    fireEvent.change(screen.getByRole('textbox'), { target: { value: '' } });
-    fireEvent.keyDown(screen.getByRole('textbox'), { key: 'Enter', code: 13 });
+    fireEvent.doubleClick(screen.getByText("foo"));
+    fireEvent.change(screen.getByRole("textbox"), { target: { value: "" } });
+    fireEvent.keyDown(screen.getByRole("textbox"), { key: "Enter", code: 13 });
 
     expect(editTodo).not.toHaveBeenCalled();
     expect(deleteTodo).toHaveBeenCalledWith(1);
     expect(toggleTodo).not.toHaveBeenCalled();
   });
 
-  it('Todoを削除ボタンで削除', () => {
-    const todo: Todo = { id: 2, completed: false, text: 'bar' };
+  it("Todoを削除ボタンで削除", () => {
+    const todo: Todo = { id: 2, completed: false, text: "bar" };
     const editTodo = jest.fn();
     const deleteTodo = jest.fn();
     const toggleTodo = jest.fn();
@@ -151,15 +150,15 @@ describe('<TodoItem/>', () => {
       />
     );
 
-    fireEvent.click(screen.getByRole('button'));
+    fireEvent.click(screen.getByRole("button"));
 
     expect(editTodo).not.toHaveBeenCalled();
     expect(deleteTodo).toHaveBeenCalledWith(2);
     expect(toggleTodo).not.toHaveBeenCalled();
   });
 
-  it('Todoを切り替え', () => {
-    const todo: Todo = { id: 3, completed: false, text: 'baz' };
+  it("Todoを切り替え", () => {
+    const todo: Todo = { id: 3, completed: false, text: "baz" };
     const editTodo = jest.fn();
     const deleteTodo = jest.fn();
     const toggleTodo = jest.fn();
@@ -173,7 +172,7 @@ describe('<TodoItem/>', () => {
       />
     );
 
-    fireEvent.click(screen.getByRole('checkbox'));
+    fireEvent.click(screen.getByRole("checkbox"));
 
     expect(editTodo).not.toHaveBeenCalled();
     expect(deleteTodo).not.toHaveBeenCalled();

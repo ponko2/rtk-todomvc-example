@@ -1,5 +1,5 @@
-import React, { ChangeEvent, KeyboardEvent, useState } from 'react';
-import styles from './TodoHeader.module.css';
+import React from "react";
+import styles from "./TodoHeader.module.css";
 
 interface Props {
   todosCount: number;
@@ -14,19 +14,13 @@ export const TodoHeader: React.VFC<Props> = ({
   addTodo,
   toggleAllTodo,
 }) => {
-  const [value, setValue] = useState('');
-
-  function handleChange(event: ChangeEvent<HTMLInputElement>) {
-    setValue(event.target.value);
-  }
-
-  function handleKeyDown(event: KeyboardEvent<HTMLInputElement>) {
+  function handleKeyDown(event: React.KeyboardEvent<HTMLInputElement>) {
     const newValue = event.currentTarget.value.trim();
-    if (event.key === 'Enter') {
+    if (event.key === "Enter") {
       if (newValue.length !== 0) {
         addTodo(newValue);
       }
-      setValue('');
+      event.currentTarget.value = "";
     }
   }
 
@@ -35,11 +29,10 @@ export const TodoHeader: React.VFC<Props> = ({
       <h1>todos</h1>
       <input
         type="text"
-        value={value}
         className={styles.newTodo}
         placeholder="What needs to be done?"
-        onChange={handleChange}
         onKeyDown={handleKeyDown}
+        // eslint-disable-next-line jsx-a11y/no-autofocus
         autoFocus={true}
       />
       {!!todosCount && (
@@ -50,6 +43,7 @@ export const TodoHeader: React.VFC<Props> = ({
             checked={completedCount === todosCount}
             readOnly
           />
+          {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/label-has-associated-control, jsx-a11y/no-noninteractive-element-interactions */}
           <label onClick={toggleAllTodo} />
         </span>
       )}

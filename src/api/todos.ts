@@ -1,4 +1,4 @@
-import Dexie from 'dexie';
+import Dexie from "dexie";
 
 export interface Todo {
   id: number;
@@ -16,13 +16,13 @@ class TodoAppDatabase extends Dexie {
   todos: Dexie.Table<TodoRecord, number>;
 
   constructor() {
-    super('TodoAppDatabase');
+    super("TodoAppDatabase");
 
     this.version(1).stores({
-      todos: '++id, completed, text',
+      todos: "++id, completed, text",
     });
 
-    this.todos = this.table('todos');
+    this.todos = this.table("todos");
   }
 }
 
@@ -52,7 +52,7 @@ export async function editTodo(id: number, text: string) {
 export async function toggleTodo(id: number) {
   const todo = await db.todos.get(id);
   if (!todo) {
-    throw new Error('Data not found');
+    throw new Error("Data not found");
   }
   return db.todos.update(id, { completed: Number(!todo.completed) });
 }
@@ -61,11 +61,11 @@ export async function toggleAllTodo() {
   const todos = await db.todos.toArray();
   const areAllMarked = todos.every((todo) => todo.completed);
   return db.todos
-    .where('completed')
+    .where("completed")
     .equals(Number(areAllMarked))
     .modify({ completed: Number(!areAllMarked) });
 }
 
 export async function clearCompleted() {
-  return db.todos.where('completed').equals(1).delete();
+  return db.todos.where("completed").equals(1).delete();
 }

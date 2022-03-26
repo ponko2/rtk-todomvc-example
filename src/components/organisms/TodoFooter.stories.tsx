@@ -1,8 +1,7 @@
-import React from 'react';
-import type { ComponentMeta, ComponentStory } from '@storybook/react';
-import { action } from '@storybook/addon-actions';
-import { VisibilityFilter } from 'modules/visibilityFilter';
-import { TodoFooter } from './TodoFooter';
+import { action } from "@storybook/addon-actions";
+import type { ComponentMeta, ComponentStory } from "@storybook/react";
+import { VisibilityFilter } from "../../modules/visibilityFilter";
+import { TodoFooter } from "./TodoFooter";
 
 export default {
   component: TodoFooter,
@@ -11,8 +10,8 @@ export default {
 const Template: ComponentStory<typeof TodoFooter> = (args) => (
   <TodoFooter
     {...args}
-    setFilter={action('setFilter')}
-    clearCompleted={action('clearCompleted')}
+    setFilter={action("setFilter")}
+    clearCompleted={action("clearCompleted")}
   />
 );
 

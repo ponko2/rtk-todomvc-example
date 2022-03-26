@@ -1,10 +1,10 @@
-import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { RootState } from 'app/rootReducer';
-import { Todo } from 'api/todos';
-import { getVisibleTodos } from 'selectors/todos';
-import { editTodo, toggleTodo, deleteTodo } from 'modules/todos';
-import { TodoList as Component } from 'components/organisms/TodoList';
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Todo } from "../../api/todos";
+import { RootState } from "../../app/rootReducer";
+import { TodoList as Component } from "../../components/organisms/TodoList";
+import { deleteTodo, editTodo, toggleTodo } from "../../modules/todos";
+import { getVisibleTodos } from "../../selectors/todos";
 
 export const TodoList: React.VFC = () => {
   const dispatch = useDispatch();

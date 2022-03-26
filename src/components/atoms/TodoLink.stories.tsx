@@ -1,14 +1,13 @@
-import React from 'react';
-import type { ComponentMeta, ComponentStory } from '@storybook/react';
-import { action } from '@storybook/addon-actions';
-import { TodoLink } from './TodoLink';
+import { action } from "@storybook/addon-actions";
+import type { ComponentMeta, ComponentStory } from "@storybook/react";
+import { TodoLink } from "./TodoLink";
 
 export default {
   component: TodoLink,
 } as ComponentMeta<typeof TodoLink>;
 
 const Template: ComponentStory<typeof TodoLink> = (args) => (
-  <TodoLink {...args} onClick={action('clicked')}>
+  <TodoLink {...args} onClick={action("clicked")}>
     Hello, World!!
   </TodoLink>
 );

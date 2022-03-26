@@ -1,3 +1,5 @@
-import initStoryshots from '@storybook/addon-storyshots';
+/* eslint-disable jest/require-hook */
 
-initStoryshots({ framework: 'react' });
+import initStoryshots from "@storybook/addon-storyshots";
+
+initStoryshots({ framework: "react" });

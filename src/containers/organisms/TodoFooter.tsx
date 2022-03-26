@@ -1,14 +1,13 @@
-import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from 'app/rootReducer';
-import { clearCompleted } from 'modules/todos';
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../../app/rootReducer";
+import { TodoFooter as Component } from "../../components/organisms/TodoFooter";
+import { clearCompleted } from "../../modules/todos";
 import {
-  VisibilityFilter,
   setVisibilityFilter,
-} from 'modules/visibilityFilter';
-import { getTodosCount, getCompletedTodoCount } from 'selectors/todos';
-
-import { TodoFooter as Component } from 'components/organisms/TodoFooter';
+  VisibilityFilter,
+} from "../../modules/visibilityFilter";
+import { getCompletedTodoCount, getTodosCount } from "../../selectors/todos";
 
 export const TodoFooter: React.VFC = () => {
   const dispatch = useDispatch();

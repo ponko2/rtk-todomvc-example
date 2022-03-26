@@ -1,8 +1,7 @@
-import React from 'react';
-import type { ComponentMeta, ComponentStory } from '@storybook/react';
-import { Provider } from 'react-redux';
-import { store } from 'app/store';
-import { TodoPage } from './TodoPage';
+import type { ComponentMeta, ComponentStory } from "@storybook/react";
+import { Provider } from "react-redux";
+import { store } from "../../app/store";
+import { TodoPage } from "./TodoPage";
 
 export default {
   component: TodoPage,

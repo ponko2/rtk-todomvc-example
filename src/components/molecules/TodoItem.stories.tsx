@@ -1,13 +1,12 @@
-import React from 'react';
-import type { ComponentMeta, ComponentStory } from '@storybook/react';
-import { action } from '@storybook/addon-actions';
-import { TodoItem } from './TodoItem';
+import { action } from "@storybook/addon-actions";
+import type { ComponentMeta, ComponentStory } from "@storybook/react";
+import { TodoItem } from "./TodoItem";
 
 export default {
   component: TodoItem,
   decorators: [
     (Story) => (
-      <ul style={{ margin: 0, padding: 0, listStyle: 'none' }}>
+      <ul style={{ margin: 0, padding: 0, listStyle: "none" }}>
         <Story />
       </ul>
     ),
@@ -17,9 +16,9 @@ export default {
 const Template: ComponentStory<typeof TodoItem> = (args) => (
   <TodoItem
     {...args}
-    editTodo={action('editTodo')}
-    deleteTodo={action('deleteTodo')}
-    toggleTodo={action('toggleTodo')}
+    editTodo={action("editTodo")}
+    deleteTodo={action("deleteTodo")}
+    toggleTodo={action("toggleTodo")}
   />
 );
 
@@ -29,7 +28,7 @@ Basic.args = {
   todo: {
     id: 1,
     completed: false,
-    text: 'Hello, World!!',
+    text: "Hello, World!!",
   },
 };
 
@@ -39,6 +38,6 @@ Completed.args = {
   todo: {
     id: 1,
     completed: true,
-    text: 'Hello, World!!',
+    text: "Hello, World!!",
   },
 };

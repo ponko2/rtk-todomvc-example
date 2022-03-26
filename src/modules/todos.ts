@@ -1,12 +1,12 @@
 import {
   createAsyncThunk,
-  createSlice,
   createEntityAdapter,
+  createSlice,
   EntityState,
   PayloadAction,
   SerializedError,
-} from '@reduxjs/toolkit';
-import * as api from 'api/todos';
+} from "@reduxjs/toolkit";
+import * as api from "../api/todos";
 
 export interface TodoState extends EntityState<api.Todo> {
   isLoading: boolean;
@@ -20,17 +20,17 @@ const initialState: TodoState = todoAdapter.getInitialState({
   error: null,
 });
 
-export const fetchTodos = createAsyncThunk('todos/fetch', () => {
+export const fetchTodos = createAsyncThunk("todos/fetch", () => {
   return api.fetchTodos();
 });
 
-export const addTodo = createAsyncThunk('todos/add', async (text: string) => {
+export const addTodo = createAsyncThunk("todos/add", async (text: string) => {
   await api.addTodo(text);
   return api.fetchTodos();
 });
 
 export const deleteTodo = createAsyncThunk(
-  'todos/delete',
+  "todos/delete",
   async (id: number) => {
     await api.deleteTodo(id);
     return api.fetchTodos();
@@ -38,7 +38,7 @@ export const deleteTodo = createAsyncThunk(
 );
 
 export const editTodo = createAsyncThunk(
-  'todos/edit',
+  "todos/edit",
   async ({ id, text }: { id: number; text: string }) => {
     await api.editTodo(id, text);
     return api.fetchTodos();
@@ -46,20 +46,20 @@ export const editTodo = createAsyncThunk(
 );
 
 export const toggleTodo = createAsyncThunk(
-  'todos/toggle',
+  "todos/toggle",
   async (id: number) => {
     await api.toggleTodo(id);
     return api.fetchTodos();
   }
 );
 
-export const toggleAllTodo = createAsyncThunk('todos/toggleAll', async () => {
+export const toggleAllTodo = createAsyncThunk("todos/toggleAll", async () => {
   await api.toggleAllTodo();
   return api.fetchTodos();
 });
 
 export const clearCompleted = createAsyncThunk(
-  'todos/clearCompleted',
+  "todos/clearCompleted",
   async () => {
     await api.clearCompleted();
     return api.fetchTodos();
@@ -67,7 +67,7 @@ export const clearCompleted = createAsyncThunk(
 );
 
 const slice = createSlice({
-  name: 'todos',
+  name: "todos",
   initialState,
   reducers: {},
   extraReducers(builder) {

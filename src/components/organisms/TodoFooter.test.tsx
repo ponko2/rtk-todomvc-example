@@ -1,10 +1,9 @@
-import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
-import { TodoFooter } from './TodoFooter';
-import { VisibilityFilter } from 'modules/visibilityFilter';
+import { fireEvent, render, screen } from "@testing-library/react";
+import { VisibilityFilter } from "../../modules/visibilityFilter";
+import { TodoFooter } from "./TodoFooter";
 
-describe('<TodoFooter/>', () => {
-  it('全てを表示', () => {
+describe("<TodoFooter/>", () => {
+  it("全てを表示", () => {
     const setFilterSpy = jest.fn();
     const clearCompletedSpy = jest.fn();
 
@@ -18,13 +17,13 @@ describe('<TodoFooter/>', () => {
       />
     );
 
-    fireEvent.click(screen.getByText('All'));
+    fireEvent.click(screen.getByText("All"));
 
     expect(setFilterSpy).toHaveBeenCalledWith(VisibilityFilter.SHOW_ALL);
     expect(clearCompletedSpy).not.toHaveBeenCalled();
   });
 
-  it('未完了のものを表示', () => {
+  it("未完了のものを表示", () => {
     const setFilterSpy = jest.fn();
     const clearCompletedSpy = jest.fn();
 
@@ -38,13 +37,13 @@ describe('<TodoFooter/>', () => {
       />
     );
 
-    fireEvent.click(screen.getByText('Active'));
+    fireEvent.click(screen.getByText("Active"));
 
     expect(setFilterSpy).toHaveBeenCalledWith(VisibilityFilter.SHOW_ACTIVE);
     expect(clearCompletedSpy).not.toHaveBeenCalled();
   });
 
-  it('完了したものを表示', () => {
+  it("完了したものを表示", () => {
     const setFilterSpy = jest.fn();
     const clearCompletedSpy = jest.fn();
 
@@ -58,13 +57,13 @@ describe('<TodoFooter/>', () => {
       />
     );
 
-    fireEvent.click(screen.getByText('Completed'));
+    fireEvent.click(screen.getByText("Completed"));
 
     expect(setFilterSpy).toHaveBeenCalledWith(VisibilityFilter.SHOW_COMPLETED);
     expect(clearCompletedSpy).not.toHaveBeenCalled();
   });
 
-  it('完了したものを削除', () => {
+  it("完了したものを削除", () => {
     const setFilterSpy = jest.fn();
     const clearCompletedSpy = jest.fn();
 
@@ -78,7 +77,7 @@ describe('<TodoFooter/>', () => {
       />
     );
 
-    fireEvent.click(screen.getByText('Clear completed'));
+    fireEvent.click(screen.getByText("Clear completed"));
 
     expect(setFilterSpy).not.toHaveBeenCalled();
     expect(clearCompletedSpy).toHaveBeenCalledTimes(1);

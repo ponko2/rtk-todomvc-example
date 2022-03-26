@@ -1,7 +1,7 @@
-import { createSelector } from '@reduxjs/toolkit';
-import { RootState } from 'app/rootReducer';
-import { VisibilityFilter } from 'modules/visibilityFilter';
-import { todoAdapter } from 'modules/todos';
+import { createSelector } from "@reduxjs/toolkit";
+import { RootState } from "../app/rootReducer";
+import { todoAdapter } from "../modules/todos";
+import { VisibilityFilter } from "../modules/visibilityFilter";
 
 const getVisibilityFilter = (state: RootState) => state.visibilityFilter;
 const { selectAll: getTodos } = todoAdapter.getSelectors(
