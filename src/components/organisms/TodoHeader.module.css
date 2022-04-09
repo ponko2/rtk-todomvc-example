@@ -37,7 +37,7 @@
   color: rgba(0, 0, 0, 0.4);
 }
 
-.toggleAll {
+.toggleAll > input {
   width: 1px;
   height: 1px;
   border: none;
@@ -47,7 +47,7 @@
   bottom: 100%;
 }
 
-.toggleAll + label {
+.toggleAll > input + span {
   width: 60px;
   height: 34px;
   font-size: 0;
@@ -58,19 +58,19 @@
   transform: rotate(90deg);
 }
 
-.toggleAll + label:before {
+.toggleAll > input + span:before {
   content: "❯";
   font-size: 22px;
   color: #e6e6e6;
   padding: 10px 27px 10px 27px;
 }
 
-.toggleAll:checked + label:before {
+.toggleAll > input:checked + span:before {
   color: #737373;
 }
 
 @media screen and (min-resolution: 0) {
-  .toggleAll {
+  .toggleAll > input {
     background: none;
   }
 }

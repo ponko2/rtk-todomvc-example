@@ -1,24 +1,25 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../../app/rootReducer";
+import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { TodoHeader as Component } from "../../components/organisms/TodoHeader";
-import { addTodo, toggleAllTodo } from "../../modules/todos";
-import { getCompletedTodoCount, getTodosCount } from "../../selectors/todos";
+import {
+  addTodo,
+  selectCompletedTodosCount,
+  selectTodosCount,
+  toggleAllTodo,
+} from "../../modules/todos";
 
 export const TodoHeader: React.VFC = () => {
-  const dispatch = useDispatch();
-  const todosCount = useSelector<RootState, number>((state) =>
-    getTodosCount(state)
-  );
-  const completedCount = useSelector<RootState, number>((state) =>
-    getCompletedTodoCount(state)
+  const dispatch = useAppDispatch();
+  const todosCount = useAppSelector((state) => selectTodosCount(state));
+  const completedCount = useAppSelector((state) =>
+    selectCompletedTodosCount(state)
   );
   return (
     <Component
       todosCount={todosCount}
       completedCount={completedCount}
-      addTodo={(text) => {
-        dispatch(addTodo(text));
+      addTodo={(title) => {
+        dispatch(addTodo(title));
       }}
       toggleAllTodo={() => {
         dispatch(toggleAllTodo());

@@ -24,6 +24,7 @@ export default {
     "src/**/*.{js,jsx,ts,tsx}",
     "!src/**/*.d.ts",
     "!src/**/*.stories.tsx",
+    "!src/App.tsx",
     "!src/api/**",
     "!src/app/**",
     "!src/containers/**",

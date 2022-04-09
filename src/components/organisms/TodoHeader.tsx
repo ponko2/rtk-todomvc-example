@@ -1,12 +1,12 @@
 import React from "react";
 import styles from "./TodoHeader.module.css";
 
-interface Props {
+type Props = {
   todosCount: number;
   completedCount: number;
-  addTodo: (text: string) => void;
+  addTodo: (title: string) => void;
   toggleAllTodo: () => void;
-}
+};
 
 export const TodoHeader: React.VFC<Props> = ({
   todosCount,
@@ -32,20 +32,17 @@ export const TodoHeader: React.VFC<Props> = ({
         className={styles.newTodo}
         placeholder="What needs to be done?"
         onKeyDown={handleKeyDown}
-        // eslint-disable-next-line jsx-a11y/no-autofocus
-        autoFocus={true}
       />
       {!!todosCount && (
-        <span>
+        <label className={styles.toggleAll}>
           <input
-            className={styles.toggleAll}
             type="checkbox"
             checked={completedCount === todosCount}
+            onClick={toggleAllTodo}
             readOnly
           />
-          {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/label-has-associated-control, jsx-a11y/no-noninteractive-element-interactions */}
-          <label onClick={toggleAllTodo} />
-        </span>
+          <span>Mark all as complete</span>
+        </label>
       )}
     </header>
   );

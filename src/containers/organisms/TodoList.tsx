@@ -1,21 +1,26 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { Todo } from "../../api/todos";
-import { RootState } from "../../app/rootReducer";
+import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { TodoList as Component } from "../../components/organisms/TodoList";
-import { deleteTodo, editTodo, toggleTodo } from "../../modules/todos";
-import { getVisibleTodos } from "../../selectors/todos";
+import {
+  deleteTodo,
+  editTodo,
+  TodoState,
+  toggleTodo,
+} from "../../modules/todos";
 
-export const TodoList: React.VFC = () => {
-  const dispatch = useDispatch();
-  const todos = useSelector<RootState, Todo[]>((state) =>
-    getVisibleTodos(state)
-  );
+type Props = {
+  selector: (state: { todos: TodoState }) => Todo[];
+};
+
+export const TodoList: React.VFC<Props> = ({ selector }) => {
+  const dispatch = useAppDispatch();
+  const todos = useAppSelector(selector);
   return (
     <Component
       todos={todos}
-      editTodo={(id, text) => {
-        dispatch(editTodo({ id, text }));
+      editTodo={(id, title) => {
+        dispatch(editTodo({ id, title }));
       }}
       toggleTodo={(id) => {
         dispatch(toggleTodo(id));

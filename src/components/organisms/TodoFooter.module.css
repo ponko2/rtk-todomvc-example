@@ -65,3 +65,20 @@
 .clearCompleted:hover {
   text-decoration: underline;
 }
+
+.link {
+  color: inherit;
+  margin: 3px;
+  padding: 3px 7px;
+  text-decoration: none;
+  border: 1px solid transparent;
+  border-radius: 3px;
+}
+
+.link:hover {
+  border-color: rgba(175, 47, 47, 0.1);
+}
+
+.link.selected {
+  border-color: rgba(175, 47, 47, 0.2);
+}

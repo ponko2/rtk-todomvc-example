@@ -21,18 +21,18 @@ Basic.args = {
   todos: [
     {
       id: 1,
+      title: "foo",
       completed: false,
-      text: "foo",
     },
     {
       id: 2,
+      title: "bar",
       completed: true,
-      text: "bar",
     },
     {
       id: 3,
+      title: "baz",
       completed: false,
-      text: "baz",
     },
   ],
 };

@@ -27,8 +27,8 @@ export const Basic = Template.bind({});
 Basic.args = {
   todo: {
     id: 1,
+    title: "Hello, World!!",
     completed: false,
-    text: "Hello, World!!",
   },
 };
 
@@ -37,7 +37,7 @@ export const Completed = Template.bind({});
 Completed.args = {
   todo: {
     id: 1,
+    title: "Hello, World!!",
     completed: true,
-    text: "Hello, World!!",
   },
 };

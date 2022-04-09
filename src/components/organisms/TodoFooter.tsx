@@ -1,20 +1,19 @@
+import { Link } from "@tanstack/react-location";
 import React from "react";
 import { TodoButton } from "../../components/atoms/TodoButton";
-import { TodoLink } from "../../components/atoms/TodoLink";
-import { VisibilityFilter } from "../../modules/visibilityFilter";
 import styles from "./TodoFooter.module.css";
 
-interface Props {
-  filter: VisibilityFilter;
-  setFilter: (value: VisibilityFilter) => void;
+type Props = {
   todosCount: number;
   completedCount: number;
   clearCompleted: () => void;
+};
+
+function getActiveProps() {
+  return { className: [styles.selected] };
 }
 
 export const TodoFooter: React.VFC<Props> = ({
-  filter: nowFilter,
-  setFilter,
   todosCount,
   completedCount,
   clearCompleted,
@@ -24,30 +23,37 @@ export const TodoFooter: React.VFC<Props> = ({
   }
 
   const activeCount = todosCount - completedCount;
-  const itemWord = activeCount === 1 ? "item" : "items";
-
-  const filters = {
-    [VisibilityFilter.SHOW_ALL]: "All",
-    [VisibilityFilter.SHOW_ACTIVE]: "Active",
-    [VisibilityFilter.SHOW_COMPLETED]: "Completed",
-  };
 
   return (
     <footer className={styles.footer}>
       <span className={styles.todoCount}>
-        <strong>{activeCount || "No"}</strong> {itemWord} left
+        <strong>{activeCount ?? "No"}</strong>{" "}
+        {activeCount === 1 ? "item" : "items"} left
       </span>
       <ul className={styles.filters}>
-        {(Object.keys(filters) as VisibilityFilter[]).map((filter) => (
-          <li key={filter}>
-            <TodoLink
-              active={filter === nowFilter}
-              onClick={() => setFilter(filter)}
-            >
-              {filters[filter]}
-            </TodoLink>
-          </li>
-        ))}
+        <li>
+          <Link to="/" className={styles.link} getActiveProps={getActiveProps}>
+            All
+          </Link>
+        </li>
+        <li>
+          <Link
+            to="active"
+            className={styles.link}
+            getActiveProps={getActiveProps}
+          >
+            Active
+          </Link>
+        </li>
+        <li>
+          <Link
+            to="completed"
+            className={styles.link}
+            getActiveProps={getActiveProps}
+          >
+            Completed
+          </Link>
+        </li>
       </ul>
       {!!completedCount && (
         <TodoButton className={styles.clearCompleted} onClick={clearCompleted}>

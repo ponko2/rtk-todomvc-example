@@ -4,7 +4,7 @@ import { TodoItem } from "./TodoItem";
 
 describe("<TodoItem/>", () => {
   it("Todoを修正後フォーカスアウト", () => {
-    const todo: Todo = { id: 1, completed: false, text: "foo" };
+    const todo: Todo = { id: 1, title: "foo", completed: false };
     const editTodo = jest.fn();
     const deleteTodo = jest.fn();
     const toggleTodo = jest.fn();
@@ -88,7 +88,7 @@ describe("<TodoItem/>", () => {
   });
 
   it("Todoを修正後エンター", () => {
-    const todo: Todo = { id: 1, completed: false, text: "foo" };
+    const todo: Todo = { id: 1, title: "foo", completed: false };
     const editTodo = jest.fn();
     const deleteTodo = jest.fn();
     const toggleTodo = jest.fn();
@@ -112,7 +112,7 @@ describe("<TodoItem/>", () => {
   });
 
   it("Todoを空文字に修正して削除", () => {
-    const todo: Todo = { id: 1, completed: false, text: "foo" };
+    const todo: Todo = { id: 1, title: "foo", completed: false };
     const editTodo = jest.fn();
     const deleteTodo = jest.fn();
     const toggleTodo = jest.fn();
@@ -136,7 +136,7 @@ describe("<TodoItem/>", () => {
   });
 
   it("Todoを削除ボタンで削除", () => {
-    const todo: Todo = { id: 2, completed: false, text: "bar" };
+    const todo: Todo = { id: 2, title: "bar", completed: false };
     const editTodo = jest.fn();
     const deleteTodo = jest.fn();
     const toggleTodo = jest.fn();
@@ -158,7 +158,7 @@ describe("<TodoItem/>", () => {
   });
 
   it("Todoを切り替え", () => {
-    const todo: Todo = { id: 3, completed: false, text: "baz" };
+    const todo: Todo = { id: 3, title: "baz", completed: false };
     const editTodo = jest.fn();
     const deleteTodo = jest.fn();
     const toggleTodo = jest.fn();

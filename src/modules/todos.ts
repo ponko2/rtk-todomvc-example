@@ -1,19 +1,21 @@
 import {
   createAsyncThunk,
   createEntityAdapter,
+  createSelector,
   createSlice,
   EntityState,
   PayloadAction,
   SerializedError,
 } from "@reduxjs/toolkit";
 import * as api from "../api/todos";
+import { RootState } from "../app/store";
 
-export interface TodoState extends EntityState<api.Todo> {
+export type TodoState = EntityState<api.Todo> & {
   isLoading: boolean;
   error: string | null;
-}
+};
 
-export const todoAdapter = createEntityAdapter<api.Todo>();
+const todoAdapter = createEntityAdapter<api.Todo>();
 
 const initialState: TodoState = todoAdapter.getInitialState({
   isLoading: false,
@@ -24,8 +26,8 @@ export const fetchTodos = createAsyncThunk("todos/fetch", () => {
   return api.fetchTodos();
 });
 
-export const addTodo = createAsyncThunk("todos/add", async (text: string) => {
-  await api.addTodo(text);
+export const addTodo = createAsyncThunk("todos/add", async (title: string) => {
+  await api.addTodo(title);
   return api.fetchTodos();
 });
 
@@ -39,8 +41,8 @@ export const deleteTodo = createAsyncThunk(
 
 export const editTodo = createAsyncThunk(
   "todos/edit",
-  async ({ id, text }: { id: number; text: string }) => {
-    await api.editTodo(id, text);
+  async ({ id, title }: { id: number; title: string }) => {
+    await api.editTodo(id, title);
     return api.fetchTodos();
   }
 );
@@ -115,5 +117,28 @@ const slice = createSlice({
     builder.addCase(clearCompleted.rejected, rejected);
   },
 });
+
+export const { selectAll: selectTodos } = todoAdapter.getSelectors(
+  (state: RootState) => state.todos
+);
+
+export const selectActiveTodos = createSelector([selectTodos], (todos) =>
+  todos.filter((todo) => !todo.completed)
+);
+
+export const selectCompletedTodos = createSelector([selectTodos], (todos) =>
+  todos.filter((todo) => todo.completed)
+);
+
+export const selectTodosCount = createSelector(
+  [selectTodos],
+  (todos) => todos.length
+);
+
+export const selectCompletedTodosCount = createSelector(
+  [selectTodos],
+  (todos) =>
+    todos.reduce((count, todo) => (todo.completed ? count + 1 : count), 0)
+);
 
 export const todosReducer = slice.reducer;

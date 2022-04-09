@@ -8,6 +8,11 @@ import {
   deleteTodo,
   editTodo,
   fetchTodos,
+  selectActiveTodos,
+  selectCompletedTodos,
+  selectCompletedTodosCount,
+  selectTodos,
+  selectTodosCount,
   todosReducer,
   TodoState,
   toggleAllTodo,
@@ -70,13 +75,13 @@ describe("todosReducer", () => {
           },
           {
             type: actionCreator.fulfilled.type,
-            payload: [{ id: 1, completed: false, text: "foo" }],
+            payload: [{ id: 1, title: "foo", completed: false }],
           }
         )
       ).toStrictEqual({
         ids: [1],
         entities: {
-          1: { id: 1, completed: false, text: "foo" },
+          1: { id: 1, title: "foo", completed: false },
         },
         isLoading: false,
         error: null,
@@ -122,7 +127,7 @@ describe("fetchTodos", () => {
     const fetchSpy = jest
       .spyOn(api, "fetchTodos")
       .mockImplementation(() =>
-        Promise.resolve([{ id: 1, completed: false, text: "foo" }])
+        Promise.resolve([{ id: 1, title: "foo", completed: false }])
       );
 
     await store.dispatch(fetchTodos());
@@ -143,7 +148,7 @@ describe("fetchTodos", () => {
           requestStatus: "fulfilled",
           arg: undefined,
         },
-        payload: [{ id: 1, completed: false, text: "foo" }],
+        payload: [{ id: 1, title: "foo", completed: false }],
         type: "todos/fetch/fulfilled",
       },
     ]);
@@ -212,7 +217,7 @@ describe("addTodo", () => {
     const fetchSpy = jest
       .spyOn(api, "fetchTodos")
       .mockImplementation(() =>
-        Promise.resolve([{ id: 1, completed: false, text: "foo" }])
+        Promise.resolve([{ id: 1, title: "foo", completed: false }])
       );
 
     await store.dispatch(addTodo("foo"));
@@ -233,7 +238,7 @@ describe("addTodo", () => {
           requestStatus: "fulfilled",
           arg: "foo",
         },
-        payload: [{ id: 1, completed: false, text: "foo" }],
+        payload: [{ id: 1, title: "foo", completed: false }],
         type: "todos/add/fulfilled",
       },
     ]);
@@ -295,7 +300,7 @@ describe("deleteTodo", () => {
     const store = mockStore({
       ids: [1],
       entities: {
-        1: { id: 1, completed: false, text: "foo" },
+        1: { id: 1, title: "foo", completed: false },
       },
       isLoading: false,
       error: null,
@@ -339,7 +344,7 @@ describe("deleteTodo", () => {
     const store = mockStore({
       ids: [1],
       entities: {
-        1: { id: 1, completed: false, text: "foo" },
+        1: { id: 1, title: "foo", completed: false },
       },
       isLoading: false,
       error: null,
@@ -391,7 +396,7 @@ describe("editTodo", () => {
     const store = mockStore({
       ids: [1],
       entities: {
-        1: { id: 1, completed: false, text: "foo" },
+        1: { id: 1, title: "foo", completed: false },
       },
       isLoading: false,
       error: null,
@@ -404,17 +409,17 @@ describe("editTodo", () => {
     const fetchSpy = jest
       .spyOn(api, "fetchTodos")
       .mockImplementation(() =>
-        Promise.resolve([{ id: 1, completed: false, text: "bar" }])
+        Promise.resolve([{ id: 1, title: "bar", completed: false }])
       );
 
-    await store.dispatch(editTodo({ id: 1, text: "bar" }));
+    await store.dispatch(editTodo({ id: 1, title: "bar" }));
 
     expect(store.getActions()).toStrictEqual([
       {
         meta: {
           requestId: expect.anything(),
           requestStatus: "pending",
-          arg: { id: 1, text: "bar" },
+          arg: { id: 1, title: "bar" },
         },
         payload: undefined,
         type: "todos/edit/pending",
@@ -423,9 +428,9 @@ describe("editTodo", () => {
         meta: {
           requestId: expect.anything(),
           requestStatus: "fulfilled",
-          arg: { id: 1, text: "bar" },
+          arg: { id: 1, title: "bar" },
         },
-        payload: [{ id: 1, completed: false, text: "bar" }],
+        payload: [{ id: 1, title: "bar", completed: false }],
         type: "todos/edit/fulfilled",
       },
     ]);
@@ -437,7 +442,7 @@ describe("editTodo", () => {
     const store = mockStore({
       ids: [1],
       entities: {
-        1: { id: 1, completed: false, text: "foo" },
+        1: { id: 1, title: "foo", completed: false },
       },
       isLoading: false,
       error: null,
@@ -449,14 +454,14 @@ describe("editTodo", () => {
 
     const fetchSpy = jest.spyOn(api, "fetchTodos");
 
-    await store.dispatch(editTodo({ id: 1, text: "bar" }));
+    await store.dispatch(editTodo({ id: 1, title: "bar" }));
 
     expect(store.getActions()).toStrictEqual([
       {
         meta: {
           requestId: expect.anything(),
           requestStatus: "pending",
-          arg: { id: 1, text: "bar" },
+          arg: { id: 1, title: "bar" },
         },
         payload: undefined,
         type: "todos/edit/pending",
@@ -471,7 +476,7 @@ describe("editTodo", () => {
           requestId: expect.anything(),
           rejectedWithValue: false,
           requestStatus: "rejected",
-          arg: { id: 1, text: "bar" },
+          arg: { id: 1, title: "bar" },
           aborted: false,
           condition: false,
         },
@@ -489,7 +494,7 @@ describe("toggleTodo", () => {
     const store = mockStore({
       ids: [1],
       entities: {
-        1: { id: 1, completed: false, text: "foo" },
+        1: { id: 1, title: "foo", completed: false },
       },
       isLoading: false,
       error: null,
@@ -502,7 +507,7 @@ describe("toggleTodo", () => {
     const fetchSpy = jest
       .spyOn(api, "fetchTodos")
       .mockImplementation(() =>
-        Promise.resolve([{ id: 1, completed: true, text: "foo" }])
+        Promise.resolve([{ id: 1, title: "foo", completed: true }])
       );
 
     await store.dispatch(toggleTodo(1));
@@ -523,7 +528,7 @@ describe("toggleTodo", () => {
           requestStatus: "fulfilled",
           arg: 1,
         },
-        payload: [{ id: 1, completed: true, text: "foo" }],
+        payload: [{ id: 1, title: "foo", completed: true }],
         type: "todos/toggle/fulfilled",
       },
     ]);
@@ -535,7 +540,7 @@ describe("toggleTodo", () => {
     const store = mockStore({
       ids: [1],
       entities: {
-        1: { id: 1, completed: false, text: "foo" },
+        1: { id: 1, title: "foo", completed: false },
       },
       isLoading: false,
       error: null,
@@ -587,8 +592,8 @@ describe("toggleAllTodo", () => {
     const store = mockStore({
       ids: [1, 2],
       entities: {
-        1: { id: 1, completed: false, text: "foo" },
-        2: { id: 2, completed: true, text: "bar" },
+        1: { id: 1, title: "foo", completed: false },
+        2: { id: 2, title: "bar", completed: true },
       },
       isLoading: false,
       error: null,
@@ -600,8 +605,8 @@ describe("toggleAllTodo", () => {
 
     const fetchSpy = jest.spyOn(api, "fetchTodos").mockImplementation(() =>
       Promise.resolve([
-        { id: 1, completed: true, text: "foo" },
-        { id: 2, completed: true, text: "bar" },
+        { id: 1, title: "foo", completed: true },
+        { id: 2, title: "bar", completed: true },
       ])
     );
 
@@ -624,8 +629,8 @@ describe("toggleAllTodo", () => {
           arg: undefined,
         },
         payload: [
-          { id: 1, completed: true, text: "foo" },
-          { id: 2, completed: true, text: "bar" },
+          { id: 1, title: "foo", completed: true },
+          { id: 2, title: "bar", completed: true },
         ],
         type: "todos/toggleAll/fulfilled",
       },
@@ -638,8 +643,8 @@ describe("toggleAllTodo", () => {
     const store = mockStore({
       ids: [1, 2],
       entities: {
-        1: { id: 1, completed: false, text: "foo" },
-        2: { id: 2, completed: false, text: "bar" },
+        1: { id: 1, title: "foo", completed: false },
+        2: { id: 2, title: "bar", completed: false },
       },
       isLoading: false,
       error: null,
@@ -691,8 +696,8 @@ describe("clearCompleted", () => {
     const store = mockStore({
       ids: [1, 2],
       entities: {
-        1: { id: 1, completed: false, text: "foo" },
-        2: { id: 2, completed: true, text: "bar" },
+        1: { id: 1, title: "foo", completed: false },
+        2: { id: 2, title: "bar", completed: true },
       },
       isLoading: false,
       error: null,
@@ -705,7 +710,7 @@ describe("clearCompleted", () => {
     const fetchSpy = jest
       .spyOn(api, "fetchTodos")
       .mockImplementation(() =>
-        Promise.resolve([{ id: 1, completed: false, text: "foo" }])
+        Promise.resolve([{ id: 1, title: "foo", completed: false }])
       );
 
     await store.dispatch(clearCompleted());
@@ -726,7 +731,7 @@ describe("clearCompleted", () => {
           requestStatus: "fulfilled",
           arg: undefined,
         },
-        payload: [{ id: 1, completed: false, text: "foo" }],
+        payload: [{ id: 1, title: "foo", completed: false }],
         type: "todos/clearCompleted/fulfilled",
       },
     ]);
@@ -738,8 +743,8 @@ describe("clearCompleted", () => {
     const store = mockStore({
       ids: [1, 2],
       entities: {
-        1: { id: 1, completed: false, text: "foo" },
-        2: { id: 2, completed: true, text: "bar" },
+        1: { id: 1, title: "foo", completed: false },
+        2: { id: 2, title: "bar", completed: true },
       },
       isLoading: false,
       error: null,
@@ -783,5 +788,44 @@ describe("clearCompleted", () => {
     ]);
     expect(clearCompletedSpy).toHaveBeenCalledTimes(1);
     expect(fetchSpy).toHaveBeenCalledTimes(0);
+  });
+});
+
+describe("selectors", () => {
+  const todos = {
+    ids: [1, 2],
+    entities: {
+      1: { id: 1, title: "foo", completed: false },
+      2: { id: 2, title: "bar", completed: true },
+    },
+    isLoading: false,
+    error: null,
+  };
+
+  it("sselectTodos", () => {
+    expect(selectTodos({ todos })).toStrictEqual([
+      { id: 1, title: "foo", completed: false },
+      { id: 2, title: "bar", completed: true },
+    ]);
+  });
+
+  it("selectActiveTodos", () => {
+    expect(selectActiveTodos({ todos })).toStrictEqual([
+      { id: 1, title: "foo", completed: false },
+    ]);
+  });
+
+  it("selectCompletedTodos", () => {
+    expect(selectCompletedTodos({ todos })).toStrictEqual([
+      { id: 2, title: "bar", completed: true },
+    ]);
+  });
+
+  it("selectTodosCount", () => {
+    expect(selectTodosCount({ todos })).toBe(2);
+  });
+
+  it("selectCompletedTodosCount", () => {
+    expect(selectCompletedTodosCount({ todos })).toBe(1);
   });
 });

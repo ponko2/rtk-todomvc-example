@@ -1,16 +1,16 @@
 import Dexie from "dexie";
 
-export interface Todo {
+export type Todo = {
   id: number;
+  title: string;
   completed: boolean;
-  text: string;
-}
+};
 
-interface TodoRecord {
+type TodoRecord = {
   id?: number;
+  title: string;
   completed: 0 | 1;
-  text: string;
-}
+};
 
 class TodoAppDatabase extends Dexie {
   todos: Dexie.Table<TodoRecord, number>;
@@ -19,7 +19,7 @@ class TodoAppDatabase extends Dexie {
     super("TodoAppDatabase");
 
     this.version(1).stores({
-      todos: "++id, completed, text",
+      todos: "++id, title, completed",
     });
 
     this.todos = this.table("todos");
@@ -37,16 +37,16 @@ export async function fetchTodos(): Promise<Todo[]> {
   return (await db.todos.toArray()).map(convert2todo);
 }
 
-export async function addTodo(text: string) {
-  return db.todos.add({ completed: 0, text });
+export async function addTodo(title: string) {
+  return db.todos.add({ title, completed: 0 });
 }
 
 export async function deleteTodo(id: number) {
   return db.todos.delete(id);
 }
 
-export async function editTodo(id: number, text: string) {
-  return db.todos.update(id, { text });
+export async function editTodo(id: number, title: string) {
+  return db.todos.update(id, { title });
 }
 
 export async function toggleTodo(id: number) {

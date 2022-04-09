@@ -9,34 +9,6 @@ exports[`Storyshots Components/Atoms/Todo Button Basic 1`] = `
 </button>
 `;
 
-exports[`Storyshots Components/Atoms/Todo Link Active 1`] = `
-<a
-  className="link selected"
-  onClick={[Function]}
-  style={
-    Object {
-      "cursor": "pointer",
-    }
-  }
->
-  Hello, World!!
-</a>
-`;
-
-exports[`Storyshots Components/Atoms/Todo Link Basic 1`] = `
-<a
-  className="link"
-  onClick={[Function]}
-  style={
-    Object {
-      "cursor": "pointer",
-    }
-  }
->
-  Hello, World!!
-</a>
-`;
-
 exports[`Storyshots Components/Molecules/Todo Item Basic 1`] = `
 <ul
   style={
@@ -117,7 +89,7 @@ exports[`Storyshots Components/Organisms/Todo Footer Basic 1`] = `
     className="todoCount"
   >
     <strong>
-      No
+      0
     </strong>
      
     items
@@ -129,12 +101,10 @@ exports[`Storyshots Components/Organisms/Todo Footer Basic 1`] = `
     <li>
       <a
         className="link selected"
+        href="/"
         onClick={[Function]}
-        style={
-          Object {
-            "cursor": "pointer",
-          }
-        }
+        onMouseEnter={[Function]}
+        style={Object {}}
       >
         All
       </a>
@@ -142,12 +112,10 @@ exports[`Storyshots Components/Organisms/Todo Footer Basic 1`] = `
     <li>
       <a
         className="link"
+        href="/active"
         onClick={[Function]}
-        style={
-          Object {
-            "cursor": "pointer",
-          }
-        }
+        onMouseEnter={[Function]}
+        style={Object {}}
       >
         Active
       </a>
@@ -155,12 +123,10 @@ exports[`Storyshots Components/Organisms/Todo Footer Basic 1`] = `
     <li>
       <a
         className="link"
+        href="/completed"
         onClick={[Function]}
-        style={
-          Object {
-            "cursor": "pointer",
-          }
-        }
+        onMouseEnter={[Function]}
+        style={Object {}}
       >
         Completed
       </a>
@@ -194,13 +160,11 @@ exports[`Storyshots Components/Organisms/Todo Footer Has Completed 1`] = `
   >
     <li>
       <a
-        className="link"
+        className="link selected"
+        href="/"
         onClick={[Function]}
-        style={
-          Object {
-            "cursor": "pointer",
-          }
-        }
+        onMouseEnter={[Function]}
+        style={Object {}}
       >
         All
       </a>
@@ -208,25 +172,21 @@ exports[`Storyshots Components/Organisms/Todo Footer Has Completed 1`] = `
     <li>
       <a
         className="link"
+        href="/active"
         onClick={[Function]}
-        style={
-          Object {
-            "cursor": "pointer",
-          }
-        }
+        onMouseEnter={[Function]}
+        style={Object {}}
       >
         Active
       </a>
     </li>
     <li>
       <a
-        className="link selected"
+        className="link"
+        href="/completed"
         onClick={[Function]}
-        style={
-          Object {
-            "cursor": "pointer",
-          }
-        }
+        onMouseEnter={[Function]}
+        style={Object {}}
       >
         Completed
       </a>
@@ -249,7 +209,6 @@ exports[`Storyshots Components/Organisms/Todo Header Basic 1`] = `
     todos
   </h1>
   <input
-    autoFocus={true}
     className="newTodo"
     onKeyDown={[Function]}
     placeholder="What needs to be done?"
@@ -266,23 +225,24 @@ exports[`Storyshots Components/Organisms/Todo Header Has Active 1`] = `
     todos
   </h1>
   <input
-    autoFocus={true}
     className="newTodo"
     onKeyDown={[Function]}
     placeholder="What needs to be done?"
     type="text"
   />
-  <span>
+  <label
+    className="toggleAll"
+  >
     <input
       checked={false}
-      className="toggleAll"
+      onClick={[Function]}
       readOnly={true}
       type="checkbox"
     />
-    <label
-      onClick={[Function]}
-    />
-  </span>
+    <span>
+      Mark all as complete
+    </span>
+  </label>
 </header>
 `;
 
@@ -294,23 +254,24 @@ exports[`Storyshots Components/Organisms/Todo Header Is All Completed 1`] = `
     todos
   </h1>
   <input
-    autoFocus={true}
     className="newTodo"
     onKeyDown={[Function]}
     placeholder="What needs to be done?"
     type="text"
   />
-  <span>
+  <label
+    className="toggleAll"
+  >
     <input
       checked={true}
-      className="toggleAll"
+      onClick={[Function]}
       readOnly={true}
       type="checkbox"
     />
-    <label
-      onClick={[Function]}
-    />
-  </span>
+    <span>
+      Mark all as complete
+    </span>
+  </label>
 </header>
 `;
 
@@ -389,31 +350,5 @@ exports[`Storyshots Components/Organisms/Todo List Basic 1`] = `
       </div>
     </li>
   </ul>
-</section>
-`;
-
-exports[`Storyshots Components/Pages/Todo Page Basic 1`] = `
-<section
-  className="todoapp"
->
-  <header
-    className="header"
-  >
-    <h1>
-      todos
-    </h1>
-    <input
-      autoFocus={true}
-      className="newTodo"
-      onKeyDown={[Function]}
-      placeholder="What needs to be done?"
-      type="text"
-    />
-  </header>
-  <section
-    className="todoList"
-  >
-    <ul />
-  </section>
 </section>
 `;

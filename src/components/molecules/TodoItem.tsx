@@ -3,12 +3,12 @@ import { Todo } from "../../api/todos";
 import { TodoButton } from "../../components/atoms/TodoButton";
 import styles from "./TodoItem.module.css";
 
-interface Props {
+type Props = {
   todo: Todo;
-  editTodo: (id: number, text: string) => void;
+  editTodo: (id: number, title: string) => void;
   deleteTodo: (id: number) => void;
   toggleTodo: (id: number) => void;
-}
+};
 
 export const TodoItem: React.VFC<Props> = ({
   todo,
@@ -17,13 +17,13 @@ export const TodoItem: React.VFC<Props> = ({
   toggleTodo,
 }) => {
   const [editing, setEditing] = useState(false);
-  const [value, setValue] = useState(todo.text);
+  const [value, setValue] = useState(todo.title);
 
-  function saveTodo(id: number, text: string) {
-    if (text.length === 0) {
+  function saveTodo(id: number, title: string) {
+    if (title.length === 0) {
       deleteTodo(id);
     } else {
-      editTodo(id, text);
+      editTodo(id, title);
     }
     setEditing(false);
   }
@@ -57,8 +57,6 @@ export const TodoItem: React.VFC<Props> = ({
           onBlur={handleBlur}
           onChange={handleChange}
           onKeyDown={handleKeyDown}
-          // eslint-disable-next-line jsx-a11y/no-autofocus
-          autoFocus={true}
         />
       );
     }
@@ -70,7 +68,7 @@ export const TodoItem: React.VFC<Props> = ({
           checked={todo.completed}
           onChange={() => toggleTodo(todo.id)}
         />
-        <label onDoubleClick={handleDoubleClick}>{todo.text}</label>
+        <label onDoubleClick={handleDoubleClick}>{todo.title}</label>
         <TodoButton
           className={styles.destroy}
           onClick={() => deleteTodo(todo.id)}

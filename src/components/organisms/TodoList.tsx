@@ -3,12 +3,12 @@ import { Todo } from "../../api/todos";
 import { TodoItem } from "../../components/molecules/TodoItem";
 import styles from "./TodoList.module.css";
 
-interface Props {
+type Props = {
   todos: Todo[];
   deleteTodo: (id: number) => void;
-  editTodo: (id: number, text: string) => void;
+  editTodo: (id: number, title: string) => void;
   toggleTodo: (id: number) => void;
-}
+};
 
 export const TodoList: React.VFC<Props> = ({
   todos,
