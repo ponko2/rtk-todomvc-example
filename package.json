@@ -34,7 +34,7 @@
     "@storybook/addon-storyshots": "^6.4.22",
     "@storybook/builder-vite": "^0.1.29",
     "@storybook/react": "^6.4.21",
-    "@storybook/testing-library": "^0.0.10",
+    "@storybook/testing-library": "^0.0.11",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^12.1.5",
     "@testing-library/user-event": "^14.1.1",
