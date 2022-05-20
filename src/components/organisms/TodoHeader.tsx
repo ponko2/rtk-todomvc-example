@@ -8,12 +8,12 @@ type Props = {
   toggleAllTodo: () => void;
 };
 
-export const TodoHeader: React.VFC<Props> = ({
+export const TodoHeader = ({
   todosCount,
   completedCount,
   addTodo,
   toggleAllTodo,
-}) => {
+}: Props): JSX.Element => {
   function handleKeyDown(event: React.KeyboardEvent<HTMLInputElement>) {
     const newValue = event.currentTarget.value.trim();
     if (event.key === "Enter") {

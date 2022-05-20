@@ -1,5 +1,4 @@
 import { Link } from "@tanstack/react-location";
-import React from "react";
 import { TodoButton } from "../../components/atoms/TodoButton";
 import styles from "./TodoFooter.module.css";
 
@@ -13,11 +12,11 @@ function getActiveProps() {
   return { className: [styles.selected] };
 }
 
-export const TodoFooter: React.VFC<Props> = ({
+export const TodoFooter = ({
   todosCount,
   completedCount,
   clearCompleted,
-}) => {
+}: Props): JSX.Element | null => {
   if (todosCount <= 0) {
     return null;
   }

@@ -1,4 +1,3 @@
-import React from "react";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { TodoHeader as Component } from "../../components/organisms/TodoHeader";
 import {
@@ -8,12 +7,10 @@ import {
   toggleAllTodo,
 } from "../../modules/todos";
 
-export const TodoHeader: React.VFC = () => {
+export const TodoHeader = (): JSX.Element => {
   const dispatch = useAppDispatch();
-  const todosCount = useAppSelector((state) => selectTodosCount(state));
-  const completedCount = useAppSelector((state) =>
-    selectCompletedTodosCount(state)
-  );
+  const todosCount = useAppSelector(selectTodosCount);
+  const completedCount = useAppSelector(selectCompletedTodosCount);
   return (
     <Component
       todosCount={todosCount}

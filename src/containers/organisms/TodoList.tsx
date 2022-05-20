@@ -1,4 +1,3 @@
-import React from "react";
 import { Todo } from "../../api/todos";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { TodoList as Component } from "../../components/organisms/TodoList";
@@ -13,7 +12,7 @@ type Props = {
   selector: (state: { todos: TodoState }) => Todo[];
 };
 
-export const TodoList: React.VFC<Props> = ({ selector }) => {
+export const TodoList = ({ selector }: Props): JSX.Element => {
   const dispatch = useAppDispatch();
   const todos = useAppSelector(selector);
   return (

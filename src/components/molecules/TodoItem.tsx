@@ -10,12 +10,12 @@ type Props = {
   toggleTodo: (id: number) => void;
 };
 
-export const TodoItem: React.VFC<Props> = ({
+export const TodoItem = ({
   todo,
   editTodo,
   deleteTodo,
   toggleTodo,
-}) => {
+}: Props): JSX.Element => {
   const [editing, setEditing] = useState(false);
   const [value, setValue] = useState(todo.title);
 

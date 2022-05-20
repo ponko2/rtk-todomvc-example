@@ -1,4 +1,3 @@
-import React from "react";
 import { Todo } from "../../api/todos";
 import { TodoItem } from "../../components/molecules/TodoItem";
 import styles from "./TodoList.module.css";
@@ -10,12 +9,12 @@ type Props = {
   toggleTodo: (id: number) => void;
 };
 
-export const TodoList: React.VFC<Props> = ({
+export const TodoList = ({
   todos,
   deleteTodo,
   editTodo,
   toggleTodo,
-}) => (
+}: Props): JSX.Element => (
   <section className={styles.todoList}>
     <ul>
       {todos.map((todo) => (
