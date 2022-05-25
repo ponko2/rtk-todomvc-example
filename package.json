@@ -14,7 +14,7 @@
     ]
   },
   "dependencies": {
-    "@reduxjs/toolkit": "^1.8.1",
+    "@reduxjs/toolkit": "^1.8.2",
     "@tanstack/react-location": "^3.7.4",
     "classnames": "^2.3.1",
     "dexie": "^3.2.2",
