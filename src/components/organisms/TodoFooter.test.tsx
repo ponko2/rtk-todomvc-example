@@ -13,7 +13,7 @@ const history = createMemoryHistory({
 const location = new ReactLocation({ history });
 
 describe("<TodoFooter/>", () => {
-  it("全てを表示", async () => {
+  it("全てを表示", () => {
     const clearCompletedSpy = jest.fn();
 
     history.replace("/active");
@@ -38,7 +38,7 @@ describe("<TodoFooter/>", () => {
     expect(clearCompletedSpy).not.toHaveBeenCalled();
   });
 
-  it("未完了のものを表示", async () => {
+  it("未完了のものを表示", () => {
     const clearCompletedSpy = jest.fn();
 
     render(
@@ -61,7 +61,7 @@ describe("<TodoFooter/>", () => {
     expect(clearCompletedSpy).not.toHaveBeenCalled();
   });
 
-  it("完了したものを表示", async () => {
+  it("完了したものを表示", () => {
     const clearCompletedSpy = jest.fn();
 
     render(
@@ -84,7 +84,7 @@ describe("<TodoFooter/>", () => {
     expect(clearCompletedSpy).not.toHaveBeenCalled();
   });
 
-  it("完了したものを削除", async () => {
+  it("完了したものを削除", () => {
     const clearCompletedSpy = jest.fn();
 
     render(

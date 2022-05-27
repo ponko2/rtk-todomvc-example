@@ -3,13 +3,10 @@ module.exports = {
   extends: [
     "ponko2",
     "plugin:import/recommended",
-    "plugin:import/typescript",
     "plugin:react/recommended",
     "plugin:react/jsx-runtime",
     "plugin:jsx-a11y/recommended",
     "plugin:react-hooks/recommended",
-    "plugin:@typescript-eslint/eslint-recommended",
-    "plugin:@typescript-eslint/recommended",
     "prettier",
   ],
   settings: {
@@ -24,45 +21,58 @@ module.exports = {
 
     // Prohibit default exports
     "import/no-default-export": "error",
-
-    // React
-    // https://github.com/yannickcr/eslint-plugin-react/blob/master/README.md
-    // ----------------------------------------------
-
-    // Prevent missing props validation in a React component definition
-    "react/prop-types": "off",
-
-    // TypeScript
-    // https://github.com/typescript-eslint/typescript-eslint/tree/master/packages/eslint-plugin
-    // ----------------------------------------------
-
-    // Disallow usage of the any type
-    "@typescript-eslint/no-explicit-any": "off",
-
-    // Disallow unused variables
-    "no-unused-vars": "off",
-    "@typescript-eslint/no-unused-vars": [
-      "error",
-      { vars: "all", args: "after-used", ignoreRestSiblings: true },
-    ],
-
-    // Disallow variable declarations from shadowing variables declared in the outer scope
-    "no-shadow": "off",
-    "@typescript-eslint/no-shadow": ["error"],
-
-    // Disallow the use of variables before they are defined
-    "no-use-before-define": "off",
-    "@typescript-eslint/no-use-before-define": [
-      "error",
-      { functions: false, classes: true },
-    ],
   },
   overrides: [
     {
-      files: ["jest.config.ts", "vite.config.ts"],
+      files: ["*.ts", "*.tsx"],
+      extends: [
+        "plugin:import/typescript",
+        "plugin:@typescript-eslint/eslint-recommended",
+        "plugin:@typescript-eslint/recommended",
+        "prettier",
+      ],
       rules: {
-        "import/no-default-export": "off",
+        // React
+        // https://github.com/yannickcr/eslint-plugin-react/blob/master/README.md
+        // ----------------------------------------------
+
+        // Prevent missing props validation in a React component definition
+        "react/prop-types": "off",
+
+        // TypeScript
+        // https://github.com/typescript-eslint/typescript-eslint/tree/master/packages/eslint-plugin
+        // ----------------------------------------------
+
+        // Disallow unused variables
+        "no-unused-vars": "off",
+        "@typescript-eslint/no-unused-vars": [
+          "error",
+          { vars: "all", args: "after-used", ignoreRestSiblings: true },
+        ],
+
+        // Disallow variable declarations from shadowing variables declared in the outer scope
+        "no-shadow": "off",
+        "@typescript-eslint/no-shadow": ["error"],
+
+        // Disallow the use of variables before they are defined
+        "no-use-before-define": "off",
+        "@typescript-eslint/no-use-before-define": [
+          "error",
+          { functions: false, classes: true },
+        ],
       },
+    },
+    {
+      files: ["*.ts", "*.tsx"],
+      excludedFiles: ["jest.config.ts", "jest.setup.ts", "vite.config.ts"],
+      parserOptions: {
+        tsconfigRootDir: __dirname,
+        project: ["./tsconfig.json"],
+      },
+      extends: [
+        "plugin:@typescript-eslint/recommended-requiring-type-checking",
+        "prettier",
+      ],
     },
     {
       files: ["*.test.ts", "*.test.tsx"],
@@ -73,6 +83,7 @@ module.exports = {
         "prettier",
       ],
       rules: {
+        "@typescript-eslint/no-unsafe-assignment": "off",
         "jest/consistent-test-it": "error",
         "jest/no-conditional-in-test": "error",
         "jest/no-duplicate-hooks": "error",
@@ -94,6 +105,12 @@ module.exports = {
       extends: ["plugin:storybook/recommended"],
       rules: {
         "import/no-anonymous-default-export": "off",
+        "import/no-default-export": "off",
+      },
+    },
+    {
+      files: ["jest.config.ts", "vite.config.ts"],
+      rules: {
         "import/no-default-export": "off",
       },
     },

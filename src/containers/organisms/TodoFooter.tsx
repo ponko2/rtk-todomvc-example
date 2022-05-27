@@ -15,7 +15,7 @@ export const TodoFooter = (): JSX.Element => {
       todosCount={todosCount}
       completedCount={completedCount}
       clearCompleted={() => {
-        dispatch(clearCompleted());
+        void dispatch(clearCompleted());
       }}
     ></Component>
   );

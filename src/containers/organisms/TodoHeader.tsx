@@ -16,10 +16,10 @@ export const TodoHeader = (): JSX.Element => {
       todosCount={todosCount}
       completedCount={completedCount}
       addTodo={(title) => {
-        dispatch(addTodo(title));
+        void dispatch(addTodo(title));
       }}
       toggleAllTodo={() => {
-        dispatch(toggleAllTodo());
+        void dispatch(toggleAllTodo());
       }}
     ></Component>
   );

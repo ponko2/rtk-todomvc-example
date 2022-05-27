@@ -1,11 +1,11 @@
-import { Todo } from "../../api/todos";
 import { TodoItem } from "../../components/molecules/TodoItem";
+import { Todo } from "../../models/todos";
 import styles from "./TodoList.module.css";
 
 type Props = {
   todos: Todo[];
   deleteTodo: (id: number) => void;
-  editTodo: (id: number, title: string) => void;
+  editTodo: (todo: Omit<Todo, "completed">) => void;
   toggleTodo: (id: number) => void;
 };
 

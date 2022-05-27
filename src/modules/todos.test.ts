@@ -212,7 +212,7 @@ describe("addTodo", () => {
 
     const addSpy = jest
       .spyOn(api, "addTodo")
-      .mockImplementation(() => Promise.resolve(1));
+      .mockImplementation(() => Promise.resolve());
 
     const fetchSpy = jest
       .spyOn(api, "fetchTodos")
@@ -404,7 +404,7 @@ describe("editTodo", () => {
 
     const editSpy = jest
       .spyOn(api, "editTodo")
-      .mockImplementation(() => Promise.resolve(1));
+      .mockImplementation(() => Promise.resolve());
 
     const fetchSpy = jest
       .spyOn(api, "fetchTodos")
@@ -502,7 +502,7 @@ describe("toggleTodo", () => {
 
     const toggleSpy = jest
       .spyOn(api, "toggleTodo")
-      .mockImplementation(() => Promise.resolve(1));
+      .mockImplementation(() => Promise.resolve());
 
     const fetchSpy = jest
       .spyOn(api, "fetchTodos")
@@ -601,7 +601,7 @@ describe("toggleAllTodo", () => {
 
     const toggleAllSpy = jest
       .spyOn(api, "toggleAllTodo")
-      .mockImplementation(() => Promise.resolve(1));
+      .mockImplementation(() => Promise.resolve());
 
     const fetchSpy = jest.spyOn(api, "fetchTodos").mockImplementation(() =>
       Promise.resolve([
@@ -705,7 +705,7 @@ describe("clearCompleted", () => {
 
     const clearCompletedSpy = jest
       .spyOn(api, "clearCompleted")
-      .mockImplementation(() => Promise.resolve(1));
+      .mockImplementation(() => Promise.resolve());
 
     const fetchSpy = jest
       .spyOn(api, "fetchTodos")

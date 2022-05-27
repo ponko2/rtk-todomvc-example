@@ -9,13 +9,14 @@ import {
 } from "@reduxjs/toolkit";
 import * as api from "../api/todos";
 import { RootState } from "../app/store";
+import { Todo } from "../models/todos";
 
-export type TodoState = EntityState<api.Todo> & {
+export type TodoState = EntityState<Todo> & {
   isLoading: boolean;
   error: string | null;
 };
 
-const todoAdapter = createEntityAdapter<api.Todo>();
+const todoAdapter = createEntityAdapter<Todo>();
 
 const initialState: TodoState = todoAdapter.getInitialState({
   isLoading: false,
@@ -41,8 +42,8 @@ export const deleteTodo = createAsyncThunk(
 
 export const editTodo = createAsyncThunk(
   "todos/edit",
-  async ({ id, title }: { id: number; title: string }) => {
-    await api.editTodo(id, title);
+  async (todo: Omit<Todo, "completed">) => {
+    await api.editTodo(todo);
     return api.fetchTodos();
   }
 );
@@ -79,7 +80,7 @@ const slice = createSlice({
 
     function fulfilled(
       state: TodoState,
-      { payload }: PayloadAction<api.Todo[], string, any, never>
+      { payload }: PayloadAction<Todo[], string, unknown, never>
     ) {
       todoAdapter.setAll(state, payload);
       state.isLoading = false;
@@ -88,7 +89,7 @@ const slice = createSlice({
 
     function rejected(
       state: TodoState,
-      { error }: PayloadAction<unknown, string, any, SerializedError>
+      { error }: PayloadAction<unknown, string, unknown, SerializedError>
     ) {
       state.isLoading = false;
       state.error = error.toString();

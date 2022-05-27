@@ -1,5 +1,5 @@
 import { fireEvent, render, screen } from "@testing-library/react";
-import { Todo } from "../../api/todos";
+import { Todo } from "../../models/todos";
 import { TodoItem } from "./TodoItem";
 
 describe("<TodoItem/>", () => {
@@ -82,7 +82,7 @@ describe("<TodoItem/>", () => {
       </DocumentFragment>
     `);
 
-    expect(editTodo).toHaveBeenCalledWith(1, "bar");
+    expect(editTodo).toHaveBeenCalledWith({ id: 1, title: "bar" });
     expect(deleteTodo).not.toHaveBeenCalled();
     expect(toggleTodo).not.toHaveBeenCalled();
   });
@@ -106,7 +106,7 @@ describe("<TodoItem/>", () => {
     fireEvent.change(screen.getByRole("textbox"), { target: { value: "bar" } });
     fireEvent.keyDown(screen.getByRole("textbox"), { key: "Enter", code: 13 });
 
-    expect(editTodo).toHaveBeenCalledWith(1, "bar");
+    expect(editTodo).toHaveBeenCalledWith({ id: 1, title: "bar" });
     expect(deleteTodo).not.toHaveBeenCalled();
     expect(toggleTodo).not.toHaveBeenCalled();
   });

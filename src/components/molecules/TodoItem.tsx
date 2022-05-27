@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import { Todo } from "../../api/todos";
 import { TodoButton } from "../../components/atoms/TodoButton";
+import { Todo } from "../../models/todos";
 import styles from "./TodoItem.module.css";
 
 type Props = {
   todo: Todo;
-  editTodo: (id: number, title: string) => void;
+  editTodo: (todo: Omit<Todo, "completed">) => void;
   deleteTodo: (id: number) => void;
   toggleTodo: (id: number) => void;
 };
@@ -23,7 +23,7 @@ export const TodoItem = ({
     if (title.length === 0) {
       deleteTodo(id);
     } else {
-      editTodo(id, title);
+      editTodo({ id, title });
     }
     setEditing(false);
   }

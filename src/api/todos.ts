@@ -1,10 +1,5 @@
 import Dexie from "dexie";
-
-export type Todo = {
-  id: number;
-  title: string;
-  completed: boolean;
-};
+import { Todo } from "../models/todos";
 
 type TodoRecord = {
   id?: number;
@@ -37,35 +32,38 @@ export async function fetchTodos(): Promise<Todo[]> {
   return (await db.todos.toArray()).map(convert2todo);
 }
 
-export async function addTodo(title: string) {
-  return db.todos.add({ title, completed: 0 });
+export async function addTodo(title: string): Promise<void> {
+  await db.todos.add({ title, completed: 0 });
 }
 
-export async function deleteTodo(id: number) {
-  return db.todos.delete(id);
+export async function deleteTodo(id: number): Promise<void> {
+  await db.todos.delete(id);
 }
 
-export async function editTodo(id: number, title: string) {
-  return db.todos.update(id, { title });
+export async function editTodo({
+  id,
+  title,
+}: Omit<Todo, "completed">): Promise<void> {
+  await db.todos.update(id, { title });
 }
 
-export async function toggleTodo(id: number) {
+export async function toggleTodo(id: number): Promise<void> {
   const todo = await db.todos.get(id);
   if (!todo) {
     throw new Error("Data not found");
   }
-  return db.todos.update(id, { completed: Number(!todo.completed) });
+  await db.todos.update(id, { completed: Number(!todo.completed) });
 }
 
-export async function toggleAllTodo() {
+export async function toggleAllTodo(): Promise<void> {
   const todos = await db.todos.toArray();
   const areAllMarked = todos.every((todo) => todo.completed);
-  return db.todos
+  await db.todos
     .where("completed")
     .equals(Number(areAllMarked))
     .modify({ completed: Number(!areAllMarked) });
 }
 
-export async function clearCompleted() {
-  return db.todos.where("completed").equals(1).delete();
+export async function clearCompleted(): Promise<void> {
+  await db.todos.where("completed").equals(1).delete();
 }
