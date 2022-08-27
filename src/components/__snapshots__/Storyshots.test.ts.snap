@@ -12,7 +12,7 @@ exports[`Storyshots components/atoms/TodoButton Basic 1`] = `
 exports[`Storyshots components/molecules/TodoItem Basic 1`] = `
 <ul
   style={
-    Object {
+    {
       "listStyle": "none",
       "margin": 0,
       "padding": 0,
@@ -48,7 +48,7 @@ exports[`Storyshots components/molecules/TodoItem Basic 1`] = `
 exports[`Storyshots components/molecules/TodoItem Completed 1`] = `
 <ul
   style={
-    Object {
+    {
       "listStyle": "none",
       "margin": 0,
       "padding": 0,
@@ -104,7 +104,7 @@ exports[`Storyshots components/organisms/TodoFooter Basic 1`] = `
         href="/"
         onClick={[Function]}
         onMouseEnter={[Function]}
-        style={Object {}}
+        style={{}}
       >
         All
       </a>
@@ -115,7 +115,7 @@ exports[`Storyshots components/organisms/TodoFooter Basic 1`] = `
         href="/active"
         onClick={[Function]}
         onMouseEnter={[Function]}
-        style={Object {}}
+        style={{}}
       >
         Active
       </a>
@@ -126,7 +126,7 @@ exports[`Storyshots components/organisms/TodoFooter Basic 1`] = `
         href="/completed"
         onClick={[Function]}
         onMouseEnter={[Function]}
-        style={Object {}}
+        style={{}}
       >
         Completed
       </a>
@@ -164,7 +164,7 @@ exports[`Storyshots components/organisms/TodoFooter Has Completed 1`] = `
         href="/"
         onClick={[Function]}
         onMouseEnter={[Function]}
-        style={Object {}}
+        style={{}}
       >
         All
       </a>
@@ -175,7 +175,7 @@ exports[`Storyshots components/organisms/TodoFooter Has Completed 1`] = `
         href="/active"
         onClick={[Function]}
         onMouseEnter={[Function]}
-        style={Object {}}
+        style={{}}
       >
         Active
       </a>
@@ -186,7 +186,7 @@ exports[`Storyshots components/organisms/TodoFooter Has Completed 1`] = `
         href="/completed"
         onClick={[Function]}
         onMouseEnter={[Function]}
-        style={Object {}}
+        style={{}}
       >
         Completed
       </a>
