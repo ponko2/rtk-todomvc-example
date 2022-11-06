@@ -1,5 +1,5 @@
 import { action } from "@storybook/addon-actions";
-import type { ComponentMeta, ComponentStory } from "@storybook/react";
+import type { Meta, StoryFn } from "@storybook/react";
 import { TodoItem } from "./TodoItem";
 
 export default {
@@ -11,9 +11,9 @@ export default {
       </ul>
     ),
   ],
-} as ComponentMeta<typeof TodoItem>;
+} as Meta<typeof TodoItem>;
 
-const Template: ComponentStory<typeof TodoItem> = (args) => (
+const Template: StoryFn<typeof TodoItem> = (args) => (
   <TodoItem
     {...args}
     editTodo={action("editTodo")}

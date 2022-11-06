@@ -1,12 +1,12 @@
 import { action } from "@storybook/addon-actions";
-import type { ComponentMeta, ComponentStory } from "@storybook/react";
+import type { Meta, StoryFn } from "@storybook/react";
 import { TodoHeader } from "./TodoHeader";
 
 export default {
   component: TodoHeader,
-} as ComponentMeta<typeof TodoHeader>;
+} as Meta<typeof TodoHeader>;
 
-const Template: ComponentStory<typeof TodoHeader> = (args) => (
+const Template: StoryFn<typeof TodoHeader> = (args) => (
   <TodoHeader
     {...args}
     addTodo={action("addTodo")}

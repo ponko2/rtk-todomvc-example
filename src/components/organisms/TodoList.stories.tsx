@@ -1,12 +1,12 @@
 import { action } from "@storybook/addon-actions";
-import type { ComponentMeta, ComponentStory } from "@storybook/react";
+import type { Meta, StoryFn } from "@storybook/react";
 import { TodoList } from "./TodoList";
 
 export default {
   component: TodoList,
-} as ComponentMeta<typeof TodoList>;
+} as Meta<typeof TodoList>;
 
-const Template: ComponentStory<typeof TodoList> = (args) => (
+const Template: StoryFn<typeof TodoList> = (args) => (
   <TodoList
     {...args}
     deleteTodo={action("deleteTodo")}

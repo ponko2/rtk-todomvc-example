@@ -1,5 +1,5 @@
 import { action } from "@storybook/addon-actions";
-import type { ComponentMeta, ComponentStory } from "@storybook/react";
+import type { Meta, StoryFn } from "@storybook/react";
 import {
   createMemoryHistory,
   ReactLocation,
@@ -22,9 +22,9 @@ export default {
       </Router>
     ),
   ],
-} as ComponentMeta<typeof TodoFooter>;
+} as Meta<typeof TodoFooter>;
 
-const Template: ComponentStory<typeof TodoFooter> = (args) => (
+const Template: StoryFn<typeof TodoFooter> = (args) => (
   <TodoFooter {...args} clearCompleted={action("clearCompleted")} />
 );
 

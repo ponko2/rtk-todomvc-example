@@ -5,9 +5,9 @@ module.exports = {
     "@storybook/addon-interactions",
     "@storybook/addon-links",
   ],
-  framework: "@storybook/react",
-  core: {
-    builder: "@storybook/builder-vite",
+  framework: {
+    name: "@storybook/react-vite",
+    options: {},
   },
   features: {
     storyStoreV7: !global.navigator?.userAgent?.match?.("jsdom"),
