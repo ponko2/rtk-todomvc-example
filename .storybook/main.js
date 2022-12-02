@@ -12,7 +12,7 @@ module.exports = {
   features: {
     storyStoreV7: !global.navigator?.userAgent?.match?.("jsdom"),
   },
-  docsPage: {
-    docs: "automatic",
+  docs: {
+    docsPage: "automatic",
   },
 };
