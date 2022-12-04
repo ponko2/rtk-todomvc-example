@@ -21,7 +21,7 @@
     "@storybook/addon-links": "^7.0.0-alpha.56",
     "@storybook/addon-storyshots": "^7.0.0-alpha.56",
     "@storybook/react": "^7.0.0-alpha.56",
-    "@storybook/react-vite": "^7.0.0-alpha.56",
+    "@storybook/react-vite": "^7.0.0-alpha.57",
     "@storybook/testing-library": "^0.0.14-next.0",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
