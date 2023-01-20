@@ -14,6 +14,5 @@ module.exports = {
   },
   docs: {
     autodocs: true,
-    docsPage: "automatic",
   },
 };
