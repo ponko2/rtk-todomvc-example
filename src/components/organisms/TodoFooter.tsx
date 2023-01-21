@@ -1,4 +1,4 @@
-import { Link } from "@tanstack/react-location";
+import { Link } from "@tanstack/react-router";
 import { TodoButton } from "../../components/atoms/TodoButton";
 import styles from "./TodoFooter.module.css";
 
@@ -8,8 +8,8 @@ type Props = {
   clearCompleted: () => void;
 };
 
-function getActiveProps() {
-  return { className: [styles.selected] };
+function activeProps() {
+  return { className: styles.selected };
 }
 
 export const TodoFooter = ({
@@ -31,24 +31,20 @@ export const TodoFooter = ({
       </span>
       <ul className={styles.filters}>
         <li>
-          <Link to="/" className={styles.link} getActiveProps={getActiveProps}>
+          <Link to="/" className={styles.link} activeProps={activeProps}>
             All
           </Link>
         </li>
         <li>
-          <Link
-            to="active"
-            className={styles.link}
-            getActiveProps={getActiveProps}
-          >
+          <Link to="/active" className={styles.link} activeProps={activeProps}>
             Active
           </Link>
         </li>
         <li>
           <Link
-            to="completed"
+            to="/completed"
             className={styles.link}
-            getActiveProps={getActiveProps}
+            activeProps={activeProps}
           >
             Completed
           </Link>

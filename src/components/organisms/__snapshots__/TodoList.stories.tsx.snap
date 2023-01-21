@@ -1,0 +1,45 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components/organisms/TodoList Basic smoke-test 1`] = `
+<section class="_todoList_1u114_1">
+  <ul>
+    <li class="_todoItem_17lsu_1">
+      <div class="_view_17lsu_69">
+        <input class="_toggle_17lsu_34"
+               type="checkbox"
+        >
+        <label>
+          foo
+        </label>
+        <button class="_button_z78gq_1 _destroy_17lsu_79">
+        </button>
+      </div>
+    </li>
+    <li class="_todoItem_17lsu_1">
+      <div class="_view_17lsu_69">
+        <input class="_toggle_17lsu_34"
+               type="checkbox"
+               checked
+        >
+        <label>
+          bar
+        </label>
+        <button class="_button_z78gq_1 _destroy_17lsu_79">
+        </button>
+      </div>
+    </li>
+    <li class="_todoItem_17lsu_1">
+      <div class="_view_17lsu_69">
+        <input class="_toggle_17lsu_34"
+               type="checkbox"
+        >
+        <label>
+          baz
+        </label>
+        <button class="_button_z78gq_1 _destroy_17lsu_79">
+        </button>
+      </div>
+    </li>
+  </ul>
+</section>
+`;

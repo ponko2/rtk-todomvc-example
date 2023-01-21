@@ -1,0 +1,54 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components/organisms/TodoHeader Basic smoke-test 1`] = `
+<header class="_header_vkyfp_1">
+  <h1>
+    todos
+  </h1>
+  <input type="text"
+         class="_newTodo_vkyfp_16"
+         placeholder="What needs to be done?"
+  >
+</header>
+`;
+
+exports[`components/organisms/TodoHeader HasActive smoke-test 1`] = `
+<header class="_header_vkyfp_1">
+  <h1>
+    todos
+  </h1>
+  <input type="text"
+         class="_newTodo_vkyfp_16"
+         placeholder="What needs to be done?"
+  >
+  <label class="_toggleAll_vkyfp_40">
+    <input type="checkbox"
+           readonly
+    >
+    <span>
+      Mark all as complete
+    </span>
+  </label>
+</header>
+`;
+
+exports[`components/organisms/TodoHeader IsAllCompleted smoke-test 1`] = `
+<header class="_header_vkyfp_1">
+  <h1>
+    todos
+  </h1>
+  <input type="text"
+         class="_newTodo_vkyfp_16"
+         placeholder="What needs to be done?"
+  >
+  <label class="_toggleAll_vkyfp_40">
+    <input type="checkbox"
+           readonly
+           checked
+    >
+    <span>
+      Mark all as complete
+    </span>
+  </label>
+</header>
+`;

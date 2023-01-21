@@ -1,0 +1,36 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components/molecules/TodoItem Basic smoke-test 1`] = `
+<ul style="margin: 0px; padding: 0px; list-style: none;">
+  <li class="_todoItem_17lsu_1">
+    <div class="_view_17lsu_69">
+      <input class="_toggle_17lsu_34"
+             type="checkbox"
+      >
+      <label>
+        Hello, World!!
+      </label>
+      <button class="_button_z78gq_1 _destroy_17lsu_79">
+      </button>
+    </div>
+  </li>
+</ul>
+`;
+
+exports[`components/molecules/TodoItem Completed smoke-test 1`] = `
+<ul style="margin: 0px; padding: 0px; list-style: none;">
+  <li class="_todoItem_17lsu_1">
+    <div class="_view_17lsu_69">
+      <input class="_toggle_17lsu_34"
+             type="checkbox"
+             checked
+      >
+      <label>
+        Hello, World!!
+      </label>
+      <button class="_button_z78gq_1 _destroy_17lsu_79">
+      </button>
+    </div>
+  </li>
+</ul>
+`;

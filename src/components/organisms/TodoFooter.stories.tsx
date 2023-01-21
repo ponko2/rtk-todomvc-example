@@ -2,25 +2,27 @@ import { action } from "@storybook/addon-actions";
 import type { Meta, StoryFn } from "@storybook/react";
 import {
   createMemoryHistory,
-  ReactLocation,
-  Router,
-} from "@tanstack/react-location";
+  createRouteConfig,
+  ReactRouter,
+  RouterProvider,
+} from "@tanstack/react-router";
 import { TodoFooter } from "./TodoFooter";
 
-const location = new ReactLocation({
-  history: createMemoryHistory({
-    initialEntries: ["/"],
-  }),
-});
+const history = createMemoryHistory({ initialEntries: ["/"] });
 
 export default {
   component: TodoFooter,
   decorators: [
-    (Story) => (
-      <Router location={location} routes={[]}>
-        <Story />
-      </Router>
-    ),
+    (Story) => {
+      const rootRoute = createRouteConfig({ component: () => <Story /> });
+      const routeConfig = rootRoute.addChildren([
+        rootRoute.createRoute({ path: "/" }),
+        rootRoute.createRoute({ path: "/active" }),
+        rootRoute.createRoute({ path: "/completed" }),
+      ]);
+      const router = new ReactRouter({ routeConfig, history });
+      return <RouterProvider router={router} />;
+    },
   ],
 } as Meta<typeof TodoFooter>;
 

@@ -1,0 +1,77 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components/organisms/TodoFooter Basic smoke-test 1`] = `
+<footer class="_footer_1k0lb_1">
+  <span class="_todoCount_1k0lb_28">
+    <strong>
+      0
+    </strong>
+    items left
+  </span>
+  <ul class="_filters_1k0lb_37">
+    <li>
+      <a class="_link_1k0lb_69 _selected_1k0lb_82"
+         href="/"
+         data-status="active"
+      >
+        All
+      </a>
+    </li>
+    <li>
+      <a href="/active"
+         class="_link_1k0lb_69"
+      >
+        Active
+      </a>
+    </li>
+    <li>
+      <a href="/completed"
+         class="_link_1k0lb_69"
+      >
+        Completed
+      </a>
+    </li>
+  </ul>
+  <button class="_button_z78gq_1 _clearCompleted_1k0lb_56">
+    Clear completed
+  </button>
+</footer>
+`;
+
+exports[`components/organisms/TodoFooter HasCompleted smoke-test 1`] = `
+<footer class="_footer_1k0lb_1">
+  <span class="_todoCount_1k0lb_28">
+    <strong>
+      1
+    </strong>
+    item left
+  </span>
+  <ul class="_filters_1k0lb_37">
+    <li>
+      <a class="_link_1k0lb_69 _selected_1k0lb_82"
+         href="/"
+         data-status="active"
+      >
+        All
+      </a>
+    </li>
+    <li>
+      <a href="/active"
+         class="_link_1k0lb_69"
+      >
+        Active
+      </a>
+    </li>
+    <li>
+      <a href="/completed"
+         class="_link_1k0lb_69"
+      >
+        Completed
+      </a>
+    </li>
+  </ul>
+  <button class="_button_z78gq_1 _clearCompleted_1k0lb_56">
+    Clear completed
+  </button>
+</footer>
+`;

@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components/atoms/TodoButton Basic smoke-test 1`] = `
+<button class="_button_z78gq_1">
+  Hello, World!!
+</button>
+`;
