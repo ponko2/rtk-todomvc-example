@@ -1,45 +1,47 @@
 import { action } from "@storybook/addon-actions";
-import type { Meta, StoryFn } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react";
 import {
   createMemoryHistory,
-  createRouteConfig,
   ReactRouter,
+  RootRoute,
+  Route,
   RouterProvider,
 } from "@tanstack/react-router";
 import { TodoFooter } from "./TodoFooter";
 
 const history = createMemoryHistory({ initialEntries: ["/"] });
 
-export default {
+const meta = {
   component: TodoFooter,
   decorators: [
     (Story) => {
-      const rootRoute = createRouteConfig({ component: () => <Story /> });
-      const routeConfig = rootRoute.addChildren([
-        rootRoute.createRoute({ path: "/" }),
-        rootRoute.createRoute({ path: "/active" }),
-        rootRoute.createRoute({ path: "/completed" }),
+      const rootRoute = new RootRoute({ component: () => <Story /> });
+      const routeTree = rootRoute.addChildren([
+        new Route({ getParentRoute: () => rootRoute, path: "/" }),
+        new Route({ getParentRoute: () => rootRoute, path: "/active" }),
+        new Route({ getParentRoute: () => rootRoute, path: "/completed" }),
       ]);
-      const router = new ReactRouter({ routeConfig, history });
+      const router = new ReactRouter({ routeTree, history });
       return <RouterProvider router={router} />;
     },
   ],
-} as Meta<typeof TodoFooter>;
+} satisfies Meta<typeof TodoFooter>;
 
-const Template: StoryFn<typeof TodoFooter> = (args) => (
-  <TodoFooter {...args} clearCompleted={action("clearCompleted")} />
-);
+export default meta;
+type Story = StoryObj<typeof meta>;
 
-export const Basic = Template.bind({});
+export const Basic = {
+  args: {
+    clearCompleted: action("clearCompleted"),
+    todosCount: 1,
+    completedCount: 1,
+  },
+} satisfies Story;
 
-Basic.args = {
-  todosCount: 1,
-  completedCount: 1,
-};
-
-export const HasCompleted = Template.bind({});
-
-HasCompleted.args = {
-  todosCount: 2,
-  completedCount: 1,
-};
+export const HasCompleted = {
+  args: {
+    ...Basic.args,
+    todosCount: 2,
+    completedCount: 1,
+  },
+} satisfies Story;

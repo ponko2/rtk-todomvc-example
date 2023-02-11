@@ -1,8 +1,8 @@
 import { action } from "@storybook/addon-actions";
-import type { Meta, StoryFn } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react";
 import { TodoItem } from "./TodoItem";
 
-export default {
+const meta = {
   component: TodoItem,
   decorators: [
     (Story) => (
@@ -11,33 +11,31 @@ export default {
       </ul>
     ),
   ],
-} as Meta<typeof TodoItem>;
+} satisfies Meta<typeof TodoItem>;
 
-const Template: StoryFn<typeof TodoItem> = (args) => (
-  <TodoItem
-    {...args}
-    editTodo={action("editTodo")}
-    deleteTodo={action("deleteTodo")}
-    toggleTodo={action("toggleTodo")}
-  />
-);
+export default meta;
+type Story = StoryObj<typeof meta>;
 
-export const Basic = Template.bind({});
-
-Basic.args = {
-  todo: {
-    id: 1,
-    title: "Hello, World!!",
-    completed: false,
+export const Basic = {
+  args: {
+    editTodo: action("editTodo"),
+    deleteTodo: action("deleteTodo"),
+    toggleTodo: action("toggleTodo"),
+    todo: {
+      id: 1,
+      title: "Hello, World!!",
+      completed: false,
+    },
   },
-};
+} satisfies Story;
 
-export const Completed = Template.bind({});
-
-Completed.args = {
-  todo: {
-    id: 1,
-    title: "Hello, World!!",
-    completed: true,
+export const Completed = {
+  args: {
+    ...Basic.args,
+    todo: {
+      id: 1,
+      title: "Hello, World!!",
+      completed: true,
+    },
   },
-};
+} satisfies Story;

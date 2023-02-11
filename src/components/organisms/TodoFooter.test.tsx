@@ -1,7 +1,8 @@
 import {
   createMemoryHistory,
-  createRouteConfig,
   ReactRouter,
+  RootRoute,
+  Route,
   RouterProvider,
 } from "@tanstack/react-router";
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
@@ -10,13 +11,13 @@ import { TodoFooter } from "./TodoFooter";
 const history = createMemoryHistory({ initialEntries: ["/"] });
 
 function createRouter(element: JSX.Element) {
-  const rootRoute = createRouteConfig({ component: () => element });
-  const routeConfig = rootRoute.addChildren([
-    rootRoute.createRoute({ path: "/" }),
-    rootRoute.createRoute({ path: "/active" }),
-    rootRoute.createRoute({ path: "/completed" }),
+  const rootRoute = new RootRoute({ component: () => element });
+  const routeTree = rootRoute.addChildren([
+    new Route({ getParentRoute: () => rootRoute, path: "/" }),
+    new Route({ getParentRoute: () => rootRoute, path: "/active" }),
+    new Route({ getParentRoute: () => rootRoute, path: "/completed" }),
   ]);
-  return new ReactRouter({ routeConfig, history });
+  return new ReactRouter({ routeTree, history });
 }
 
 describe("<TodoFooter/>", () => {

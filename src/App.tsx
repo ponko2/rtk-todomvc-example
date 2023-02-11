@@ -1,7 +1,8 @@
 import {
-  createRouteConfig,
   Outlet,
   ReactRouter,
+  RootRoute,
+  Route,
   RouterProvider,
 } from "@tanstack/react-router";
 import { Provider } from "react-redux";
@@ -16,7 +17,7 @@ import {
   selectTodos,
 } from "./modules/todos";
 
-const rootRoute = createRouteConfig({
+const rootRoute = new RootRoute({
   component: () => (
     <section className={styles.todoapp}>
       <TodoHeader />
@@ -26,28 +27,31 @@ const rootRoute = createRouteConfig({
   ),
 });
 
-const indexRoute = rootRoute.createRoute({
+const indexRoute = new Route({
+  getParentRoute: () => rootRoute,
   path: "/",
   component: () => <TodoList selector={selectTodos} />,
 });
 
-const activeRoute = rootRoute.createRoute({
+const activeRoute = new Route({
+  getParentRoute: () => rootRoute,
   path: "/active",
   component: () => <TodoList selector={selectActiveTodos} />,
 });
 
-const completedRoute = rootRoute.createRoute({
+const completedRoute = new Route({
+  getParentRoute: () => rootRoute,
   path: "/completed",
   component: () => <TodoList selector={selectCompletedTodos} />,
 });
 
-const routeConfig = rootRoute.addChildren([
+const routeTree = rootRoute.addChildren([
   indexRoute,
   activeRoute,
   completedRoute,
 ]);
 
-const router = new ReactRouter({ routeConfig });
+const router = new ReactRouter({ routeTree });
 
 export function App() {
   return (
