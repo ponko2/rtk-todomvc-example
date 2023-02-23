@@ -14,7 +14,7 @@ type Props = {
   selector: (state: { todos: TodoState }) => Todo[];
 };
 
-export const TodoList = ({ selector }: Props): JSX.Element => {
+export function TodoList({ selector }: Props): JSX.Element {
   const dispatch = useAppDispatch();
   const todos = useAppSelector(selector);
 
@@ -36,4 +36,4 @@ export const TodoList = ({ selector }: Props): JSX.Element => {
       }}
     />
   );
-};
+}

@@ -7,12 +7,14 @@ type Props = React.DetailedHTMLProps<
   HTMLButtonElement
 >;
 
-export const TodoButton = ({
+export function TodoButton({
   className,
   children,
   ...restProps
-}: Props): JSX.Element => (
-  <button className={classnames([styles.button, className])} {...restProps}>
-    {children}
-  </button>
-);
+}: Props): JSX.Element {
+  return (
+    <button className={classnames([styles.button, className])} {...restProps}>
+      {children}
+    </button>
+  );
+}

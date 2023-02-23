@@ -15,12 +15,18 @@ module.exports = {
     },
   },
   rules: {
-    // Import
-    // https://github.com/benmosher/eslint-plugin-import/blob/master/README.md
+    // React
+    // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/README.md
     // ----------------------------------------------
 
-    // Prohibit default exports
-    "import/no-default-export": "error",
+    // Enforce a specific function type for function components
+    "react/function-component-definition": [
+      "error",
+      {
+        namedComponents: ["function-declaration", "function-expression"],
+        unnamedComponents: "function-expression",
+      },
+    ],
   },
   overrides: [
     {
@@ -33,14 +39,14 @@ module.exports = {
       ],
       rules: {
         // React
-        // https://github.com/yannickcr/eslint-plugin-react/blob/master/README.md
+        // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/README.md
         // ----------------------------------------------
 
-        // Prevent missing props validation in a React component definition
+        // Disallow missing props validation in a React component definition
         "react/prop-types": "off",
 
         // TypeScript
-        // https://github.com/typescript-eslint/typescript-eslint/tree/master/packages/eslint-plugin
+        // https://github.com/typescript-eslint/typescript-eslint/tree/main/packages/eslint-plugin
         // ----------------------------------------------
 
         // Disallow unused variables
@@ -104,14 +110,13 @@ module.exports = {
       files: ["*.stories.ts", "*.stories.tsx"],
       extends: ["plugin:storybook/recommended"],
       rules: {
-        "import/no-anonymous-default-export": "off",
-        "import/no-default-export": "off",
+        "no-restricted-exports": "off",
       },
     },
     {
       files: ["jest.config.ts", "vite.config.ts"],
       rules: {
-        "import/no-default-export": "off",
+        "no-restricted-exports": "off",
       },
     },
   ],

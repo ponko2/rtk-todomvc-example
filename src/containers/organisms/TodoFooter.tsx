@@ -6,7 +6,7 @@ import {
   selectTodosCount,
 } from "../../modules/todos";
 
-export const TodoFooter = (): JSX.Element => {
+export function TodoFooter(): JSX.Element {
   const dispatch = useAppDispatch();
   const todosCount = useAppSelector(selectTodosCount);
   const completedCount = useAppSelector(selectCompletedTodosCount);
@@ -19,4 +19,4 @@ export const TodoFooter = (): JSX.Element => {
       }}
     ></Component>
   );
-};
+}

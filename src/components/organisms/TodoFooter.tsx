@@ -12,11 +12,11 @@ function activeProps() {
   return { className: styles.selected };
 }
 
-export const TodoFooter = ({
+export function TodoFooter({
   todosCount,
   completedCount,
   clearCompleted,
-}: Props): JSX.Element | null => {
+}: Props): JSX.Element | null {
   if (todosCount <= 0) {
     return null;
   }
@@ -57,4 +57,4 @@ export const TodoFooter = ({
       )}
     </footer>
   );
-};
+}

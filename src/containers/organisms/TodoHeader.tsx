@@ -7,7 +7,7 @@ import {
   toggleAllTodo,
 } from "../../modules/todos";
 
-export const TodoHeader = (): JSX.Element => {
+export function TodoHeader(): JSX.Element {
   const dispatch = useAppDispatch();
   const todosCount = useAppSelector(selectTodosCount);
   const completedCount = useAppSelector(selectCompletedTodosCount);
@@ -23,4 +23,4 @@ export const TodoHeader = (): JSX.Element => {
       }}
     ></Component>
   );
-};
+}

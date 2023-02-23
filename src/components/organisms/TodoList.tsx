@@ -9,23 +9,25 @@ type Props = {
   toggleTodo: (id: number) => void;
 };
 
-export const TodoList = ({
+export function TodoList({
   todos,
   deleteTodo,
   editTodo,
   toggleTodo,
-}: Props): JSX.Element => (
-  <section className={styles.todoList}>
-    <ul>
-      {todos.map((todo) => (
-        <TodoItem
-          key={todo.id}
-          todo={todo}
-          editTodo={editTodo}
-          toggleTodo={toggleTodo}
-          deleteTodo={deleteTodo}
-        />
-      ))}
-    </ul>
-  </section>
-);
+}: Props): JSX.Element {
+  return (
+    <section className={styles.todoList}>
+      <ul>
+        {todos.map((todo) => (
+          <TodoItem
+            key={todo.id}
+            todo={todo}
+            editTodo={editTodo}
+            toggleTodo={toggleTodo}
+            deleteTodo={deleteTodo}
+          />
+        ))}
+      </ul>
+    </section>
+  );
+}

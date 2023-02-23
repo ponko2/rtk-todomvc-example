@@ -10,12 +10,12 @@ type Props = {
   toggleTodo: (id: number) => void;
 };
 
-export const TodoItem = ({
+export function TodoItem({
   todo,
   editTodo,
   deleteTodo,
   toggleTodo,
-}: Props): JSX.Element => {
+}: Props): JSX.Element {
   const [editing, setEditing] = useState(false);
   const [value, setValue] = useState(todo.title);
 
@@ -78,4 +78,4 @@ export const TodoItem = ({
   })();
 
   return <li className={styles.todoItem}>{element}</li>;
-};
+}
