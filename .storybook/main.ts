@@ -1,19 +1,19 @@
-module.exports = {
+import type { StorybookConfig } from "@storybook/react-vite";
+
+const config: StorybookConfig = {
   stories: ["../src/**/*.mdx", "../src/**/*.stories.@(js|jsx|ts|tsx)"],
   addons: [
     "@storybook/addon-essentials",
     "@storybook/addon-interactions",
     "@storybook/addon-links",
-    "@storybook/addon-mdx-gfm",
   ],
   framework: {
     name: "@storybook/react-vite",
     options: {},
   },
-  features: {
-    storyStoreV7: !global.navigator?.userAgent?.match?.("jsdom"),
-  },
   docs: {
-    autodocs: true,
+    autodocs: "tag",
   },
 };
+
+export default config;
