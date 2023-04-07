@@ -46,8 +46,12 @@ module.exports = {
         "react/prop-types": "off",
 
         // TypeScript
-        // https://github.com/typescript-eslint/typescript-eslint/tree/main/packages/eslint-plugin
+        // https://typescript-eslint.io/rules/
         // ----------------------------------------------
+
+        // Disallow variable declarations from shadowing variables declared in the outer scope
+        "no-shadow": "off",
+        "@typescript-eslint/no-shadow": "error",
 
         // Disallow unused variables
         "no-unused-vars": "off",
@@ -55,10 +59,6 @@ module.exports = {
           "error",
           { vars: "all", args: "after-used", ignoreRestSiblings: true },
         ],
-
-        // Disallow variable declarations from shadowing variables declared in the outer scope
-        "no-shadow": "off",
-        "@typescript-eslint/no-shadow": ["error"],
 
         // Disallow the use of variables before they are defined
         "no-use-before-define": "off",
@@ -71,14 +71,29 @@ module.exports = {
     {
       files: ["*.ts", "*.tsx"],
       excludedFiles: ["jest.config.ts", "jest.setup.ts", "vite.config.ts"],
-      parserOptions: {
-        tsconfigRootDir: __dirname,
-        project: ["./tsconfig.json"],
-      },
       extends: [
         "plugin:@typescript-eslint/recommended-requiring-type-checking",
         "prettier",
       ],
+      parserOptions: {
+        project: "./tsconfig.json",
+        tsconfigRootDir: __dirname,
+      },
+      rules: {
+        // TypeScript
+        // https://typescript-eslint.io/rules/
+        // ----------------------------------------------
+
+        // Enforce consistent usage of type imports
+        "@typescript-eslint/consistent-type-imports": "error",
+
+        // Enforce the use of top-level import type qualifier when an import only has specifiers with inline type qualifiers
+        "@typescript-eslint/no-import-type-side-effects": "error",
+
+        // Enforce dot notation whenever possible
+        "dot-notation": "off",
+        "@typescript-eslint/dot-notation": "error",
+      },
     },
     {
       files: ["*.test.ts", "*.test.tsx"],

@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import type React from "react";
+import { useState } from "react";
 import { TodoButton } from "../../components/atoms/TodoButton";
-import { Todo } from "../../models/todos";
+import type { Todo } from "../../models/todos";
 import styles from "./TodoItem.module.css";
 
 type Props = {
@@ -53,7 +54,7 @@ export function TodoItem({
         <input
           type="text"
           value={value}
-          className={styles.edit}
+          className={styles["edit"]}
           onBlur={handleBlur}
           onChange={handleChange}
           onKeyDown={handleKeyDown}
@@ -61,21 +62,21 @@ export function TodoItem({
       );
     }
     return (
-      <div className={styles.view}>
+      <div className={styles["view"]}>
         <input
-          className={styles.toggle}
+          className={styles["toggle"]}
           type="checkbox"
           checked={todo.completed}
           onChange={() => toggleTodo(todo.id)}
         />
         <label onDoubleClick={handleDoubleClick}>{todo.title}</label>
         <TodoButton
-          className={styles.destroy}
+          className={styles["destroy"]}
           onClick={() => deleteTodo(todo.id)}
         />
       </div>
     );
   })();
 
-  return <li className={styles.todoItem}>{element}</li>;
+  return <li className={styles["todoItem"]}>{element}</li>;
 }

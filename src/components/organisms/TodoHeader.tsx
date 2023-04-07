@@ -1,4 +1,4 @@
-import React from "react";
+import type React from "react";
 import styles from "./TodoHeader.module.css";
 
 type Props = {
@@ -25,16 +25,16 @@ export function TodoHeader({
   }
 
   return (
-    <header className={styles.header}>
+    <header className={styles["header"]}>
       <h1>todos</h1>
       <input
         type="text"
-        className={styles.newTodo}
+        className={styles["newTodo"]}
         placeholder="What needs to be done?"
         onKeyDown={handleKeyDown}
       />
       {!!todosCount && (
-        <label className={styles.toggleAll}>
+        <label className={styles["toggleAll"]}>
           <input
             type="checkbox"
             checked={completedCount === todosCount}

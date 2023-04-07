@@ -9,7 +9,7 @@ type Props = {
 };
 
 function activeProps() {
-  return { className: styles.selected };
+  return { className: styles["selected"] };
 }
 
 export function TodoFooter({
@@ -24,26 +24,30 @@ export function TodoFooter({
   const activeCount = todosCount - completedCount;
 
   return (
-    <footer className={styles.footer}>
-      <span className={styles.todoCount}>
+    <footer className={styles["footer"]}>
+      <span className={styles["todoCount"]}>
         <strong>{activeCount ?? "No"}</strong>{" "}
         {activeCount === 1 ? "item" : "items"} left
       </span>
-      <ul className={styles.filters}>
+      <ul className={styles["filters"]}>
         <li>
-          <Link to="/" className={styles.link} activeProps={activeProps}>
+          <Link to="/" className={styles["link"]} activeProps={activeProps}>
             All
           </Link>
         </li>
         <li>
-          <Link to="/active" className={styles.link} activeProps={activeProps}>
+          <Link
+            to="/active"
+            className={styles["link"]}
+            activeProps={activeProps}
+          >
             Active
           </Link>
         </li>
         <li>
           <Link
             to="/completed"
-            className={styles.link}
+            className={styles["link"]}
             activeProps={activeProps}
           >
             Completed
@@ -51,7 +55,10 @@ export function TodoFooter({
         </li>
       </ul>
       {!!completedCount && (
-        <TodoButton className={styles.clearCompleted} onClick={clearCompleted}>
+        <TodoButton
+          className={styles["clearCompleted"]}
+          onClick={clearCompleted}
+        >
           Clear completed
         </TodoButton>
       )}

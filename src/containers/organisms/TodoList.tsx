@@ -1,12 +1,12 @@
 import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { TodoList as Component } from "../../components/organisms/TodoList";
-import { Todo } from "../../models/todos";
+import type { Todo } from "../../models/todos";
+import type { TodoState } from "../../modules/todos";
 import {
   deleteTodo,
   editTodo,
   fetchTodos,
-  TodoState,
   toggleTodo,
 } from "../../modules/todos";
 

@@ -1,15 +1,17 @@
+import type {
+  EntityState,
+  PayloadAction,
+  SerializedError,
+} from "@reduxjs/toolkit";
 import {
   createAsyncThunk,
   createEntityAdapter,
   createSelector,
   createSlice,
-  EntityState,
-  PayloadAction,
-  SerializedError,
 } from "@reduxjs/toolkit";
 import * as api from "../api/todos";
-import { RootState } from "../app/store";
-import { Todo } from "../models/todos";
+import type { RootState } from "../app/store";
+import type { Todo } from "../models/todos";
 
 export type TodoState = EntityState<Todo> & {
   isLoading: boolean;

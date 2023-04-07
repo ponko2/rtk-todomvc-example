@@ -19,7 +19,7 @@ import {
 
 const rootRoute = new RootRoute({
   component: () => (
-    <section className={styles.todoapp}>
+    <section className={styles["todoapp"]}>
       <TodoHeader />
       <Outlet />
       <TodoFooter />

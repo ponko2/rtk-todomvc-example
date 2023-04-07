@@ -1,5 +1,6 @@
-import { Action, configureStore } from "@reduxjs/toolkit";
-import { ThunkAction } from "redux-thunk";
+import type { Action } from "@reduxjs/toolkit";
+import { configureStore } from "@reduxjs/toolkit";
+import type { ThunkAction } from "redux-thunk";
 import { todosReducer } from "../modules/todos";
 
 export const store = configureStore({

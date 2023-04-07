@@ -1,5 +1,5 @@
 import { TodoItem } from "../../components/molecules/TodoItem";
-import { Todo } from "../../models/todos";
+import type { Todo } from "../../models/todos";
 import styles from "./TodoList.module.css";
 
 type Props = {
@@ -16,7 +16,7 @@ export function TodoList({
   toggleTodo,
 }: Props): JSX.Element {
   return (
-    <section className={styles.todoList}>
+    <section className={styles["todoList"]}>
       <ul>
         {todos.map((todo) => (
           <TodoItem

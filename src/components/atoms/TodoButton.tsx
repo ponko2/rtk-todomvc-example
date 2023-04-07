@@ -1,5 +1,5 @@
 import classnames from "classnames";
-import React from "react";
+import type React from "react";
 import styles from "./TodoButton.module.css";
 
 type Props = React.DetailedHTMLProps<
@@ -13,7 +13,10 @@ export function TodoButton({
   ...restProps
 }: Props): JSX.Element {
   return (
-    <button className={classnames([styles.button, className])} {...restProps}>
+    <button
+      className={classnames([styles["button"], className])}
+      {...restProps}
+    >
       {children}
     </button>
   );

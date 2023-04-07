@@ -1,7 +1,8 @@
 import createMockStore from "redux-mock-store";
 import thunk from "redux-thunk";
 import * as api from "../api/todos";
-import { AppDispatch } from "../app/store";
+import type { AppDispatch } from "../app/store";
+import type { TodoState } from "./todos";
 import {
   addTodo,
   clearCompleted,
@@ -14,7 +15,6 @@ import {
   selectTodos,
   selectTodosCount,
   todosReducer,
-  TodoState,
   toggleAllTodo,
   toggleTodo,
 } from "./todos";
@@ -43,7 +43,7 @@ describe("todosReducer", () => {
     ["todos/toggle", toggleTodo],
     ["todos/toggleAll", toggleAllTodo],
     ["todos/clearCompleted", clearCompleted],
-  ])("%p", (name, actionCreator) => {
+  ])("%p", (_name, actionCreator) => {
     it("pending", () => {
       expect(
         todosReducer(

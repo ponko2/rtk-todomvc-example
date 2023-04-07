@@ -1,5 +1,5 @@
 import Dexie from "dexie";
-import { Todo } from "../models/todos";
+import type { Todo } from "../models/todos";
 
 type TodoRecord = {
   id?: number;

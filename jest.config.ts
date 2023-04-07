@@ -126,7 +126,7 @@ export default {
   // resetModules: false,
 
   // A path to a custom resolver
-  resolver: "<rootDir>/jest.resolver.js",
+  resolver: "<rootDir>/jest.resolver.cjs",
 
   // Automatically restore mock state and implementation before every test
   // restoreMocks: false,
