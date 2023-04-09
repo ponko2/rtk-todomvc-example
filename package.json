@@ -58,7 +58,7 @@
     "redux-mock-store": "^1.5.4",
     "storybook": "^7.0.2",
     "ts-node": "^10.9.1",
-    "typescript": "~5.0.3",
+    "typescript": "~5.0.4",
     "vite": "^4.2.1"
   },
   "private": true,
