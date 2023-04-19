@@ -1,10 +1,10 @@
 import {
-  createMemoryHistory,
-  ReactRouter,
   RootRoute,
   Route,
+  Router,
   RouterProvider,
-} from "@tanstack/react-router";
+  createMemoryHistory,
+} from "@tanstack/router";
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { TodoFooter } from "./TodoFooter";
 
@@ -17,7 +17,7 @@ function createRouter(element: JSX.Element) {
     new Route({ getParentRoute: () => rootRoute, path: "/active" }),
     new Route({ getParentRoute: () => rootRoute, path: "/completed" }),
   ]);
-  return new ReactRouter({ routeTree, history });
+  return new Router({ routeTree, history });
 }
 
 describe("<TodoFooter/>", () => {

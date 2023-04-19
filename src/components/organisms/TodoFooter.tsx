@@ -1,4 +1,4 @@
-import { Link } from "@tanstack/react-router";
+import { Link } from "@tanstack/router";
 import { TodoButton } from "../../components/atoms/TodoButton";
 import styles from "./TodoFooter.module.css";
 

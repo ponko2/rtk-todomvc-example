@@ -1,10 +1,10 @@
 import {
   Outlet,
-  ReactRouter,
   RootRoute,
   Route,
+  Router,
   RouterProvider,
-} from "@tanstack/react-router";
+} from "@tanstack/router";
 import { Provider } from "react-redux";
 import styles from "./App.module.css";
 import { store } from "./app/store";
@@ -51,7 +51,7 @@ const routeTree = rootRoute.addChildren([
   completedRoute,
 ]);
 
-const router = new ReactRouter({ routeTree });
+const router = new Router({ routeTree });
 
 export function App() {
   return (

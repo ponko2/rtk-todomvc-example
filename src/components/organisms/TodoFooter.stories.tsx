@@ -1,12 +1,12 @@
 import { action } from "@storybook/addon-actions";
 import type { Meta, StoryObj } from "@storybook/react";
 import {
-  createMemoryHistory,
-  ReactRouter,
   RootRoute,
   Route,
+  Router,
   RouterProvider,
-} from "@tanstack/react-router";
+  createMemoryHistory,
+} from "@tanstack/router";
 import { TodoFooter } from "./TodoFooter";
 
 const history = createMemoryHistory({ initialEntries: ["/"] });
@@ -21,7 +21,7 @@ const meta = {
         new Route({ getParentRoute: () => rootRoute, path: "/active" }),
         new Route({ getParentRoute: () => rootRoute, path: "/completed" }),
       ]);
-      const router = new ReactRouter({ routeTree, history });
+      const router = new Router({ routeTree, history });
       return <RouterProvider router={router} />;
     },
   ],
