@@ -59,7 +59,7 @@
     "storybook": "^7.0.12",
     "ts-node": "^10.9.1",
     "typescript": "~5.0.4",
-    "vite": "^4.3.5"
+    "vite": "^4.3.7"
   },
   "private": true,
   "scripts": {
