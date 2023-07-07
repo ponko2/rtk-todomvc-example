@@ -13,3 +13,27 @@ updates:
       time: "07:00"
       timezone: Asia/Tokyo
     versioning-strategy: increase
+    groups:
+      babel:
+        patterns:
+          - "@babel/*"
+          - babel-loader
+      jest:
+        patterns:
+          - babel-jest
+          - jest
+          - jest-environment-jsdom
+      storybook:
+        patterns:
+          - "@storybook/*"
+          - storybook
+      types:
+        patterns:
+          - "@types/*"
+      typescript-eslint:
+        patterns:
+          - "@typescript-eslint/*"
+      vite:
+        patterns:
+          - "@vitejs/plugin-react"
+          - vite
