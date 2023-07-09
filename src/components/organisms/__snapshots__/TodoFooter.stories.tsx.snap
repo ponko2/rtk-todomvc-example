@@ -1,16 +1,16 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`components/organisms/TodoFooter Basic smoke-test 1`] = `
-<footer class="_footer_1k0lb_1">
-  <span class="_todoCount_1k0lb_28">
+<footer class="_footer_45a7p_1">
+  <span class="_todoCount_45a7p_31">
     <strong>
       0
     </strong>
     items left
   </span>
-  <ul class="_filters_1k0lb_37">
+  <ul class="_filters_45a7p_40">
     <li>
-      <a class="_link_1k0lb_69 _selected_1k0lb_82"
+      <a class="_link_45a7p_72 _selected_45a7p_85"
          href="/"
          data-status="active"
       >
@@ -19,36 +19,36 @@ exports[`components/organisms/TodoFooter Basic smoke-test 1`] = `
     </li>
     <li>
       <a href="/active"
-         class="_link_1k0lb_69"
+         class="_link_45a7p_72"
       >
         Active
       </a>
     </li>
     <li>
       <a href="/completed"
-         class="_link_1k0lb_69"
+         class="_link_45a7p_72"
       >
         Completed
       </a>
     </li>
   </ul>
-  <button class="_button_z78gq_1 _clearCompleted_1k0lb_56">
+  <button class="_button_z78gq_1 _clearCompleted_45a7p_59">
     Clear completed
   </button>
 </footer>
 `;
 
 exports[`components/organisms/TodoFooter HasCompleted smoke-test 1`] = `
-<footer class="_footer_1k0lb_1">
-  <span class="_todoCount_1k0lb_28">
+<footer class="_footer_45a7p_1">
+  <span class="_todoCount_45a7p_31">
     <strong>
       1
     </strong>
     item left
   </span>
-  <ul class="_filters_1k0lb_37">
+  <ul class="_filters_45a7p_40">
     <li>
-      <a class="_link_1k0lb_69 _selected_1k0lb_82"
+      <a class="_link_45a7p_72 _selected_45a7p_85"
          href="/"
          data-status="active"
       >
@@ -57,20 +57,20 @@ exports[`components/organisms/TodoFooter HasCompleted smoke-test 1`] = `
     </li>
     <li>
       <a href="/active"
-         class="_link_1k0lb_69"
+         class="_link_45a7p_72"
       >
         Active
       </a>
     </li>
     <li>
       <a href="/completed"
-         class="_link_1k0lb_69"
+         class="_link_45a7p_72"
       >
         Completed
       </a>
     </li>
   </ul>
-  <button class="_button_z78gq_1 _clearCompleted_1k0lb_56">
+  <button class="_button_z78gq_1 _clearCompleted_45a7p_59">
     Clear completed
   </button>
 </footer>

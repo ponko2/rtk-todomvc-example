@@ -28,7 +28,7 @@ describe("<TodoFooter/>", () => {
         todosCount={2}
         completedCount={1}
         clearCompleted={clearCompletedSpy}
-      />
+      />,
     );
 
     history.replace("/active", {});
@@ -52,7 +52,7 @@ describe("<TodoFooter/>", () => {
         todosCount={2}
         completedCount={1}
         clearCompleted={clearCompletedSpy}
-      />
+      />,
     );
 
     render(<RouterProvider router={router} />);
@@ -74,7 +74,7 @@ describe("<TodoFooter/>", () => {
         todosCount={2}
         completedCount={1}
         clearCompleted={clearCompletedSpy}
-      />
+      />,
     );
 
     render(<RouterProvider router={router} />);
@@ -96,7 +96,7 @@ describe("<TodoFooter/>", () => {
         todosCount={2}
         completedCount={1}
         clearCompleted={clearCompletedSpy}
-      />
+      />,
     );
 
     render(<RouterProvider router={router} />);

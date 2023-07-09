@@ -26,7 +26,7 @@ describe("todosReducer", () => {
     expect(
       todosReducer(undefined, {
         type: undefined,
-      })
+      }),
     ).toStrictEqual({
       ids: [],
       entities: {},
@@ -55,8 +55,8 @@ describe("todosReducer", () => {
           },
           {
             type: actionCreator.pending.type,
-          }
-        )
+          },
+        ),
       ).toStrictEqual({
         ids: [],
         entities: {},
@@ -76,8 +76,8 @@ describe("todosReducer", () => {
           {
             type: actionCreator.fulfilled.type,
             payload: [{ id: 1, title: "foo", completed: false }],
-          }
-        )
+          },
+        ),
       ).toStrictEqual({
         ids: [1],
         entities: {
@@ -103,8 +103,8 @@ describe("todosReducer", () => {
                 return "failed";
               },
             },
-          }
-        )
+          },
+        ),
       ).toStrictEqual({
         ids: [],
         entities: {},
@@ -127,7 +127,7 @@ describe("fetchTodos", () => {
     const fetchSpy = jest
       .spyOn(api, "fetchTodos")
       .mockImplementation(() =>
-        Promise.resolve([{ id: 1, title: "foo", completed: false }])
+        Promise.resolve([{ id: 1, title: "foo", completed: false }]),
       );
 
     await store.dispatch(fetchTodos());
@@ -217,7 +217,7 @@ describe("addTodo", () => {
     const fetchSpy = jest
       .spyOn(api, "fetchTodos")
       .mockImplementation(() =>
-        Promise.resolve([{ id: 1, title: "foo", completed: false }])
+        Promise.resolve([{ id: 1, title: "foo", completed: false }]),
       );
 
     await store.dispatch(addTodo("foo"));
@@ -409,7 +409,7 @@ describe("editTodo", () => {
     const fetchSpy = jest
       .spyOn(api, "fetchTodos")
       .mockImplementation(() =>
-        Promise.resolve([{ id: 1, title: "bar", completed: false }])
+        Promise.resolve([{ id: 1, title: "bar", completed: false }]),
       );
 
     await store.dispatch(editTodo({ id: 1, title: "bar" }));
@@ -507,7 +507,7 @@ describe("toggleTodo", () => {
     const fetchSpy = jest
       .spyOn(api, "fetchTodos")
       .mockImplementation(() =>
-        Promise.resolve([{ id: 1, title: "foo", completed: true }])
+        Promise.resolve([{ id: 1, title: "foo", completed: true }]),
       );
 
     await store.dispatch(toggleTodo(1));
@@ -607,7 +607,7 @@ describe("toggleAllTodo", () => {
       Promise.resolve([
         { id: 1, title: "foo", completed: true },
         { id: 2, title: "bar", completed: true },
-      ])
+      ]),
     );
 
     await store.dispatch(toggleAllTodo());
@@ -710,7 +710,7 @@ describe("clearCompleted", () => {
     const fetchSpy = jest
       .spyOn(api, "fetchTodos")
       .mockImplementation(() =>
-        Promise.resolve([{ id: 1, title: "foo", completed: false }])
+        Promise.resolve([{ id: 1, title: "foo", completed: false }]),
       );
 
     await store.dispatch(clearCompleted());
