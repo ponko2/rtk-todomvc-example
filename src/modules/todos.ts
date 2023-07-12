@@ -39,7 +39,7 @@ export const deleteTodo = createAsyncThunk(
   async (id: number) => {
     await api.deleteTodo(id);
     return api.fetchTodos();
-  }
+  },
 );
 
 export const editTodo = createAsyncThunk(
@@ -47,7 +47,7 @@ export const editTodo = createAsyncThunk(
   async (todo: Omit<Todo, "completed">) => {
     await api.editTodo(todo);
     return api.fetchTodos();
-  }
+  },
 );
 
 export const toggleTodo = createAsyncThunk(
@@ -55,7 +55,7 @@ export const toggleTodo = createAsyncThunk(
   async (id: number) => {
     await api.toggleTodo(id);
     return api.fetchTodos();
-  }
+  },
 );
 
 export const toggleAllTodo = createAsyncThunk("todos/toggleAll", async () => {
@@ -68,7 +68,7 @@ export const clearCompleted = createAsyncThunk(
   async () => {
     await api.clearCompleted();
     return api.fetchTodos();
-  }
+  },
 );
 
 const slice = createSlice({
@@ -82,7 +82,7 @@ const slice = createSlice({
 
     function fulfilled(
       state: TodoState,
-      { payload }: PayloadAction<Todo[], string, unknown, never>
+      { payload }: PayloadAction<Todo[], string, unknown, never>,
     ) {
       todoAdapter.setAll(state, payload);
       state.isLoading = false;
@@ -91,7 +91,7 @@ const slice = createSlice({
 
     function rejected(
       state: TodoState,
-      { error }: PayloadAction<unknown, string, unknown, SerializedError>
+      { error }: PayloadAction<unknown, string, unknown, SerializedError>,
     ) {
       state.isLoading = false;
       state.error = error.toString();
@@ -122,26 +122,26 @@ const slice = createSlice({
 });
 
 export const { selectAll: selectTodos } = todoAdapter.getSelectors(
-  (state: RootState) => state.todos
+  (state: RootState) => state.todos,
 );
 
 export const selectActiveTodos = createSelector([selectTodos], (todos) =>
-  todos.filter((todo) => !todo.completed)
+  todos.filter((todo) => !todo.completed),
 );
 
 export const selectCompletedTodos = createSelector([selectTodos], (todos) =>
-  todos.filter((todo) => todo.completed)
+  todos.filter((todo) => todo.completed),
 );
 
 export const selectTodosCount = createSelector(
   [selectTodos],
-  (todos) => todos.length
+  (todos) => todos.length,
 );
 
 export const selectCompletedTodosCount = createSelector(
   [selectTodos],
   (todos) =>
-    todos.reduce((count, todo) => (todo.completed ? count + 1 : count), 0)
+    todos.reduce((count, todo) => (todo.completed ? count + 1 : count), 0),
 );
 
 export const todosReducer = slice.reducer;

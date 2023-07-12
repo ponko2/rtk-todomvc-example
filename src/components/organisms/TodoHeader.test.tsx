@@ -12,7 +12,7 @@ describe("<TodoHeader/>", () => {
         completedCount={0}
         addTodo={addSpy}
         toggleAllTodo={toggleAllSpy}
-      />
+      />,
     );
 
     const textbox = screen.getByRole("textbox");
@@ -36,7 +36,7 @@ describe("<TodoHeader/>", () => {
         completedCount={1}
         addTodo={addSpy}
         toggleAllTodo={toggleAllSpy}
-      />
+      />,
     );
 
     // eslint-disable-next-line testing-library/no-container, testing-library/no-node-access
