@@ -94,7 +94,7 @@ const slice = createSlice({
       { error }: PayloadAction<unknown, string, unknown, SerializedError>,
     ) {
       state.isLoading = false;
-      state.error = error.toString();
+      state.error = error.message ?? "failed";
     }
 
     builder.addCase(fetchTodos.pending, pending);

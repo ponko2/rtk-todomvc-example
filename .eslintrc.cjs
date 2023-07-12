@@ -35,6 +35,7 @@ module.exports = {
         "plugin:import/typescript",
         "plugin:@typescript-eslint/eslint-recommended",
         "plugin:@typescript-eslint/recommended",
+        "plugin:@typescript-eslint/stylistic",
         "prettier",
       ],
       rules: {
@@ -48,6 +49,9 @@ module.exports = {
         // TypeScript
         // https://typescript-eslint.io/rules/
         // ----------------------------------------------
+
+        // Enforce type definitions to consistently use either `interface` or `type`
+        "@typescript-eslint/consistent-type-definitions": ["error", "type"],
 
         // Disallow variable declarations from shadowing variables declared in the outer scope
         "no-shadow": "off",
@@ -72,11 +76,12 @@ module.exports = {
       files: ["*.ts", "*.tsx"],
       excludedFiles: ["jest.config.ts", "jest.setup.ts", "vite.config.ts"],
       extends: [
-        "plugin:@typescript-eslint/recommended-requiring-type-checking",
+        "plugin:@typescript-eslint/recommended-type-checked",
+        "plugin:@typescript-eslint/stylistic-type-checked",
         "prettier",
       ],
       parserOptions: {
-        project: "./tsconfig.json",
+        project: true,
         tsconfigRootDir: __dirname,
       },
       rules: {
@@ -89,10 +94,6 @@ module.exports = {
 
         // Enforce the use of top-level import type qualifier when an import only has specifiers with inline type qualifiers
         "@typescript-eslint/no-import-type-side-effects": "error",
-
-        // Enforce dot notation whenever possible
-        "dot-notation": "off",
-        "@typescript-eslint/dot-notation": "error",
       },
     },
     {
@@ -104,7 +105,6 @@ module.exports = {
         "prettier",
       ],
       rules: {
-        "@typescript-eslint/no-unsafe-assignment": "off",
         "jest/consistent-test-it": "error",
         "jest/no-conditional-in-test": "error",
         "jest/no-duplicate-hooks": "error",
