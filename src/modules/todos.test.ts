@@ -135,7 +135,7 @@ describe("fetchTodos", () => {
     expect(store.getActions()).toStrictEqual([
       {
         meta: {
-          requestId: expect.anything(),
+          requestId: expect.anything() as string,
           requestStatus: "pending",
           arg: undefined,
         },
@@ -144,7 +144,7 @@ describe("fetchTodos", () => {
       },
       {
         meta: {
-          requestId: expect.anything(),
+          requestId: expect.anything() as string,
           requestStatus: "fulfilled",
           arg: undefined,
         },
@@ -172,7 +172,7 @@ describe("fetchTodos", () => {
     expect(store.getActions()).toStrictEqual([
       {
         meta: {
-          requestId: expect.anything(),
+          requestId: expect.anything() as string,
           requestStatus: "pending",
           arg: undefined,
         },
@@ -181,7 +181,7 @@ describe("fetchTodos", () => {
       },
       {
         meta: {
-          requestId: expect.anything(),
+          requestId: expect.anything() as string,
           rejectedWithValue: false,
           requestStatus: "rejected",
           arg: undefined,
@@ -191,7 +191,7 @@ describe("fetchTodos", () => {
         error: {
           message: "failed",
           name: "Error",
-          stack: expect.anything(),
+          stack: expect.anything() as string,
         },
         payload: undefined,
         type: "todos/fetch/rejected",
@@ -225,7 +225,7 @@ describe("addTodo", () => {
     expect(store.getActions()).toStrictEqual([
       {
         meta: {
-          requestId: expect.anything(),
+          requestId: expect.anything() as string,
           requestStatus: "pending",
           arg: "foo",
         },
@@ -234,7 +234,7 @@ describe("addTodo", () => {
       },
       {
         meta: {
-          requestId: expect.anything(),
+          requestId: expect.anything() as string,
           requestStatus: "fulfilled",
           arg: "foo",
         },
@@ -265,7 +265,7 @@ describe("addTodo", () => {
     expect(store.getActions()).toStrictEqual([
       {
         meta: {
-          requestId: expect.anything(),
+          requestId: expect.anything() as string,
           requestStatus: "pending",
           arg: "foo",
         },
@@ -276,10 +276,10 @@ describe("addTodo", () => {
         error: {
           message: "failed",
           name: "Error",
-          stack: expect.anything(),
+          stack: expect.anything() as string,
         },
         meta: {
-          requestId: expect.anything(),
+          requestId: expect.anything() as string,
           rejectedWithValue: false,
           requestStatus: "rejected",
           arg: "foo",
@@ -319,7 +319,7 @@ describe("deleteTodo", () => {
     expect(store.getActions()).toStrictEqual([
       {
         meta: {
-          requestId: expect.anything(),
+          requestId: expect.anything() as string,
           requestStatus: "pending",
           arg: 1,
         },
@@ -328,7 +328,7 @@ describe("deleteTodo", () => {
       },
       {
         meta: {
-          requestId: expect.anything(),
+          requestId: expect.anything() as string,
           requestStatus: "fulfilled",
           arg: 1,
         },
@@ -361,7 +361,7 @@ describe("deleteTodo", () => {
     expect(store.getActions()).toStrictEqual([
       {
         meta: {
-          requestId: expect.anything(),
+          requestId: expect.anything() as string,
           requestStatus: "pending",
           arg: 1,
         },
@@ -372,10 +372,10 @@ describe("deleteTodo", () => {
         error: {
           message: "failed",
           name: "Error",
-          stack: expect.anything(),
+          stack: expect.anything() as string,
         },
         meta: {
-          requestId: expect.anything(),
+          requestId: expect.anything() as string,
           rejectedWithValue: false,
           requestStatus: "rejected",
           arg: 1,
@@ -417,7 +417,7 @@ describe("editTodo", () => {
     expect(store.getActions()).toStrictEqual([
       {
         meta: {
-          requestId: expect.anything(),
+          requestId: expect.anything() as string,
           requestStatus: "pending",
           arg: { id: 1, title: "bar" },
         },
@@ -426,7 +426,7 @@ describe("editTodo", () => {
       },
       {
         meta: {
-          requestId: expect.anything(),
+          requestId: expect.anything() as string,
           requestStatus: "fulfilled",
           arg: { id: 1, title: "bar" },
         },
@@ -459,7 +459,7 @@ describe("editTodo", () => {
     expect(store.getActions()).toStrictEqual([
       {
         meta: {
-          requestId: expect.anything(),
+          requestId: expect.anything() as string,
           requestStatus: "pending",
           arg: { id: 1, title: "bar" },
         },
@@ -470,10 +470,10 @@ describe("editTodo", () => {
         error: {
           message: "failed",
           name: "Error",
-          stack: expect.anything(),
+          stack: expect.anything() as string,
         },
         meta: {
-          requestId: expect.anything(),
+          requestId: expect.anything() as string,
           rejectedWithValue: false,
           requestStatus: "rejected",
           arg: { id: 1, title: "bar" },
@@ -515,7 +515,7 @@ describe("toggleTodo", () => {
     expect(store.getActions()).toStrictEqual([
       {
         meta: {
-          requestId: expect.anything(),
+          requestId: expect.anything() as string,
           requestStatus: "pending",
           arg: 1,
         },
@@ -524,7 +524,7 @@ describe("toggleTodo", () => {
       },
       {
         meta: {
-          requestId: expect.anything(),
+          requestId: expect.anything() as string,
           requestStatus: "fulfilled",
           arg: 1,
         },
@@ -557,7 +557,7 @@ describe("toggleTodo", () => {
     expect(store.getActions()).toStrictEqual([
       {
         meta: {
-          requestId: expect.anything(),
+          requestId: expect.anything() as string,
           requestStatus: "pending",
           arg: 1,
         },
@@ -568,10 +568,10 @@ describe("toggleTodo", () => {
         error: {
           message: "failed",
           name: "Error",
-          stack: expect.anything(),
+          stack: expect.anything() as string,
         },
         meta: {
-          requestId: expect.anything(),
+          requestId: expect.anything() as string,
           rejectedWithValue: false,
           requestStatus: "rejected",
           arg: 1,
@@ -615,7 +615,7 @@ describe("toggleAllTodo", () => {
     expect(store.getActions()).toStrictEqual([
       {
         meta: {
-          requestId: expect.anything(),
+          requestId: expect.anything() as string,
           requestStatus: "pending",
           arg: undefined,
         },
@@ -624,7 +624,7 @@ describe("toggleAllTodo", () => {
       },
       {
         meta: {
-          requestId: expect.anything(),
+          requestId: expect.anything() as string,
           requestStatus: "fulfilled",
           arg: undefined,
         },
@@ -661,7 +661,7 @@ describe("toggleAllTodo", () => {
     expect(store.getActions()).toStrictEqual([
       {
         meta: {
-          requestId: expect.anything(),
+          requestId: expect.anything() as string,
           requestStatus: "pending",
           arg: undefined,
         },
@@ -672,10 +672,10 @@ describe("toggleAllTodo", () => {
         error: {
           message: "failed",
           name: "Error",
-          stack: expect.anything(),
+          stack: expect.anything() as string,
         },
         meta: {
-          requestId: expect.anything(),
+          requestId: expect.anything() as string,
           rejectedWithValue: false,
           requestStatus: "rejected",
           arg: undefined,
@@ -718,7 +718,7 @@ describe("clearCompleted", () => {
     expect(store.getActions()).toStrictEqual([
       {
         meta: {
-          requestId: expect.anything(),
+          requestId: expect.anything() as string,
           requestStatus: "pending",
           arg: undefined,
         },
@@ -727,7 +727,7 @@ describe("clearCompleted", () => {
       },
       {
         meta: {
-          requestId: expect.anything(),
+          requestId: expect.anything() as string,
           requestStatus: "fulfilled",
           arg: undefined,
         },
@@ -761,7 +761,7 @@ describe("clearCompleted", () => {
     expect(store.getActions()).toStrictEqual([
       {
         meta: {
-          requestId: expect.anything(),
+          requestId: expect.anything() as string,
           requestStatus: "pending",
           arg: undefined,
         },
@@ -772,10 +772,10 @@ describe("clearCompleted", () => {
         error: {
           message: "failed",
           name: "Error",
-          stack: expect.anything(),
+          stack: expect.anything() as string,
         },
         meta: {
-          requestId: expect.anything(),
+          requestId: expect.anything() as string,
           rejectedWithValue: false,
           requestStatus: "rejected",
           arg: undefined,
