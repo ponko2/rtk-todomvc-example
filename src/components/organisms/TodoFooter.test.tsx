@@ -5,6 +5,7 @@ import {
   RouterProvider,
   createMemoryHistory,
 } from "@tanstack/router";
+import "@testing-library/jest-dom";
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { TodoFooter } from "./TodoFooter";
 
