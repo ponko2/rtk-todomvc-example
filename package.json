@@ -2,7 +2,7 @@
   "name": "todomvc",
   "version": "0.1.0",
   "dependencies": {
-    "@reduxjs/toolkit": "^1.9.5",
+    "@reduxjs/toolkit": "^1.9.6",
     "@tanstack/router": "^0.0.1-beta.119",
     "classnames": "^2.3.2",
     "dexie": "^3.2.4",
